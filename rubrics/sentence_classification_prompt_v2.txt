@@ -1,0 +1,106 @@
+You are an expert in Federal Reserve monetary policy communication.
+Classify each sentence into exactly ONE of 5 categories.
+For sentences classified as FINANCIAL, also rate the stability concern intensity.
+
+## Category Definitions
+
+1. FINANCIAL -- Any discussion of financial markets, financial conditions, credit markets,
+   banking sector health, asset prices, lending standards, financial stability, systemic risk,
+   leverage, funding markets, securitization, or financial variables. This includes both:
+   (a) Financial stability as an independent concern (systemic risk, contagion, bank failures,
+       leverage cycles, fire sales, "too big to fail", financial fragility), AND
+   (b) Financial conditions as a transmission channel (credit conditions affecting investment,
+       lending standards affecting spending, interest rate pass-through, wealth effects,
+       housing prices affecting household balance sheets).
+   Key test: Does the sentence discuss financial markets, institutions, or instruments?
+
+2. INFLATION -- Price stability, inflation expectations, inflation dynamics, deflation risk,
+   inflation targeting, commodity prices affecting consumer prices, PCE/CPI movements,
+   Phillips curve, wage-price dynamics.
+
+3. EMPLOYMENT_OUTPUT -- Labor markets, unemployment, output gaps, GDP growth, recession risk,
+   productivity, business investment, consumer spending, aggregate demand/supply.
+
+4. REGULATION_SUPERVISION -- Prudential regulation, supervisory tools, macroprudential policy,
+   stress tests, capital requirements, Basel standards, bank examination, regulatory rules.
+
+5. OTHER -- International economy (trade, exchange rates, foreign growth), fiscal policy,
+   payment systems, procedural/administrative, Fed operations, boilerplate statements,
+   bibliographic references, or genuinely unclassifiable.
+
+## Stability Intensity (FINANCIAL sentences only)
+
+For sentences classified as FINANCIAL, rate the stability concern intensity on a 1-5 scale:
+
+1 = Pure transmission channel. Financial variable discussed ONLY because of its effect on
+    inflation or employment. Example: "Lower mortgage rates were expected to support
+    household spending."
+
+2 = Mostly transmission channel with minor stability undertone. Example: "Tighter credit
+    conditions were expected to weigh on business investment and slow economic growth."
+
+3 = Mixed. Both stability concern and transmission channel are present. Example: "The
+    negative feedback loop between financial strains and weaker spending was viewed as
+    an especially worrisome possibility."
+
+4 = Mostly stability concern with some real-economy framing. Example: "The sharp decline
+    in asset prices is likely to reinforce the deleveraging process occurring throughout
+    the financial sector."
+
+5 = Pure stability concern. Financial system health discussed as an independent concern,
+    regardless of effects on inflation/employment. Example: "The failure of Bear Stearns
+    highlighted vulnerabilities in the triparty repo market that could pose risks to the
+    broader financial system."
+
+## Examples
+
+FINANCIAL (intensity=5): "Several participants expressed concern about the potential for
+a disorderly unwinding of leveraged positions to destabilize financial markets."
+-- Systemic risk as independent concern.
+
+FINANCIAL (intensity=1): "The easing in financial conditions, including lower mortgage rates
+and higher stock prices, was expected to support household spending."
+-- Financial conditions as support for economic activity.
+
+FINANCIAL (intensity=4): "Illiquid markets, extreme volatility, deleveraging, margin calls,
+forced sales, especially in mortgage-backed securities, wider spreads, equity prices falling,
+and lending and funding tenors collapsing toward the overnight."
+-- Describes systemic financial stress process.
+
+FINANCIAL (intensity=2): "The decline in equity prices and widening of credit spreads
+were likely to restrain consumer spending through negative wealth effects."
+-- Financial variables primarily as transmission mechanism.
+
+FINANCIAL (intensity=3): "The potential for adverse interactions in which weaker economic
+activity could lead to a worsening of financial conditions, which in turn could further
+damp economic growth, was viewed as an especially worrisome possibility."
+-- Feedback loop combining stability and transmission concerns.
+
+INFLATION: "Core PCE inflation had risen to 2.4 percent over the twelve months
+ending in July, above the Committee's longer-run objective."
+
+EMPLOYMENT_OUTPUT: "The unemployment rate had risen to 6.1 percent in August,
+and payroll employment had declined for eight consecutive months."
+
+REGULATION_SUPERVISION: "The Board staff briefed the Committee on proposed changes
+to the supervisory stress testing framework."
+
+OTHER: "Voting for the FOMC monetary policy action were: Ben S. Bernanke, Chairman..."
+-- Procedural/administrative.
+
+OTHER: "The Federal Reserve will employ all available tools to promote economic recovery
+and to preserve price stability."
+-- Boilerplate dual-mandate statement without specific analysis.
+
+## Instructions
+For each sentence below, output a JSON object with:
+- "id": the sentence number
+- "topic": one of FINANCIAL, INFLATION, EMPLOYMENT_OUTPUT, REGULATION_SUPERVISION, OTHER
+- "stability_intensity": integer 1-5 (ONLY for FINANCIAL sentences; omit for others)
+- "confidence": HIGH, MEDIUM, or LOW
+- "reasoning": one brief sentence explaining why (max 20 words)
+
+Sentences:
+{NUMBERED_SENTENCES}
+
+Output a JSON array of objects. No markdown fencing.

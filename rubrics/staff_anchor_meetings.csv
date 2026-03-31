@@ -1,0 +1,13 @@
+meeting_date,source_type,description,INFLATION_PRESSURE_min,INFLATION_PRESSURE_max,OUTPUT_GAP_min,OUTPUT_GAP_max,LABOR_TIGHTNESS_min,LABOR_TIGHTNESS_max,FINANCIAL_CONDITIONS_min,FINANCIAL_CONDITIONS_max,CREDIT_SPREADS_min,CREDIT_SPREADS_max
+2009-01-28,minutes,GFC deep recession,15,25,12,22,15,25,78,92,80,95
+2009-03-18,transcript,GFC trough QE1 launch,18,28,10,20,14,24,80,95,82,95
+1999-06-30,transcript,Late 90s boom pre-hike,42,52,55,65,62,74,25,40,15,30
+2015-12-16,minutes,First rate hike liftoff,40,50,48,55,50,58,42,52,30,42
+2020-03-15,transcript,COVID emergency meeting,32,45,15,25,30,42,82,95,75,90
+2022-06-15,minutes,Peak inflation 75bp hike,78,90,55,65,68,80,55,68,52,65
+1993-02-03,transcript,Early 90s recovery,28,38,35,45,28,38,40,55,40,55
+2007-06-28,transcript,Pre-GFC expansion peak,42,52,52,60,50,60,20,35,12,25
+2010-11-03,transcript,QE2 debate sluggish recovery,28,38,30,40,28,38,38,52,35,48
+2017-06-14,minutes,Steady hiking neutral period,48,55,50,56,52,62,46,54,32,42
+2020-12-16,transcript,COVID recovery vaccines,35,45,38,48,32,42,32,45,28,40
+2022-03-16,minutes,First post-COVID hike,72,84,55,62,65,78,50,62,45,58

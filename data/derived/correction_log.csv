@@ -1,0 +1,565 @@
+MEETING_DATE,SOURCE_TYPE,DIMENSION,ORIGINAL,CORRECTED,DELTA,RULE_APPLIED
+1993-02-03,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1993-02-03,minutes,BANKING_HEALTH,55.0,49,-6.0,Polarity confusion in minutes: raw=55→49 (-6 bias)
+1993-03-23,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1993-03-23,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+1993-05-18,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1993-07-07,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1993-08-17,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1993-09-21,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1993-11-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1993-12-21,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1994-02-04,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1995-02-01,minutes,DOLLAR_FX,55.0,45,-10.0,"Polarity inversion: dollar depreciating, raw=55→45"
+1995-02-01,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1995-03-28,minutes,DOLLAR_FX,62.0,38,-24.0,"Polarity inversion: dollar depreciating, raw=62→38"
+1995-03-28,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+1995-05-23,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1995-07-06,minutes,DOLLAR_FX,55.0,45,-10.0,"Polarity inversion: dollar depreciating, raw=55→45"
+1995-07-06,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1995-08-22,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1995-09-26,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+1995-11-15,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1996-01-30,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+1996-03-26,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1996-05-21,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1996-07-02,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1996-08-20,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1996-09-24,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+1996-12-17,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1997-02-04,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1997-03-25,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+1997-05-20,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1997-07-01,minutes,DOLLAR_FX,45.0,55,10.0,"Polarity inversion: dollar appreciating, raw=45→55"
+1997-08-19,minutes,DOLLAR_FX,42.0,58,16.0,"Polarity inversion: dollar appreciating, raw=42→58"
+1997-08-19,transcript,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+1997-09-30,transcript,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+1997-11-12,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1997-12-16,minutes,DOLLAR_FX,43.0,57,14.0,"Polarity inversion: dollar appreciating, raw=43→57"
+1997-12-16,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+1997-12-16,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1998-02-03,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1998-03-31,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+1998-05-19,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1998-06-30,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+1998-07-01,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1998-08-18,minutes,DOLLAR_FX,42.0,58,16.0,"Polarity inversion: dollar appreciating, raw=42→58"
+1998-08-18,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1998-09-29,minutes,BANKING_HEALTH,55.0,49,-6.0,Polarity confusion in minutes: raw=55→49 (-6 bias)
+1998-09-29,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1998-11-17,transcript,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+1998-12-22,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1999-02-02,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+1999-02-03,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1999-03-30,minutes,DOLLAR_FX,47.0,53,6.0,"Polarity inversion: dollar appreciating, raw=47→53"
+1999-03-30,minutes,LABOR_TIGHTNESS,62.0,76,14.0,"Underscoring: UE=4.2%, expected~78, raw=62→76"
+1999-03-30,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1999-03-30,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1999-03-30,transcript,LABOR_TIGHTNESS,54.0,76,22.0,"Underscoring: UE=4.2%, expected~78, raw=54→76"
+1999-05-18,minutes,LABOR_TIGHTNESS,63.0,76,13.0,"Underscoring: UE=4.2%, expected~78, raw=63→76"
+1999-05-18,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1999-05-18,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.2%, expected~78, raw=56→76"
+1999-06-29,minutes,LABOR_TIGHTNESS,64.0,77,13.0,"Underscoring: UE=4.3%, expected~78, raw=64→77"
+1999-06-29,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1999-06-30,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+1999-06-30,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.3%, expected~78, raw=56→76"
+1999-08-24,minutes,LABOR_TIGHTNESS,63.0,76,13.0,"Underscoring: UE=4.2%, expected~78, raw=63→76"
+1999-08-24,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1999-08-24,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.2%, expected~78, raw=56→76"
+1999-10-05,minutes,LABOR_TIGHTNESS,64.0,77,13.0,"Underscoring: UE=4.1%, expected~78, raw=64→77"
+1999-10-05,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+1999-10-05,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.1%, expected~78, raw=56→76"
+1999-11-16,minutes,LABOR_TIGHTNESS,65.0,77,12.0,"Underscoring: UE=4.1%, expected~78, raw=65→77"
+1999-11-16,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+1999-11-16,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.1%, expected~78, raw=56→76"
+1999-12-21,minutes,LABOR_TIGHTNESS,65.0,77,12.0,"Underscoring: UE=4.0%, expected~78, raw=65→77"
+1999-12-21,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+2000-02-02,minutes,DOLLAR_FX,47.0,53,6.0,"Polarity inversion: dollar appreciating, raw=47→53"
+2000-02-02,minutes,LABOR_TIGHTNESS,64.0,77,13.0,"Underscoring: UE=4.1%, expected~78, raw=64→77"
+2000-02-02,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+2000-02-02,transcript,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2000-02-02,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.1%, expected~78, raw=56→76"
+2000-03-21,minutes,LABOR_TIGHTNESS,65.0,77,12.0,"Underscoring: UE=4.0%, expected~78, raw=65→77"
+2000-03-21,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+2000-03-21,transcript,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2000-03-21,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.0%, expected~78, raw=56→76"
+2000-05-16,minutes,DOLLAR_FX,45.0,55,10.0,"Polarity inversion: dollar appreciating, raw=45→55"
+2000-05-16,minutes,LABOR_TIGHTNESS,68.0,77,9.0,"Underscoring: UE=4.0%, expected~78, raw=68→77"
+2000-05-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2000-05-16,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2000-06-28,minutes,LABOR_TIGHTNESS,66.0,77,11.0,"Underscoring: UE=4.0%, expected~78, raw=66→77"
+2000-06-28,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2000-06-28,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2000-06-28,transcript,LABOR_TIGHTNESS,56.0,76,20.0,"Underscoring: UE=4.0%, expected~78, raw=56→76"
+2000-08-22,minutes,DOLLAR_FX,47.0,53,6.0,"Polarity inversion: dollar appreciating, raw=47→53"
+2000-08-22,minutes,LABOR_TIGHTNESS,65.0,77,12.0,"Underscoring: UE=4.1%, expected~78, raw=65→77"
+2000-08-22,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2000-08-22,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2000-10-03,minutes,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2000-10-03,minutes,LABOR_TIGHTNESS,63.0,76,13.0,"Underscoring: UE=3.9%, expected~78, raw=63→76"
+2000-10-03,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2000-10-03,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2000-10-03,transcript,LABOR_TIGHTNESS,54.0,76,22.0,"Underscoring: UE=3.9%, expected~78, raw=54→76"
+2000-11-15,minutes,LABOR_TIGHTNESS,64.0,77,13.0,"Underscoring: UE=3.9%, expected~78, raw=64→77"
+2000-11-15,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2000-11-15,minutes,BANKING_HEALTH,53.0,47,-6.0,Polarity confusion in minutes: raw=53→47 (-6 bias)
+2000-11-15,transcript,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2000-11-15,transcript,LABOR_TIGHTNESS,54.0,76,22.0,"Underscoring: UE=3.9%, expected~78, raw=54→76"
+2000-12-19,minutes,LABOR_TIGHTNESS,62.0,76,14.0,"Underscoring: UE=3.9%, expected~78, raw=62→76"
+2000-12-19,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2000-12-19,minutes,BANKING_HEALTH,55.0,49,-6.0,Polarity confusion in minutes: raw=55→49 (-6 bias)
+2000-12-19,transcript,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.9%, expected~78, raw=52→75"
+2001-01-31,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+2001-03-20,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+2001-03-20,minutes,BANKING_HEALTH,53.0,47,-6.0,Polarity confusion in minutes: raw=53→47 (-6 bias)
+2001-03-20,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2001-03-20,transcript,LABOR_TIGHTNESS,50.0,56,6.0,"Underscoring: UE=4.3%, expected~58, raw=50→56"
+2001-05-15,minutes,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+2001-05-15,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2001-05-15,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2001-05-15,transcript,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2001-05-15,transcript,LABOR_TIGHTNESS,48.0,55,7.0,"Underscoring: UE=4.4%, expected~57, raw=48→55"
+2001-06-27,minutes,LABOR_TIGHTNESS,48.0,54,6.0,"Underscoring: UE=4.5%, expected~56, raw=48→54"
+2001-06-27,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2001-06-27,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2001-06-27,transcript,DOLLAR_FX,42.0,58,16.0,"Polarity inversion: dollar appreciating, raw=42→58"
+2001-06-27,transcript,LABOR_TIGHTNESS,46.0,54,8.0,"Underscoring: UE=4.5%, expected~56, raw=46→54"
+2001-08-21,minutes,DOLLAR_FX,53.0,47,-6.0,"Polarity inversion: dollar depreciating, raw=53→47"
+2001-08-21,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2001-08-21,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2001-10-02,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2001-10-02,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2001-11-06,minutes,LABOR_TIGHTNESS,38.0,42,4.0,"Underscoring: UE=5.5%, expected~44, raw=38→42"
+2001-11-06,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+2001-11-06,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2001-12-11,minutes,LABOR_TIGHTNESS,35.0,40,5.0,"Underscoring: UE=5.7%, expected~42, raw=35→40"
+2001-12-11,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2002-01-30,minutes,LABOR_TIGHTNESS,34.0,40,6.0,"Underscoring: UE=5.7%, expected~42, raw=34→40"
+2002-01-30,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2002-03-19,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2002-05-07,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2002-06-26,minutes,DOLLAR_FX,53.0,47,-6.0,"Polarity inversion: dollar depreciating, raw=53→47"
+2002-06-26,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2002-08-13,minutes,LABOR_TIGHTNESS,35.0,40,5.0,"Underscoring: UE=5.7%, expected~42, raw=35→40"
+2002-08-13,minutes,TREASURY_STRESS,42.0,30,-12.0,Overstatement in minutes: raw=42→30 (-12 bias)
+2002-09-24,minutes,LABOR_TIGHTNESS,36.0,40,4.0,"Underscoring: UE=5.7%, expected~42, raw=36→40"
+2002-09-24,minutes,TREASURY_STRESS,43.0,31,-12.0,Overstatement in minutes: raw=43→31 (-12 bias)
+2002-11-06,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2002-11-06,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2002-12-10,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2003-01-29,minutes,DOLLAR_FX,53.0,47,-6.0,"Polarity inversion: dollar depreciating, raw=53→47"
+2003-01-29,minutes,LABOR_TIGHTNESS,33.0,39,6.0,"Underscoring: UE=5.8%, expected~40, raw=33→39"
+2003-01-29,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2003-03-18,minutes,LABOR_TIGHTNESS,32.0,37,5.0,"Underscoring: UE=5.9%, expected~39, raw=32→37"
+2003-03-18,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2003-05-06,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2003-06-25,minutes,DOLLAR_FX,53.0,47,-6.0,"Polarity inversion: dollar depreciating, raw=53→47"
+2003-06-25,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2003-08-12,minutes,LABOR_TIGHTNESS,31.0,35,4.0,"Underscoring: UE=6.1%, expected~37, raw=31→35"
+2003-08-12,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2003-09-16,minutes,LABOR_TIGHTNESS,31.0,35,4.0,"Underscoring: UE=6.1%, expected~37, raw=31→35"
+2003-09-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2003-10-28,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2003-10-28,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2003-12-09,minutes,LABOR_TIGHTNESS,35.0,40,5.0,"Underscoring: UE=5.7%, expected~42, raw=35→40"
+2003-12-09,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2004-01-28,minutes,LABOR_TIGHTNESS,36.0,40,4.0,"Underscoring: UE=5.7%, expected~42, raw=36→40"
+2004-01-28,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2004-01-28,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2004-03-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2004-03-16,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2004-05-04,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2004-06-30,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2004-08-10,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2004-08-10,transcript,LABOR_TIGHTNESS,40.0,44,4.0,"Underscoring: UE=5.4%, expected~45, raw=40→44"
+2004-09-21,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2004-09-21,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2004-09-21,transcript,LABOR_TIGHTNESS,40.0,44,4.0,"Underscoring: UE=5.4%, expected~45, raw=40→44"
+2004-11-10,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2004-11-10,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2004-11-10,transcript,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2004-12-14,minutes,DOLLAR_FX,55.0,45,-10.0,"Polarity inversion: dollar depreciating, raw=55→45"
+2004-12-14,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2004-12-14,transcript,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2005-02-02,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2005-03-22,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2005-05-03,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2005-05-03,transcript,LABOR_TIGHTNESS,42.0,47,5.0,"Underscoring: UE=5.1%, expected~49, raw=42→47"
+2005-06-30,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2005-08-09,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2005-08-09,transcript,LABOR_TIGHTNESS,46.0,50,4.0,"Underscoring: UE=4.9%, expected~51, raw=46→50"
+2005-09-20,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2005-11-01,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2005-12-13,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2005-12-13,transcript,LABOR_TIGHTNESS,46.0,50,4.0,"Underscoring: UE=4.9%, expected~51, raw=46→50"
+2006-01-31,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2006-01-31,transcript,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2006-03-28,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2006-03-28,transcript,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2006-05-10,minutes,DOLLAR_FX,53.0,47,-6.0,"Polarity inversion: dollar depreciating, raw=53→47"
+2006-05-10,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2006-05-10,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2006-05-10,transcript,LABOR_TIGHTNESS,46.0,53,7.0,"Underscoring: UE=4.6%, expected~55, raw=46→53"
+2006-06-29,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2006-06-29,transcript,LABOR_TIGHTNESS,48.0,53,5.0,"Underscoring: UE=4.6%, expected~55, raw=48→53"
+2006-08-08,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2006-08-08,transcript,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2006-09-20,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2006-09-20,transcript,LABOR_TIGHTNESS,48.0,54,6.0,"Underscoring: UE=4.5%, expected~56, raw=48→54"
+2006-10-25,minutes,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+2006-10-25,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2006-10-25,transcript,LABOR_TIGHTNESS,48.0,55,7.0,"Underscoring: UE=4.4%, expected~57, raw=48→55"
+2006-12-12,minutes,TREASURY_STRESS,47.0,35,-12.0,Overstatement in minutes: raw=47→35 (-12 bias)
+2006-12-12,transcript,LABOR_TIGHTNESS,48.0,54,6.0,"Underscoring: UE=4.5%, expected~56, raw=48→54"
+2007-01-31,minutes,TREASURY_STRESS,51.0,39,-12.0,Overstatement in minutes: raw=51→39 (-12 bias)
+2007-03-21,minutes,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+2007-03-21,minutes,TREASURY_STRESS,45.0,33,-12.0,Overstatement in minutes: raw=45→33 (-12 bias)
+2007-03-21,transcript,LABOR_TIGHTNESS,50.0,55,5.0,"Underscoring: UE=4.4%, expected~57, raw=50→55"
+2007-05-09,minutes,TREASURY_STRESS,51.0,39,-12.0,Overstatement in minutes: raw=51→39 (-12 bias)
+2007-05-09,transcript,LABOR_TIGHTNESS,50.0,54,4.0,"Underscoring: UE=4.5%, expected~56, raw=50→54"
+2007-06-28,minutes,TREASURY_STRESS,54.0,42,-12.0,Overstatement in minutes: raw=54→42 (-12 bias)
+2007-08-07,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2007-08-07,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2007-08-07,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2007-09-18,minutes,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2007-09-18,transcript,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2007-09-18,transcript,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2007-10-31,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2007-10-31,minutes,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2007-10-31,transcript,DOLLAR_FX,58.0,42,-16.0,"Polarity inversion: dollar depreciating, raw=58→42"
+2007-10-31,transcript,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2007-12-11,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2008-01-30,minutes,LABOR_TIGHTNESS,40.0,48,8.0,"Underscoring: UE=4.9%, expected~51, raw=40→48"
+2008-01-30,transcript,DOLLAR_FX,58.0,42,-16.0,"Polarity inversion: dollar depreciating, raw=58→42"
+2008-01-30,transcript,LABOR_TIGHTNESS,44.0,49,5.0,"Underscoring: UE=4.9%, expected~51, raw=44→49"
+2008-03-18,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2008-03-18,minutes,LABOR_TIGHTNESS,38.0,46,8.0,"Underscoring: UE=5.1%, expected~49, raw=38→46"
+2008-03-18,transcript,DOLLAR_FX,62.0,38,-24.0,"Polarity inversion: dollar depreciating, raw=62→38"
+2008-03-18,transcript,LABOR_TIGHTNESS,40.0,47,7.0,"Underscoring: UE=5.1%, expected~49, raw=40→47"
+2008-04-30,minutes,LABOR_TIGHTNESS,36.0,46,10.0,"Underscoring: UE=5.0%, expected~50, raw=36→46"
+2008-04-30,transcript,DOLLAR_FX,62.0,38,-24.0,"Polarity inversion: dollar depreciating, raw=62→38"
+2008-04-30,transcript,LABOR_TIGHTNESS,38.0,47,9.0,"Underscoring: UE=5.0%, expected~50, raw=38→47"
+2008-06-25,minutes,LABOR_TIGHTNESS,34.0,42,8.0,"Underscoring: UE=5.5%, expected~44, raw=34→42"
+2008-06-25,transcript,DOLLAR_FX,62.0,38,-24.0,"Polarity inversion: dollar depreciating, raw=62→38"
+2008-09-16,minutes,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2008-09-16,minutes,LABOR_TIGHTNESS,28.0,35,7.0,"Underscoring: UE=6.1%, expected~37, raw=28→35"
+2008-10-29,minutes,DOLLAR_FX,44.0,72,28.0,"Polarity inversion: dollar appreciating, raw=44→72 (extreme episode floor=72)"
+2008-10-29,minutes,LABOR_TIGHTNESS,24.0,30,6.0,"Underscoring: UE=6.5%, expected~32, raw=24→30"
+2008-10-29,transcript,LABOR_TIGHTNESS,25.0,30,5.0,"Underscoring: UE=6.5%, expected~32, raw=25→30"
+2009-06-24,minutes,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2009-08-12,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2009-09-23,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2009-09-23,transcript,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2009-11-04,transcript,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2010-01-27,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2010-01-27,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2010-03-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2010-03-16,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2010-04-28,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2010-06-23,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2010-08-10,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2010-08-10,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2010-09-21,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2010-09-21,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2010-11-03,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2010-11-03,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2010-12-14,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2011-01-26,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2011-03-15,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2011-04-27,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2011-04-27,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2011-06-22,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2011-11-02,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2011-12-13,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2012-01-25,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2012-03-13,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2012-03-13,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2012-04-25,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2012-04-25,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2012-06-20,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2012-08-01,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2012-08-01,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2012-09-13,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2012-09-13,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2012-10-24,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2012-10-24,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2012-12-12,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2012-12-12,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2013-01-30,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2013-01-30,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-03-20,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2013-03-20,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-05-01,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2013-05-01,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2013-06-19,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-07-31,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-09-18,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-10-30,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2013-10-30,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2013-12-18,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2013-12-18,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-01-29,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2014-01-29,minutes,BANKING_HEALTH,58.0,52,-6.0,Polarity confusion in minutes: raw=58→52 (-6 bias)
+2014-03-19,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2014-03-19,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-04-30,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2014-04-30,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-06-18,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2014-06-18,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-07-30,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2014-07-30,minutes,BANKING_HEALTH,58.0,52,-6.0,Polarity confusion in minutes: raw=58→52 (-6 bias)
+2014-09-17,minutes,DOLLAR_FX,42.0,58,16.0,"Polarity inversion: dollar appreciating, raw=42→58"
+2014-09-17,minutes,LABOR_TIGHTNESS,34.0,38,4.0,"Underscoring: UE=5.9%, expected~39, raw=34→38"
+2014-09-17,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2014-09-17,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-09-17,transcript,DOLLAR_FX,40.0,60,20.0,"Polarity inversion: dollar appreciating, raw=40→60"
+2014-09-17,transcript,LABOR_TIGHTNESS,30.0,37,7.0,"Underscoring: UE=5.9%, expected~39, raw=30→37"
+2014-10-29,minutes,DOLLAR_FX,42.0,64,22.0,"Polarity inversion: dollar appreciating, raw=42→64 (extreme episode floor=64)"
+2014-10-29,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2014-10-29,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-10-29,transcript,DOLLAR_FX,36.0,64,28.0,"Polarity inversion: dollar appreciating, raw=36→64 (extreme episode floor=64)"
+2014-10-29,transcript,LABOR_TIGHTNESS,32.0,38,6.0,"Underscoring: UE=5.8%, expected~40, raw=32→38"
+2014-12-17,minutes,DOLLAR_FX,38.0,66,28.0,"Polarity inversion: dollar appreciating, raw=38→66 (extreme episode floor=66)"
+2014-12-17,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2014-12-17,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2014-12-17,transcript,DOLLAR_FX,34.0,66,32.0,"Polarity inversion: dollar appreciating, raw=34→66 (extreme episode floor=66)"
+2014-12-17,transcript,LABOR_TIGHTNESS,36.0,41,5.0,"Underscoring: UE=5.6%, expected~43, raw=36→41"
+2015-01-28,minutes,DOLLAR_FX,40.0,64,24.0,"Polarity inversion: dollar appreciating, raw=40→64 (extreme episode floor=64)"
+2015-01-28,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2015-01-28,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2015-03-18,minutes,DOLLAR_FX,40.0,66,26.0,"Polarity inversion: dollar appreciating, raw=40→66 (extreme episode floor=66)"
+2015-03-18,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2015-03-18,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2015-04-29,minutes,DOLLAR_FX,54.0,64,10.0,"Polarity inversion: dollar appreciating, raw=54→64 (extreme episode floor=64)"
+2015-04-29,minutes,LABOR_TIGHTNESS,40.0,44,4.0,"Underscoring: UE=5.4%, expected~45, raw=40→44"
+2015-04-29,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2015-04-29,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2015-06-17,minutes,DOLLAR_FX,48.0,62,14.0,"Polarity inversion: dollar appreciating, raw=48→62 (extreme episode floor=62)"
+2015-06-17,minutes,LABOR_TIGHTNESS,40.0,45,5.0,"Underscoring: UE=5.3%, expected~46, raw=40→45"
+2015-06-17,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2015-06-17,transcript,DOLLAR_FX,36.0,64,28.0,"Polarity inversion: dollar appreciating, raw=36→64 (extreme episode floor=62)"
+2015-06-17,transcript,LABOR_TIGHTNESS,36.0,44,8.0,"Underscoring: UE=5.3%, expected~46, raw=36→44"
+2015-07-29,minutes,BANKING_HEALTH,56.0,50,-6.0,Polarity confusion in minutes: raw=56→50 (-6 bias)
+2015-09-17,minutes,LABOR_TIGHTNESS,42.0,47,5.0,"Underscoring: UE=5.1%, expected~49, raw=42→47"
+2015-09-17,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2015-09-17,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2015-10-28,minutes,LABOR_TIGHTNESS,42.0,48,6.0,"Underscoring: UE=5.0%, expected~50, raw=42→48"
+2015-10-28,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2015-10-28,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2015-12-16,minutes,LABOR_TIGHTNESS,44.0,48,4.0,"Underscoring: UE=5.0%, expected~50, raw=44→48"
+2015-12-16,minutes,TREASURY_STRESS,54.0,42,-12.0,Overstatement in minutes: raw=54→42 (-12 bias)
+2015-12-16,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2016-01-27,minutes,LABOR_TIGHTNESS,44.0,49,5.0,"Underscoring: UE=4.9%, expected~51, raw=44→49"
+2016-01-27,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-03-16,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2016-03-16,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-03-16,transcript,LABOR_TIGHTNESS,38.0,47,9.0,"Underscoring: UE=5.0%, expected~50, raw=38→47"
+2016-04-27,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2016-04-27,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-06-15,minutes,LABOR_TIGHTNESS,44.0,49,5.0,"Underscoring: UE=4.9%, expected~51, raw=44→49"
+2016-06-15,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2016-06-15,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-06-15,transcript,LABOR_TIGHTNESS,46.0,50,4.0,"Underscoring: UE=4.9%, expected~51, raw=46→50"
+2016-07-27,minutes,LABOR_TIGHTNESS,44.0,49,5.0,"Underscoring: UE=4.9%, expected~51, raw=44→49"
+2016-07-27,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2016-07-27,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-09-21,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2016-09-21,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2016-11-02,minutes,LABOR_TIGHTNESS,46.0,53,7.0,"Underscoring: UE=4.6%, expected~55, raw=46→53"
+2016-11-02,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2016-11-02,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2016-12-14,minutes,DOLLAR_FX,40.0,60,20.0,"Polarity inversion: dollar appreciating, raw=40→60"
+2016-12-14,minutes,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2016-12-14,minutes,TREASURY_STRESS,54.0,42,-12.0,Overstatement in minutes: raw=54→42 (-12 bias)
+2016-12-14,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2016-12-14,transcript,DOLLAR_FX,34.0,66,32.0,"Polarity inversion: dollar appreciating, raw=34→66"
+2017-02-01,minutes,LABOR_TIGHTNESS,48.0,52,4.0,"Underscoring: UE=4.7%, expected~54, raw=48→52"
+2017-02-01,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2017-02-01,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2017-02-01,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2017-03-15,minutes,LABOR_TIGHTNESS,48.0,54,6.0,"Underscoring: UE=4.5%, expected~56, raw=48→54"
+2017-03-15,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2017-03-15,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2017-03-15,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-03-15,transcript,FINANCIAL_CONDITIONS,42.0,47,5.0,Anchor period (2017-19): raw=42→47 (60% toward FC=50)
+2017-05-03,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2017-05-03,minutes,LABOR_TIGHTNESS,50.0,56,6.0,"Underscoring: UE=4.3%, expected~58, raw=50→56"
+2017-05-03,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2017-05-03,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2017-05-03,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-05-03,transcript,LABOR_TIGHTNESS,50.0,56,6.0,"Underscoring: UE=4.3%, expected~58, raw=50→56"
+2017-05-03,transcript,FINANCIAL_CONDITIONS,42.0,47,5.0,Anchor period (2017-19): raw=42→47 (60% toward FC=50)
+2017-06-14,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2017-06-14,minutes,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+2017-06-14,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2017-06-14,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-06-14,transcript,LABOR_TIGHTNESS,52.0,56,4.0,"Underscoring: UE=4.4%, expected~57, raw=52→56"
+2017-06-14,transcript,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2017-07-26,minutes,DOLLAR_FX,56.0,44,-12.0,"Polarity inversion: dollar depreciating, raw=56→44"
+2017-07-26,minutes,LABOR_TIGHTNESS,52.0,57,5.0,"Underscoring: UE=4.3%, expected~58, raw=52→57"
+2017-07-26,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2017-07-26,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-07-26,transcript,LABOR_TIGHTNESS,52.0,57,5.0,"Underscoring: UE=4.3%, expected~58, raw=52→57"
+2017-07-26,transcript,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-09-20,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2017-09-20,minutes,LABOR_TIGHTNESS,52.0,58,6.0,"Underscoring: UE=4.2%, expected~60, raw=52→58"
+2017-09-20,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2017-09-20,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-09-20,transcript,LABOR_TIGHTNESS,54.0,58,4.0,"Underscoring: UE=4.2%, expected~60, raw=54→58"
+2017-09-20,transcript,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-11-01,minutes,LABOR_TIGHTNESS,54.0,59,5.0,"Underscoring: UE=4.1%, expected~61, raw=54→59"
+2017-11-01,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2017-11-01,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-11-01,transcript,LABOR_TIGHTNESS,54.0,59,5.0,"Underscoring: UE=4.1%, expected~61, raw=54→59"
+2017-11-01,transcript,FINANCIAL_CONDITIONS,36.0,44,8.0,Anchor period (2017-19): raw=36→44 (60% toward FC=50)
+2017-12-13,minutes,LABOR_TIGHTNESS,54.0,59,5.0,"Underscoring: UE=4.1%, expected~61, raw=54→59"
+2017-12-13,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2017-12-13,minutes,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2017-12-13,transcript,FINANCIAL_CONDITIONS,36.0,44,8.0,Anchor period (2017-19): raw=36→44 (60% toward FC=50)
+2018-01-31,minutes,DOLLAR_FX,58.0,42,-16.0,"Polarity inversion: dollar depreciating, raw=58→42"
+2018-01-31,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2018-01-31,minutes,FINANCIAL_CONDITIONS,34.0,44,10.0,Anchor period (2017-19): raw=34→44 (60% toward FC=50)
+2018-01-31,transcript,FINANCIAL_CONDITIONS,34.0,44,10.0,Anchor period (2017-19): raw=34→44 (60% toward FC=50)
+2018-03-21,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2018-03-21,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-03-21,transcript,FINANCIAL_CONDITIONS,38.0,45,7.0,Anchor period (2017-19): raw=38→45 (60% toward FC=50)
+2018-05-02,minutes,LABOR_TIGHTNESS,56.0,62,6.0,"Underscoring: UE=3.8%, expected~64, raw=56→62"
+2018-05-02,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2018-05-02,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-06-13,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2018-06-13,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-06-13,transcript,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-08-01,minutes,DOLLAR_FX,44.0,64,20.0,"Polarity inversion: dollar appreciating, raw=44→64 (extreme episode floor=64)"
+2018-08-01,minutes,LABOR_TIGHTNESS,58.0,62,4.0,"Underscoring: UE=3.9%, expected~63, raw=58→62"
+2018-08-01,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2018-08-01,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2018-08-01,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-09-26,minutes,DOLLAR_FX,44.0,66,22.0,"Polarity inversion: dollar appreciating, raw=44→66 (extreme episode floor=66)"
+2018-09-26,minutes,LABOR_TIGHTNESS,60.0,64,4.0,"Underscoring: UE=3.7%, expected~66, raw=60→64"
+2018-09-26,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2018-09-26,minutes,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-09-26,transcript,DOLLAR_FX,38.0,66,28.0,"Polarity inversion: dollar appreciating, raw=38→66 (extreme episode floor=66)"
+2018-09-26,transcript,LABOR_TIGHTNESS,60.0,64,4.0,"Underscoring: UE=3.7%, expected~66, raw=60→64"
+2018-09-26,transcript,FINANCIAL_CONDITIONS,40.0,46,6.0,Anchor period (2017-19): raw=40→46 (60% toward FC=50)
+2018-11-08,minutes,DOLLAR_FX,42.0,58,16.0,"Polarity inversion: dollar appreciating, raw=42→58"
+2018-11-08,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2018-11-08,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2018-11-08,minutes,FINANCIAL_CONDITIONS,44.0,48,4.0,Anchor period (2017-19): raw=44→48 (60% toward FC=50)
+2018-12-19,minutes,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2018-12-19,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2019-01-30,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2019-03-20,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2019-03-20,minutes,FINANCIAL_CONDITIONS,44.0,48,4.0,Anchor period (2017-19): raw=44→48 (60% toward FC=50)
+2019-05-01,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2019-05-01,minutes,FINANCIAL_CONDITIONS,42.0,47,5.0,Anchor period (2017-19): raw=42→47 (60% toward FC=50)
+2019-06-19,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2019-06-19,minutes,FINANCIAL_CONDITIONS,44.0,48,4.0,Anchor period (2017-19): raw=44→48 (60% toward FC=50)
+2019-07-31,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2019-09-18,minutes,LABOR_TIGHTNESS,62.0,66,4.0,"Underscoring: UE=3.5%, expected~68, raw=62→66"
+2019-10-30,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2019-12-11,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2020-01-29,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2020-03-15,minutes,DOLLAR_FX,40.0,70,30.0,"Polarity inversion: dollar appreciating, raw=40→70 (extreme episode floor=70)"
+2020-03-15,transcript,DOLLAR_FX,65.0,70,5.0,"Polarity inversion: dollar appreciating, raw=65→70 (extreme episode floor=70)"
+2020-03-15,transcript,LABOR_TIGHTNESS,28.0,50,22.0,"Underscoring: UE=4.4%, expected~57, raw=28→50"
+2020-04-29,minutes,DOLLAR_FX,38.0,68,30.0,"Polarity inversion: dollar appreciating, raw=38→68 (extreme episode floor=68)"
+2020-09-16,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2020-11-05,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2020-11-05,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2020-12-16,minutes,DOLLAR_FX,54.0,46,-8.0,"Polarity inversion: dollar depreciating, raw=54→46"
+2020-12-16,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2020-12-16,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2020-12-16,transcript,LABOR_TIGHTNESS,22.0,28,6.0,"Underscoring: UE=6.7%, expected~30, raw=22→28"
+2021-01-27,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2021-01-27,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2021-03-17,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2021-04-28,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2021-06-16,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2021-07-28,minutes,LABOR_TIGHTNESS,40.0,44,4.0,"Underscoring: UE=5.4%, expected~45, raw=40→44"
+2021-07-28,minutes,TREASURY_STRESS,44.0,32,-12.0,Overstatement in minutes: raw=44→32 (-12 bias)
+2021-09-22,minutes,LABOR_TIGHTNESS,44.0,51,7.0,"Underscoring: UE=4.8%, expected~52, raw=44→51"
+2021-09-22,minutes,TREASURY_STRESS,46.0,34,-12.0,Overstatement in minutes: raw=46→34 (-12 bias)
+2021-09-22,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2021-11-03,minutes,LABOR_TIGHTNESS,46.0,57,11.0,"Underscoring: UE=4.2%, expected~60, raw=46→57"
+2021-11-03,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2021-11-03,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2021-12-15,minutes,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2021-12-15,minutes,LABOR_TIGHTNESS,48.0,60,12.0,"Underscoring: UE=3.9%, expected~63, raw=48→60"
+2021-12-15,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2021-12-15,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2022-01-26,minutes,DOLLAR_FX,52.0,62,10.0,"Polarity inversion: dollar appreciating, raw=52→62 (extreme episode floor=62)"
+2022-01-26,minutes,LABOR_TIGHTNESS,50.0,61,11.0,"Underscoring: UE=4.0%, expected~62, raw=50→61"
+2022-01-26,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2022-01-26,minutes,BANKING_HEALTH,54.0,48,-6.0,Polarity confusion in minutes: raw=54→48 (-6 bias)
+2022-03-16,minutes,DOLLAR_FX,44.0,64,20.0,"Polarity inversion: dollar appreciating, raw=44→64 (extreme episode floor=64)"
+2022-03-16,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.6%, expected~78, raw=52→75"
+2022-03-16,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2022-03-16,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2022-05-04,minutes,DOLLAR_FX,42.0,66,24.0,"Polarity inversion: dollar appreciating, raw=42→66 (extreme episode floor=66)"
+2022-05-04,minutes,LABOR_TIGHTNESS,54.0,76,22.0,"Underscoring: UE=3.6%, expected~78, raw=54→76"
+2022-05-04,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2022-05-04,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2022-06-15,minutes,DOLLAR_FX,44.0,68,24.0,"Polarity inversion: dollar appreciating, raw=44→68 (extreme episode floor=68)"
+2022-06-15,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.6%, expected~78, raw=52→75"
+2022-06-15,minutes,TREASURY_STRESS,54.0,42,-12.0,Overstatement in minutes: raw=54→42 (-12 bias)
+2022-06-15,minutes,BANKING_HEALTH,52.0,46,-6.0,Polarity confusion in minutes: raw=52→46 (-6 bias)
+2022-07-27,minutes,DOLLAR_FX,40.0,70,30.0,"Polarity inversion: dollar appreciating, raw=40→70 (extreme episode floor=70)"
+2022-07-27,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.5%, expected~78, raw=52→75"
+2022-07-27,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2022-09-21,minutes,DOLLAR_FX,38.0,72,34.0,"Polarity inversion: dollar appreciating, raw=38→72 (extreme episode floor=72)"
+2022-09-21,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.5%, expected~78, raw=52→75"
+2022-09-21,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2022-11-02,minutes,DOLLAR_FX,38.0,68,30.0,"Polarity inversion: dollar appreciating, raw=38→68 (extreme episode floor=68)"
+2022-11-02,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.7%, expected~78, raw=52→75"
+2022-11-02,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2022-12-14,minutes,DOLLAR_FX,42.0,66,24.0,"Polarity inversion: dollar appreciating, raw=42→66 (extreme episode floor=66)"
+2022-12-14,minutes,LABOR_TIGHTNESS,52.0,75,23.0,"Underscoring: UE=3.5%, expected~78, raw=52→75"
+2022-12-14,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2023-02-01,minutes,LABOR_TIGHTNESS,52.0,70,18.0,"Underscoring: UE=3.4%, expected~72, raw=52→70"
+2023-02-01,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2023-03-22,minutes,LABOR_TIGHTNESS,52.0,70,18.0,"Underscoring: UE=3.5%, expected~72, raw=52→70"
+2023-03-22,minutes,BANKING_HEALTH,44.0,62,18.0,"SVB special case: raw=44→62 (banks failed, scored too low)"
+2023-05-03,minutes,LABOR_TIGHTNESS,52.0,70,18.0,"Underscoring: UE=3.7%, expected~72, raw=52→70"
+2023-05-03,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2023-06-14,minutes,LABOR_TIGHTNESS,52.0,70,18.0,"Underscoring: UE=3.6%, expected~72, raw=52→70"
+2023-06-14,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2023-07-26,minutes,LABOR_TIGHTNESS,52.0,70,18.0,"Underscoring: UE=3.5%, expected~72, raw=52→70"
+2023-07-26,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2023-09-20,minutes,LABOR_TIGHTNESS,50.0,63,13.0,"Underscoring: UE=3.8%, expected~64, raw=50→63"
+2023-09-20,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2023-11-01,minutes,LABOR_TIGHTNESS,50.0,70,20.0,"Underscoring: UE=3.7%, expected~72, raw=50→70"
+2023-11-01,minutes,TREASURY_STRESS,54.0,42,-12.0,Overstatement in minutes: raw=54→42 (-12 bias)
+2023-12-13,minutes,LABOR_TIGHTNESS,50.0,70,20.0,"Underscoring: UE=3.7%, expected~72, raw=50→70"
+2023-12-13,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-01-31,minutes,TREASURY_STRESS,48.0,36,-12.0,Overstatement in minutes: raw=48→36 (-12 bias)
+2024-01-31,minutes,BANKING_HEALTH,55.0,49,-6.0,Polarity confusion in minutes: raw=55→49 (-6 bias)
+2024-03-20,minutes,LABOR_TIGHTNESS,50.0,61,11.0,"Underscoring: UE=3.8%, expected~64, raw=50→61"
+2024-03-20,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-05-01,minutes,LABOR_TIGHTNESS,50.0,60,10.0,"Underscoring: UE=3.9%, expected~63, raw=50→60"
+2024-05-01,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-06-12,minutes,LABOR_TIGHTNESS,50.0,58,8.0,"Underscoring: UE=4.1%, expected~61, raw=50→58"
+2024-06-12,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-07-31,minutes,LABOR_TIGHTNESS,50.0,56,6.0,"Underscoring: UE=4.3%, expected~58, raw=50→56"
+2024-07-31,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-09-18,minutes,LABOR_TIGHTNESS,50.0,58,8.0,"Underscoring: UE=4.1%, expected~61, raw=50→58"
+2024-09-18,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2024-11-07,minutes,DOLLAR_FX,46.0,54,8.0,"Polarity inversion: dollar appreciating, raw=46→54"
+2024-11-07,minutes,LABOR_TIGHTNESS,50.0,57,7.0,"Underscoring: UE=4.2%, expected~60, raw=50→57"
+2024-11-07,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2024-12-18,minutes,DOLLAR_FX,44.0,56,12.0,"Polarity inversion: dollar appreciating, raw=44→56"
+2024-12-18,minutes,LABOR_TIGHTNESS,50.0,58,8.0,"Underscoring: UE=4.1%, expected~61, raw=50→58"
+2024-12-18,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2025-01-29,minutes,LABOR_TIGHTNESS,50.0,59,9.0,"Underscoring: UE=4.0%, expected~62, raw=50→59"
+2025-01-29,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2025-03-19,minutes,LABOR_TIGHTNESS,50.0,58,8.0,"Underscoring: UE=4.1%, expected~61, raw=50→58"
+2025-03-19,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2025-05-07,minutes,LABOR_TIGHTNESS,50.0,58,8.0,"Underscoring: UE=4.1%, expected~61, raw=50→58"
+2025-05-07,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2025-06-18,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2025-07-30,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2025-09-17,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)
+2025-10-29,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2025-12-10,minutes,LABOR_TIGHTNESS,46.0,58,12.0,"Underscoring: UE=4.0%, expected~62, raw=46→58"
+2025-12-10,minutes,TREASURY_STRESS,52.0,40,-12.0,Overstatement in minutes: raw=52→40 (-12 bias)
+2026-01-28,minutes,LABOR_TIGHTNESS,48.0,58,10.0,"Underscoring: UE=4.0%, expected~62, raw=48→58"
+2026-01-28,minutes,TREASURY_STRESS,50.0,38,-12.0,Overstatement in minutes: raw=50→38 (-12 bias)

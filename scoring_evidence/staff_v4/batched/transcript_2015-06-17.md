@@ -1,0 +1,56 @@
+# FOMC Staff Assessment Scoring — 2015-06-17
+
+## Part 1: Thinking Process
+**Document type**: Transcript — economic (MR. FOLLETTE), SEP (MR. TETLOW), international.
+**Era context**: June 2015. Pre-liftoff. Q1 GDP contracted. Dollar sharply appreciated. Oil low. UE ~5.4%. Labor improving. GDP data weak (residual seasonality).
+
+Follette: "real GDP contracted at an annual rate of 1/4 percent in Q1." Dollar drag "substantial." Drilling plunge. But payrolls maintained. JOLTS above pre-crisis. ECI rising. Consumption disappointing despite oil boost. Productivity declining.
+
+## Part 2: Evidence and Scores
+```
+MEETING_DATE: 2015-06-17
+SOURCE_TYPE: transcript
+--- ECONOMIC CONDITIONS ---
+INFLATION_PRESSURE: 33
+INFLATION_PRESSURE_UNC: +-5
+INFLATION_PRESSURE_CONF: High
+OUTPUT_GAP: 43
+OUTPUT_GAP_UNC: +-6
+OUTPUT_GAP_CONF: Moderate
+LABOR_TIGHTNESS: 44
+LABOR_TIGHTNESS_UNC: +-5
+LABOR_TIGHTNESS_CONF: High
+CONSUMPTION_INVESTMENT: 40
+CONSUMPTION_INVESTMENT_UNC: +-6
+CONSUMPTION_INVESTMENT_CONF: High
+PRODUCTIVITY: 30
+PRODUCTIVITY_UNC: +-8
+PRODUCTIVITY_CONF: Moderate
+--- FINANCIAL CONDITIONS ---
+FINANCIAL_CONDITIONS: 42
+FINANCIAL_CONDITIONS_UNC: +-8
+FINANCIAL_CONDITIONS_CONF: Low
+TREASURY_STRESS: N/A
+TREASURY_STRESS_UNC: N/A
+TREASURY_STRESS_CONF: N/A
+CREDIT_SPREADS: N/A
+CREDIT_SPREADS_UNC: N/A
+CREDIT_SPREADS_CONF: N/A
+EQUITY_VALUATION: N/A
+EQUITY_VALUATION_UNC: N/A
+EQUITY_VALUATION_CONF: N/A
+BANKING_STRESS: N/A
+BANKING_STRESS_UNC: N/A
+BANKING_STRESS_CONF: N/A
+DOLLAR_STRENGTH: 68
+DOLLAR_STRENGTH_UNC: +-5
+DOLLAR_STRENGTH_CONF: High
+--- INFLATION SUB-COMPONENTS (N/A if not discussed) ---
+INFLATION_GOODS: N/A
+INFLATION_SERVICES: N/A
+INFLATION_HOUSING: N/A
+INFLATION_EXPECTATIONS: 48
+--- FLAGS ---
+ANOMALY_FLAG: No
+ANOMALY_NOTE:
+```

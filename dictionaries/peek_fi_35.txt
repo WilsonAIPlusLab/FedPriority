@@ -1,0 +1,44 @@
+# Financial Instability (FI) dictionary -- 36 terms (Table 1 lists 36 rows)
+# Source: Peek, Rosengren & Tootell (2016), "Should U.S. Monetary Policy Have a
+#         Ternary Mandate?", Table 1: Financial Instability Term Word Counts.
+#         Federal Reserve Bank of Boston.
+# Sample: FOMC transcripts 1987-2009
+# Note: Terms marked with (*) in the original table had a spike in June 2005
+#       due to a special staff report on housing bubbles; that data point was
+#       interpolated in the regression analysis.
+anxiety
+asset prices
+bubble
+burst
+bust
+cds
+collapse
+crash
+credit constrained
+crises
+crisis
+crunch
+equities
+equity prices
+equity values
+financial stability
+froth
+house prices
+housing prices
+illiquidity
+instability
+irrational exuberance
+ldc
+lending standards
+liquidity issues
+liquidity problems
+loan officer
+market correction
+market distress
+panic
+price to earnings
+regulation
+stock market
+stock prices
+supervision
+volatility

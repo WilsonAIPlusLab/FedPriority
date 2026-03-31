@@ -1,0 +1,9 @@
+# Requirements for FOMC Scoring Dataset code scripts
+# Covers: run_v3_scoring.py, run_v4_scoring.py, classify_sentences.py, compute_variables.py
+# Python 3.10+
+
+anthropic==0.49.0
+pandas==2.2.3
+numpy==2.2.3
+nltk==3.9.1
+spacy==3.8.4
