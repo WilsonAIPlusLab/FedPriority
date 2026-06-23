@@ -1,6 +1,3 @@
-# Large data file — too big for GitHub (105MB); host separately on Zenodo or OSF
-data/sentence_classification/classified_sentences.csv
-
 # Python
 __pycache__/
 *.py[cod]
