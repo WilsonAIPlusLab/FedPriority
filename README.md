@@ -8,8 +8,8 @@ This dataset contains LLM-generated scores of Federal Open Market Committee (FOM
 | Item | Value |
 |------|-------|
 | Meetings covered (matched pairs) | 216 |
-| Staff assessment scores | 482 documents (266 minutes + 216 transcripts), 15 dimensions |
-| Discussion scores | 539 documents, 10 core + 10 optional dimensions |
+| Staff assessment scores | 481 documents (265 minutes + 216 transcripts), 15 dimensions |
+| Discussion scores | 538 documents (265 minutes + 273 transcripts), 10 core + 10 optional dimensions |
 | Classified sentences | 526,516 sentences, 440 meetings |
 | Compression mechanism coding | 216 meetings, 20 columns |
 | Temporal coverage (minutes) | 1993–2026 |
@@ -38,8 +38,8 @@ dataset/
 
 | File | Rows | Description | Codebook |
 |------|------|-------------|----------|
-| data/primary/staff_scores_v4.csv | 482 | Staff assessment scores, 15 dims, minutes + transcripts | codebooks/CODEBOOK_staff_scores.md |
-| data/primary/discussion_scores_v3.csv | 539 | Participant discussion scores, 10+10 dims | codebooks/CODEBOOK_discussion_scores.md |
+| data/primary/staff_scores_v4.csv | 481 | Staff assessment scores, 15 dims, minutes + transcripts | codebooks/CODEBOOK_staff_scores.md |
+| data/primary/discussion_scores_v3.csv | 538 | Participant discussion scores, 10+10 dims | codebooks/CODEBOOK_discussion_scores.md |
 | data/primary/meeting_registry.csv | 316 | FOMC event registry | codebooks/CODEBOOK_meeting_registry.md |
 
 ## Derived and Supplementary Data Files
@@ -64,6 +64,8 @@ The scoring_evidence/ folder contains ~1,433 Markdown files — one per scored d
 | scoring_evidence/discussion_v3/minutes/ | 266 | Discussion scores for minutes |
 | scoring_evidence/discussion_v3/transcripts/ | 273 | Discussion scores for transcripts |
 | scoring_evidence/meeting_comparisons/ | 216 | Side-by-side minutes-vs-transcript comparisons |
+
+The two minutes folders (`discussion_v3/minutes/`, `staff_v4/independent/`) hold 266 files each, one more than the 265 minutes rows in the primary tables: `minutes_2012-10-24.md` scores a duplicate copy of the 2012-10-23 minutes, and its row was removed from the primary tables in 1.1.0.
 
 ## Methodology Summary
 

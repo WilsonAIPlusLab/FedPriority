@@ -38,7 +38,7 @@ Transcripts are verbatim records of meeting proceedings. They include staff econ
 
 FOMC meeting minutes are published approximately three weeks after each meeting. They are institutional summaries prepared by Board staff and approved by the Committee. They present synthesized descriptions of staff briefings and participant discussions using quantifier language ("most participants," "several members," "a few noted") rather than attributing views to individual members.
 
-**Coverage in this dataset**: 266 scored minutes, spanning 1993–2026.
+**Coverage in this dataset**: 265 scored minutes, spanning 1993–2026 (266 minutes files were scored; one was a duplicate copy of the 2012-10-23 minutes and its row was removed, see CHANGELOG 1.1.0).
 
 ### 2.3 Supplementary Sources
 

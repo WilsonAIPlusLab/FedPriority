@@ -43,6 +43,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - See `06_cdfsg_pipeline/merge_final.py`, `build_transcript_speakers.py`, and
   `build_final_with_speakers.py` for the full rebuild logic.
 
+### Fixed — Primary Data
+
+- Removed the duplicate **2012-10-24 minutes** row from `data/primary/discussion_scores_v3.csv` and
+  `data/primary/staff_scores_v4.csv`. It was a second copy of the 2012-10-23 minutes (the registry holds
+  one meeting, 2012-10-23, ending 2012-10-24); its scores differed from the 2012-10-23 row only by sampling
+  noise. Row counts are now 538 (discussion) and 481 (staff), 265 minutes in each; the 1.0.0 entries below
+  give the original counts (539 and 482). The 2012-10-24 *transcript* rows are kept (transcripts are keyed by
+  the end date). The evidence file `minutes_2012-10-24.md` remains in `scoring_evidence/discussion_v3/minutes/`
+  and `scoring_evidence/staff_v4/independent/` (266 files each).
+
 ## [1.0.0] — 2026-03-30
 
 ### Added — Primary Data

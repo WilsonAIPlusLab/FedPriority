@@ -10,6 +10,7 @@ date: 2026-03-30
 **Date:** 2026-03-30
 **Coverage:** 539 scored discussion documents + 482 scored staff documents, 1993–2026
 **Document types:** 266 minutes, 273 transcripts (discussion); 266 minutes, 216 transcripts (staff)
+**Note (1.1.0):** the validation below was run on these original file counts. The duplicate 2012-10-24 minutes row has since been removed from both primary tables, which now hold 538 discussion rows and 481 staff rows (265 minutes in each).
 
 ---
 

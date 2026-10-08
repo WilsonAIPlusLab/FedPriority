@@ -25,7 +25,7 @@ All source documents are produced by the Board of Governors of the Federal Reser
 
 | Document type | Count | Date range |
 |---------------|-------|------------|
-| Minutes | 266 | 1993–2026 |
+| Minutes | 265 | 1993–2026 |
 | Transcripts | 273 | 1993–2020 |
 | Statements | 241 | 1994–2026 |
 | Press conferences | 90 | 2011–2026 |
@@ -181,7 +181,7 @@ Source: `scoring_cumulative_validation_report.md` (04_scoring/staff/docs/). All 
 
 ### 5.1b Discussion Scoring Anomaly Flags
 
-Anomaly flags: 167 of 539 scored discussion documents (31%) carry an anomaly flag. Anomaly flags indicate unusual meeting circumstances (emergency actions, special-topic meetings, very short documents, dominant speakers) rather than errors. Flagged documents are retained in the canonical file with the anomaly description in the `ANOMALY_NOTE` column.
+Anomaly flags: 167 of 538 scored discussion documents (31%) carry an anomaly flag. Anomaly flags indicate unusual meeting circumstances (emergency actions, special-topic meetings, very short documents, dominant speakers) rather than errors. Flagged documents are retained in the canonical file with the anomaly description in the `ANOMALY_NOTE` column.
 
 ### 5.2 Discussion Scoring Reproducibility
 
