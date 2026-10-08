@@ -6,15 +6,21 @@ created: 2026-03-30
 
 ## Overview
 
-This codebook covers two related files produced by the FOMC sentence-classification pipeline. The pipeline applies a large-language-model classifier (prompt version 2; see `rubrics/sentence_classification_prompt_v2.txt`) to every sentence drawn from FOMC meeting transcripts, published meeting minutes, post-meeting statements, and selected Fed speeches spanning 394 meetings from February 1993 through December 2020.
+This codebook covers two related files produced by the FOMC sentence-classification pipeline. The pipeline applies a large-language-model classifier (prompt version 2; see `rubrics/sentence_classification_prompt_v2.txt`) to every sentence drawn from FOMC meeting transcripts, published meeting minutes, post-meeting statements, and selected Fed speeches spanning 440 meetings from February 1993 through December 2020.
+
+> **Updated 2026-09-27** (dataset [1.1.0]): the corpus was rebuilt to fix a speech-parser
+> duplication bug, a label-carry-forward bug, and to add speaker attribution to
+> non-crisis transcript sentences (previously blank for ~91% of transcript rows). Row
+> counts below reflect the corrected corpus (526,516 sentences, 440 meetings). See
+> `dataset/CHANGELOG.md`.
 
 The primary research purpose is to measure how financial-stability emphasis varies across document types — in particular, whether FOMC transcripts devote systematically more attention to financial-stability concerns than the corresponding published minutes. The sentence-level classifications support the construction of the CDFSG composite index, which captures this emphasis gap, and enable cross-method triangulation against the rubric-based discussion scoring in `master_mechanisms.csv`.
 
 ## Unit of Observation
 
-**classified_sentences.csv** — one row per sentence (~394,000 total rows). Each row represents a single classified sentence extracted from one of four document types associated with a specific FOMC meeting date.
+**classified_sentences.csv** — one row per sentence (526,516 total rows). Each row represents a single classified sentence extracted from one of four document types associated with a specific FOMC meeting date.
 
-**meeting_variables.csv** — one row per FOMC meeting (394 total rows). Each row aggregates the sentence-level classifications for all documents associated with that meeting date.
+**meeting_variables.csv** — one row per FOMC meeting (440 total rows). Each row aggregates the sentence-level classifications for all documents associated with that meeting date.
 
 ---
 
@@ -26,15 +32,16 @@ The primary research purpose is to measure how financial-stability emphasis vari
 | meeting_date | date | YYYY-MM-DD | Date of the FOMC meeting with which this document is associated. |
 | doc_type | categorical | transcript, minutes, statement, speech | Document source. `transcript` = verbatim meeting transcript; `minutes` = published FOMC minutes; `statement` = post-meeting press statement; `speech` = Fed official speech. |
 | section | categorical | FOMC1, FOMC2, (others) | Meeting session or document section. `FOMC1` = first day of a two-day meeting; `FOMC2` = second day. May be blank or a section label for minutes and statements. |
-| speaker | string | Surname or UNKNOWN | Speaker surname for transcript sentences. Set to the document's primary attributed author for speeches. Empty or NA for minutes and statements, which are not attributed to individual speakers. |
-| speaker_role | categorical | Chair, Vice Chair, Governor, President, Staff, OTHER, (blank) | Role of the speaker at the time of the meeting. Blank for minutes and statements. |
+| speaker | string | Surname | Speaker surname for transcript sentences (present for all transcript rows as of the 2026-09-27 rebuild; previously blank for non-crisis-era transcripts). Set to the document's primary attributed author for speeches. Empty or NA for minutes and statements, which are not attributed to individual speakers. |
+| speaker_role | categorical | Chair, Vice Chair, Member, Governor, President (Voting), President (Nonvoting), (other role strings), (blank) | Role of the speaker at the time of the meeting. Granularity varies by source convention: crisis-era transcripts and post-rebuild structured-header transcripts carry richer roles (e.g. Governor, President (Voting)); other transcripts carry only the coarse Chair/Vice Chair/Member scheme, since no richer role data exists in that source convention. Blank for minutes and statements. |
 | text | string | free text | The verbatim sentence text as extracted from the source document. |
 | word_count | integer | ≥ 1 | Number of whitespace-delimited tokens in `text`. |
 | speech_title | string | free text or (blank) | Title of the speech, for rows where `doc_type = speech`. Blank for all other document types. |
 | speech_venue | string | free text or (blank) | Venue or occasion of the speech, for rows where `doc_type = speech`. Blank for all other document types. |
 | topic | categorical | See below | CDFSG 7-category topic assigned by the sentence classifier. One category is assigned per sentence. |
 | stability_intensity | integer | 1 – 5 or (blank) | Financial stability concern intensity score. Assigned only when `topic = FSS`; blank for all other topics. See intensity scale below. |
-| confidence | categorical | HIGH, MEDIUM, LOW | Classifier self-reported confidence in the topic assignment. |
+| confidence | categorical | HIGH, MEDIUM, LOW | Classifier self-reported confidence in the topic assignment, normalized to a category. For rows whose original confidence was a raw numeric score (see `confidence_raw`), this is derived via ≥0.8 → HIGH, 0.6–0.79 → MEDIUM, <0.6 → LOW. |
+| confidence_raw | string | HIGH/MEDIUM/LOW or a 0–1 decimal | The classifier's original confidence value, verbatim. Added 2026-09-27: an earlier pipeline era recorded confidence as a raw numeric score rather than a category for a subset of rows; both forms are preserved here unmodified so no information is lost, with `confidence` giving the normalized category for every row regardless of source form. |
 
 ### Topic Category Definitions
 

@@ -3,6 +3,46 @@
 All notable changes to this dataset will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.0] — 2026-09-27
+
+### Fixed — Sentence Classification
+
+- **`data/sentence_classification/classified_sentences.csv`** rebuilt from scratch to fix
+  three defects in the prior corpus:
+  - A duplicate-paragraph bug in `parse_documents.py`'s speech parser (`BeautifulSoup`
+    with `html.parser` silently nested `<p>` tags on older Fed speech HTML that omits
+    closing tags, causing each sentence to be emitted once per enclosing paragraph).
+    Fixed by switching to `lxml`. Verified against a documented worked example
+    (2009-04-20 Kohn speech: 532 duplicated rows → 162 correct rows).
+  - A carry-forward bug in `build_decomposed_sentences.py` that matched unchanged
+    minutes/transcript sentences against a source file with no label columns, silently
+    producing 47,173 blank-labeled rows. Labels are now correctly reattached from the
+    prior classified corpus.
+  - **Missing speaker attribution for non-crisis transcripts.** ~91% of transcript rows
+    (all meetings outside the 2007–2009 crisis window) previously had blank `speaker` /
+    `speaker_role`, because the decomposition pipeline tokenized each component file
+    directly without first splitting it into speaker turns. Transcripts are now
+    re-segmented by speaker turn (reusing the same speaker-detection convention as the
+    crisis-era parser) before tokenization. 96.6% of resulting sentences carried forward
+    their existing label via exact-text match; the remaining 3.4% (13,732 sentences,
+    whose text changed at the new turn boundaries) were freshly classified. Every
+    transcript row now has a non-blank `speaker`.
+  - Net effect: 394,127 → 526,516 rows (562,194 after the parser/carry-forward fixes
+    alone, then −35,678 as the corrected speaker-turn tokenization dropped noise rows
+    the old naive tokenizer had counted as sentences — e.g. header/divider-only
+    fragments).
+  - Added `confidence_raw`: the classifier's original confidence value verbatim (some
+    older rows carry a raw 0–1 score rather than a HIGH/MEDIUM/LOW category).
+    `confidence` continues to hold the normalized HIGH/MEDIUM/LOW category as before
+    (thresholds: ≥0.8 HIGH, 0.6–0.79 MEDIUM, <0.6 LOW for numeric sources).
+- **`data/sentence_classification/meeting_variables.csv`** recomputed from the corrected
+  corpus: 394 → 440 meeting rows. The increase reflects meetings/sessions that were
+  previously absent or miscounted in the stale corpus, not new source documents.
+- Previous published versions of both files are retained as
+  `*.bak_2026-09-27_pre_speaker_fix` for comparison.
+- See `06_cdfsg_pipeline/merge_final.py`, `build_transcript_speakers.py`, and
+  `build_final_with_speakers.py` for the full rebuild logic.
+
 ## [1.0.0] — 2026-03-30
 
 ### Added — Primary Data

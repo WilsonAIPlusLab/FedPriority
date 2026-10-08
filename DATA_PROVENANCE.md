@@ -143,6 +143,16 @@ The following checksums were computed from the canonical primary data files as o
 | `dataset/data/primary/discussion_scores_v3.csv` | `a24ffc911e68b18dcc2676988b5dbe2e2f15e7daae7c27bc93e2e0c32126fcd0` |
 | `dataset/data/primary/meeting_registry.csv` | `894902febbf42359749e1db92c63ff7e466be9eff263e5b5f4f373fec562c93a` |
 
+The two files below were **republished 2026-09-27** to fix a parser bug and a missing
+speaker-attribution field (see `dataset/CHANGELOG.md` [1.1.0]); their checksums reflect
+that date, not 2026-03-30. Previous versions are kept alongside them as
+`*.bak_2026-09-27_pre_speaker_fix`.
+
+| File | SHA-256 |
+|------|---------|
+| `dataset/data/sentence_classification/classified_sentences.csv` | `d1b40931159ef5906af6cfd95e5c024bbc9930ef185f0fb52eb18ff7d82ca1aa` |
+| `dataset/data/sentence_classification/meeting_variables.csv` | `0120e2bfcba14b6d6c8f549333ef1e406a6f4ab7f22e592d8276dd3241564b5c` |
+
 To verify a file after download:
 
 ```python

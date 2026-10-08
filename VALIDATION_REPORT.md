@@ -15,14 +15,14 @@ date: 2026-03-30
 
 ## Executive Summary
 
-This report synthesizes all quality-control and validation evidence for the FOMC Scoring Dataset. The dataset provides machine-generated quantitative assessments of Federal Open Market Committee deliberations and public communications across seven dimensions of macroeconomic and financial conditions. Validation was conducted in eight distinct procedures spanning automated consistency checks, statistical independence tests, human-LLM inter-rater reliability, cross-method convergence, and an independent agent-based deep review. The table below summarizes the outcome of each procedure.
+This report synthesizes all quality-control and validation evidence for the FOMC Scoring Dataset. The dataset provides machine-generated quantitative assessments of Federal Open Market Committee deliberations and public communications across seven dimensions of macroeconomic and financial conditions. Validation was conducted in eight distinct procedures spanning automated consistency checks, statistical independence tests, model-model inter-rater reliability, cross-method convergence, and an independent agent-based deep review. The table below summarizes the outcome of each procedure.
 
 | Validation Procedure | Scope | Key Metric | Status |
 |---|---|---|---|
 | Independence audit (V4 staff scoring) | 482 staff-scored files | 0 contamination phrases; lag-1 AC reduced | PASS |
 | Systematic error correction (staff V4) | 482 files, 15 dimensions | 564 corrections across 5 dimensions; 317 files corrected | PASS |
 | Discussion score validation (V3 independent) | 64 files, 628 dim-checks | 0 direction errors; MAD = 1.9 | PASS |
-| Human-LLM inter-rater kappa | 90-row annotation sample | 8/8 dimensions κ ≥ 0.60 | PASS |
+| Model-model inter-rater kappa (not human-validated) | 90-row annotation sample | 8/8 dimensions κ ≥ 0.60 | PASS |
 | Staff score reproducibility (minutes vs. transcripts) | 171 scorable pairs, 15 dims | Median r = 0.922 across dimensions | PASS |
 | Cross-method convergence (A vs B vs C) | 3 methods, 3 dimensions | B vs C: ρ = 0.587–0.749; A vs B structural gap | PARTIAL |
 | Sentence classification pilot kappa | 200-sentence pilot | κ = 0.751 (Substantial) | PASS |
@@ -278,11 +278,11 @@ The overall mean absolute deviation of 1.9 points across 160 dimensions represen
 
 ---
 
-## 5. Inter-Rater Reliability (Human-LLM Kappa)
+## 5. Inter-Rater Reliability (Model-Model Kappa)
 
 ### 5.1 Procedure
 
-Inter-rater reliability between human conceptual judgment and LLM scoring was evaluated using a 90-row annotation exercise. Thirty excerpts were drawn from FOMC documents spanning the full temporal range (1993–2026) and the full distribution of economic conditions, stratified to include examples from normal times, expansions, recessions, and crisis periods. Each excerpt was assessed by three independent annotators (Claude Opus 4.6 agents prompted to role-play as trained human annotators using the published rubric, with no score memory across excerpts) on eight dimensions. Cohen's kappa was computed using linear weighting on the 0–100 scale, following the ordinal kappa procedure recommended by Shah et al. (2023) for continuous-scale annotation tasks.
+Inter-rater reliability across independent model annotators was evaluated using a 90-row annotation exercise. No human annotator participated; see §5.4. Thirty excerpts were drawn from FOMC documents spanning the full temporal range (1993–2026) and the full distribution of economic conditions, stratified to include examples from normal times, expansions, recessions, and crisis periods. Each excerpt was assessed by three independent annotators (Claude Opus 4.6 agents prompted to role-play as trained human annotators using the published rubric, with no score memory across excerpts) on eight dimensions. Cohen's kappa was computed using linear weighting on the 0–100 scale, following the ordinal kappa procedure recommended by Shah et al. (2023) for continuous-scale annotation tasks.
 
 ### 5.2 Kappa Results
 
@@ -301,11 +301,32 @@ Inter-rater reliability between human conceptual judgment and LLM scoring was ev
 
 **Result: 8/8 dimensions pass the Shah et al. (2023) threshold of κ ≥ 0.60.**
 
-### 5.3 Interpretation and Comparison to Human-Human Norms
+### 5.3 Interpretation and Comparison to Published Human-Human Norms
 
 The Shah et al. (2023) threshold of κ ≥ 0.60 is the standard benchmark for acceptable inter-rater reliability in automated economic text annotation tasks. For comparison, human-human kappa on economic tone classification tasks typically falls in the 0.62–0.78 range (Apel and Blix Grimaldi 2014; Schmeling and Wagner 2019), with higher agreement on clearly directional assessments (expansion vs. contraction) and lower agreement on magnitude calibration.
 
 The LLM-based scoring achieves this standard across all tested dimensions. The dimensions where human judgment would be expected to diverge most — BANKING_HEALTH (polarity sensitive) and DOLLAR_FX (direction sensitive) — both passed despite having been the most error-prone in pre-correction scoring, indicating that the rubric revisions successfully resolved the ambiguities that drove inter-rater disagreement.
+
+### 5.4 Scope limitation: this is not human validation
+
+The comparison in §5.3 is to human-human norms **reported in the published literature**,
+not to human annotation of this corpus. The 90-row exercise in §5.1 used Claude Opus 4.6
+agents prompted to role-play trained annotators; the sentence-classification pilot in §7
+used Claude Opus 4.6 against Claude Sonnet 4.6. **No human annotator has labelled any
+portion of this dataset.**
+
+What these exercises do establish is meaningful but narrower than human validation: that
+scoring is *reproducible* across independent model instances, across a different model
+family tier, and across prompting configurations, with no shared score memory. That rules
+out several failure modes (prompt-specific artifacts, single-run instability, score
+anchoring within a document set). It does not rule out a systematic bias shared by the
+models applying the rubric, which only human adjudication could detect.
+
+The instrument designed for that purpose — `06_cdfsg_pipeline/validation/compute_reliability.py`
+(486 lines; 2 independent human coders × 500 sentences, 3-way agreement with majority-vote
+adjudication) — is written but has **never been run**; human coders were not recruited. Any
+publication drawing on this dataset should describe its reliability evidence as
+model-model reproducibility, not inter-rater agreement with human judgment.
 
 ---
 

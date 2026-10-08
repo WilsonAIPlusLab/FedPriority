@@ -10,7 +10,7 @@ This dataset contains LLM-generated scores of Federal Open Market Committee (FOM
 | Meetings covered (matched pairs) | 216 |
 | Staff assessment scores | 482 documents (266 minutes + 216 transcripts), 15 dimensions |
 | Discussion scores | 539 documents, 10 core + 10 optional dimensions |
-| Classified sentences | ~394,000 sentences, 394 meetings |
+| Classified sentences | 526,516 sentences, 440 meetings |
 | Compression mechanism coding | 216 meetings, 20 columns |
 | Temporal coverage (minutes) | 1993–2026 |
 | Temporal coverage (transcripts) | 1993–2020 |
@@ -22,7 +22,7 @@ This dataset contains LLM-generated scores of Federal Open Market Committee (FOM
 dataset/
 ├── data/primary/          ← Start here: 3 canonical CSVs
 ├── data/derived/          ← Analytical outputs (mechanisms, concordance, corrections)
-├── data/sentence_classification/ ← Method B: ~394K classified sentences
+├── data/sentence_classification/ ← Method B: ~527K classified sentences
 ├── data/topic_modeling/   ← Method C: FASTopic outputs
 ├── data/legacy/           ← Superseded V3 batched scores (audit trail)
 ├── scoring_evidence/      ← ~1,433 .md files with LLM reasoning behind each score
@@ -49,8 +49,8 @@ dataset/
 | data/derived/master_mechanisms.csv | 216 | Per-meeting compression mechanism coding | codebooks/CODEBOOK_mechanisms.md |
 | data/derived/correction_log.csv | 564 | Audit trail for all score corrections | — |
 | data/derived/minutes_vs_transcripts.csv | 1,532 | Staff score gaps (long format: ~170 meetings × 9 dimensions) | — |
-| data/sentence_classification/classified_sentences.csv | ~394,000 | Sentence-level CDFSG topic classification | codebooks/CODEBOOK_sentence_classification.md |
-| data/sentence_classification/meeting_variables.csv | 394 | Meeting-level CDFSG index | codebooks/CODEBOOK_sentence_classification.md |
+| data/sentence_classification/classified_sentences.csv | 526,516 | Sentence-level CDFSG topic classification | codebooks/CODEBOOK_sentence_classification.md |
+| data/sentence_classification/meeting_variables.csv | 440 | Meeting-level CDFSG index | codebooks/CODEBOOK_sentence_classification.md |
 | data/topic_modeling/cross_corpus_matrix.csv | — | Topic model corpus-level comparison | — |
 
 ## Scoring Evidence Files
@@ -70,7 +70,7 @@ The scoring_evidence/ folder contains ~1,433 Markdown files — one per scored d
 Three independent methods were used for triangulation:
 
 - **Method A (LLM Rubric Scoring)**: Each document scored by a fresh LLM agent (no cross-meeting context) using a calibrated rubric with 15 staff dimensions and 10+10 discussion dimensions. Scores are continuous 1–100 with uncertainty bands and confidence tiers.
-- **Method B (CDFSG Sentence Classification)**: ~394,000 sentences classified into 7 economic/financial topic categories. The CDFSG index measures the gap in financial stability emphasis between transcripts and minutes.
+- **Method B (CDFSG Sentence Classification)**: 526,516 sentences classified into 7 economic/financial topic categories, with per-speaker attribution on transcript sentences. The CDFSG index measures the gap in financial stability emphasis between transcripts and minutes.
 - **Method C (FASTopic Topic Modeling)**: Unsupervised topic modeling across 7 FOMC document corpora for cross-method convergence validation.
 
 See METHODOLOGY.md for full details.
@@ -84,7 +84,7 @@ See METHODOLOGY.md for full details.
 | Staff concordance (minutes vs. transcript, core dims) | r = 0.925–0.977 |
 | Discussion reproducibility (MAD across 16 re-scores) | 1.9 points |
 | Direction errors in 628 dimension-checks | 0 |
-| Human-LLM kappa | 8/8 dimensions ≥ 0.60 |
+| Model-model kappa (not human-validated) | 8/8 dimensions ≥ 0.60 |
 | Cross-method convergence (B vs. C, financial) | ρ = 0.587 |
 
 See VALIDATION_REPORT.md for full details.
