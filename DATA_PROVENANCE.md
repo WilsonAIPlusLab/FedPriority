@@ -127,6 +127,14 @@ A v2 decomposition script fixed an HTML extraction bug present in v1. All 537 ou
 - Evidence files: `scoring_evidence/discussion_v3/minutes/` (266 .md files) and `scoring_evidence/discussion_v3/transcripts/` (273 .md files)
 - Status: Canonical. Use this for all primary analyses.
 
+**V4.1 (proposed recommended file for discussion scores; pending release)**
+
+- Location: `data/primary/discussion_scores_v4_1.csv`
+- Method: transcripts scored fresh, one fresh LLM agent per document, on rebuilt inputs (`member_discussion_v2`; `v2b` for 71 re-scored meetings); minutes: the earlier V4 analyses patched by one fresh agent per meeting against the rebuilt input and a text diff. 20 dimensions, including five discussion dimensions. Rubric: `rubrics/discussion_scoring_rubric_v4_1.md` plus `rubrics/discussion_scoring_clarifications_v4_1_1.md`.
+- Checks: blind second pass on 381 minutes cells (`data/derived/discussion_v4_1_second_pass_check.csv`); 36 cells set to N/A afterwards. Blind re-check of the 27 first-run transcript CREDIT_SPREADS `N/A` cells under the V4.1.1 clarifications: 16 now scored at Low confidence (`CREDIT_UPDATE` column; `data/derived/discussion_v4_1_credit_update_log.csv`).
+- Evidence files: `scoring_evidence/discussion_v4_1/`
+- Limits: see `codebooks/CODEBOOK_discussion_scores_v4_1.md`. V3 independent remains available and unchanged.
+
 ### 3.3 Compatibility Note
 
 V3 batched and V4/V3-independent scores are *not* interchangeable. The version transition involves both rubric improvements (V3→V4 for staff) and a methodological change (batched→independent for both). Correlation between old and new scores varies by dimension: core economic dimensions correlate at r = 0.85–0.97; financial sub-dimensions and subjective dimensions show more change due to rubric clarification and contamination removal. See `validation/COMPARISON_SYNTHESIS.md` for full dimension-level comparison statistics.
@@ -152,6 +160,14 @@ that date, not 2026-03-30. Previous versions are kept alongside them as
 |------|---------|
 | `dataset/data/sentence_classification/classified_sentences.csv` | `d1b40931159ef5906af6cfd95e5c024bbc9930ef185f0fb52eb18ff7d82ca1aa` |
 | `dataset/data/sentence_classification/meeting_variables.csv` | `0120e2bfcba14b6d6c8f549333ef1e406a6f4ab7f22e592d8276dd3241564b5c` |
+
+The V4.1 discussion file added in 1.2.0 (checksum computed when the review package was built; recompute if the file is regenerated):
+
+| File | SHA-256 |
+|------|---------|
+| `dataset/data/primary/discussion_scores_v4_1.csv` | `43659f3135e4f0948390146490b8a2c3aa48ef0ef8a6b9c11cd319f53f337a3d` |
+
+(The checksum above was recomputed on 2026-10-08 after the CREDIT_SPREADS update; the file built for review had `383fb88d…f497`.)
 
 To verify a file after download:
 

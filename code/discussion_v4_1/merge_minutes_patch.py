@@ -1,0 +1,148 @@
+"""Merge the per-meeting minutes patches into one table and tally what the patch agents did.
+
+Reads minutes_patch/patched/<date>.md (valid files only, per patch_status.check), writes
+  all_scores_disc_m_v41_patched.csv   one row per meeting, same columns as run_v41.COLS (SOURCE_TYPE discussion_m)
+  revision_log_long.csv               one row per meeting x dimension: status, old, new, reason
+  MINUTES_PATCH_RESULTS.md            counts, correction rates by dimension / era, transition types, caveats
+Never touches the originals (v4_scores_minutes/independent) or the patched files.
+"""
+import csv, re, sys, collections, statistics
+from pathlib import Path
+
+HERE = Path(__file__).parent
+sys.path.insert(0, str(HERE))
+import patch_status as P
+R = P.R
+
+ABSENT = re.compile(r"not in (?:the|this|either)|not present|absent|does not appear|do not appear|did not appear|appears? in neither|neither the old|no longer (?:in|present)|is missing|are missing|not found", re.I)
+BRIGHT = re.compile(r"bright[- ]line|level rule|direction only|direction-only|gives (?:only )?(?:the )?direction|rule \d|below 50|above 50|< ?50|> ?50", re.I)
+
+
+def parse_log(path):
+    t = path.read_text(encoding="utf-8")
+    m = re.search(r"##\s*Revision Log(.*?)(?=\n##\s|\Z)", t, re.S | re.I)
+    out = {}
+    if not m:
+        return out
+    for ln in m.group(1).splitlines():
+        c = [x.strip().strip("`") for x in ln.strip().strip("|").split("|")]
+        if len(c) >= 5 and c[0] in P.ALL20:
+            out[c[0]] = dict(status=c[1].upper(), old=c[2], new=c[3], reason="|".join(c[4:]))
+    return out
+
+
+def val(s):
+    m = re.match(r"\s*(\d+)", s or "")
+    return int(m.group(1)) if m else None
+
+
+def era(d):
+    y = int(d[:4])
+    return "1993-1999" if y <= 1999 else "2000-2008" if y <= 2008 else "2009-2019" if y <= 2019 else "2020-2026"
+
+
+def main():
+    rows = P.load()
+    table, longrows, bad = [], [], []
+    for r in rows:
+        res, pr = P.check(r)
+        if res is None or pr:
+            bad.append((r["meeting_date"], pr[:2]))
+            continue
+        d, log = res
+        table.append({c: d.get(c, "") for c in R.COLS})
+        lg = parse_log(Path(r["output"]))
+        for k in P.ALL20:
+            e = lg.get(k, dict(status="", old="", new="", reason=""))
+            longrows.append(dict(meeting_date=r["meeting_date"], era=era(r["meeting_date"]), dimension=k, **e))
+    table.sort(key=lambda x: x["MEETING_DATE"])
+    with open(HERE / "all_scores_disc_m_v41_patched.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=R.COLS); w.writeheader(); w.writerows(table)
+    keys = ["meeting_date", "era", "dimension", "status", "old", "new", "reason"]
+    with open(HERE / "revision_log_long.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=keys); w.writeheader(); w.writerows(longrows)
+
+    n = len(table)
+    st = collections.Counter(x["status"] for x in longrows)
+    old15 = [x for x in longrows if x["dimension"] in P.OLD15]
+    st15 = collections.Counter(x["status"] for x in old15)
+    by_dim = collections.defaultdict(collections.Counter)
+    for x in old15:
+        by_dim[x["dimension"]][x["status"]] += 1
+    by_era = collections.defaultdict(collections.Counter)
+    for x in old15:
+        by_era[x["era"]][x["status"]] += 1
+    n_era = collections.Counter(era(t["MEETING_DATE"]) for t in table)
+    per_meeting = collections.defaultdict(lambda: collections.Counter())
+    for x in old15:
+        per_meeting[x["meeting_date"]][x["status"]] += 1
+    zero_corr = sorted(d for d, c in per_meeting.items() if c["CORRECTED"] == 0 and c["FILLED"] == 0)
+    corr = [x for x in old15 if x["status"] == "CORRECTED"]
+    trans = collections.Counter()
+    deltas = collections.defaultdict(list)
+    for x in corr:
+        o, nw = val(x["old"]), val(x["new"])
+        if o is not None and nw is None:
+            trans["scored -> N/A"] += 1
+        elif o is None and nw is not None:
+            trans["N/A -> scored"] += 1
+        elif o is not None and nw is not None:
+            trans["scored -> scored (changed value)" if o != nw else "scored -> same value (evidence/UNC/CONF only)"] += 1
+            if o != nw:
+                deltas[x["dimension"]].append(nw - o)
+        else:
+            trans["N/A -> N/A"] += 1
+    reasons = collections.Counter()
+    for x in corr:
+        a = bool(ABSENT.search(x["reason"])); b = bool(BRIGHT.search(x["reason"]))
+        reasons["old evidence absent from input" + (" (+ rule cited)" if b else "") if a else "rule (level/direction/bright-line) cited, no absence cited" if b else "other / unclassified"] += 1
+    # UNCHANGED rows whose own reason admits the old evidence is absent (anchoring indicator)
+    anch = [x for x in old15 if x["status"] == "UNCHANGED" and ABSENT.search(x["reason"])]
+    anch_by_dim = collections.Counter(x["dimension"] for x in anch)
+
+    L = []
+    A = L.append
+    A("# Minutes patch results (V4 -> V4.1), generated by merge_minutes_patch.py")
+    A("")
+    A(f"Valid patched files: **{n} of {len(rows)}**. Invalid/missing: {len(bad)} {bad[:5] if bad else ''}.")
+    A("Each file is a fresh single-document agent patching the existing V4 analysis against the rebuilt input (participants' views + vote record).")
+    A("")
+    A("## Status counts")
+    A(f"All 20 dimensions: {dict(st)}. Old 15 dimensions only: {dict(st15)} "
+      f"(CORRECTED share of old-dimension cells = {st15['CORRECTED'] / max(1, sum(st15.values())):.1%}; FILLED among old 15 = text-newly-available or previously N/A).")
+    A("")
+    A("## Corrections by dimension (old 15 dims, CORRECTED / meetings)")
+    A("| dimension | CORRECTED | FILLED | UNCHANGED | corrected share |")
+    A("|---|---|---|---|---|")
+    for k in sorted(by_dim, key=lambda k: -by_dim[k]["CORRECTED"]):
+        c = by_dim[k]; tot = sum(c.values())
+        A(f"| {k} | {c['CORRECTED']} | {c['FILLED']} | {c['UNCHANGED']} | {c['CORRECTED'] / tot:.0%} |")
+    A("")
+    A("## Corrections by era (old 15 dims)")
+    A("| era | meetings | CORRECTED cells | per meeting | FILLED cells | per meeting |")
+    A("|---|---|---|---|---|---|")
+    for e in ["1993-1999", "2000-2008", "2009-2019", "2020-2026"]:
+        c = by_era[e]; m = max(1, n_era[e])
+        A(f"| {e} | {n_era[e]} | {c['CORRECTED']} | {c['CORRECTED'] / m:.2f} | {c['FILLED']} | {c['FILLED'] / m:.2f} |")
+    A("")
+    A("## What the corrections were")
+    A(f"Transition types: {dict(trans)}.")
+    A(f"Reason classification (keyword heuristic on the agents' one-line reasons, not a verified coding): {dict(reasons)}.")
+    A("Mean signed change when a corrected score moved (new - old): " +
+      "; ".join(f"{k} {statistics.mean(v):+.1f} (n={len(v)})" for k, v in sorted(deltas.items(), key=lambda kv: -len(kv[1]))[:8]) + ".")
+    A("")
+    A("## Limits, stated plainly")
+    A(f"1. **Anchoring.** Agents defaulted to UNCHANGED for the old 15 dimensions by instruction. {len(anch)} UNCHANGED cells carry a reason that itself says the old evidence quote is absent from the new input "
+      f"(top dimensions: {dict(anch_by_dim.most_common(5))}); the score was kept because other passages 'still support' it. Those values are the old analyst's number, re-justified, not independently re-derived. "
+      f"{len(zero_corr)} meetings had no correction and no filled old dimension at all (e.g. {zero_corr[:6]}).")
+    A("2. **Old analyses cited evidence that is in neither the old nor the new input** (unemployment rates, spreads, dollar moves, 'sound banks', in one case a dissent). Corrections therefore mostly reflect the old analysis, not the input rebuild. Pre-2009 meetings carry the heaviest corrections; 2009+ (segmented) carry few.")
+    A("3. The correction rule treats a quote that is absent from the input as unsupported. Where the agent judged other participant text sufficient, the score stayed. Agents differ on this threshold (visible in CREDIT_SPREADS direction-only calls and EQUITY_VALUATION N/A vs 45-55).")
+    A("4. All agents are the same model family; no human check of any patched cell. The five new dimensions (HAWKISH_DOVISH_LEAN, DISSENT_INTENSITY, FINANCIAL_STABILITY_EMPHASIS, FORWARD_GUIDANCE_TONE, UNCERTAINTY_EXPRESSED) are fresh scores in every file (status FILLED).")
+    A("5. The reason-classification above is a regex on free text; counts are indicative.")
+    (HERE / "MINUTES_PATCH_RESULTS.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    print(f"{n}/{len(rows)} valid; wrote table, long log and results note")
+    print("status (old15):", dict(st15), " transitions:", dict(trans))
+
+
+if __name__ == "__main__":
+    main()

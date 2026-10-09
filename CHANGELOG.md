@@ -3,6 +3,35 @@
 All notable changes to this dataset will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.2.0] — 2026-10-08
+
+### Added — Discussion scoring V4.1
+
+- **`data/primary/discussion_scores_v4_1.csv`** (537 rows): participant-discussion scores on the V4.1 rubric
+  (15 shared dimensions plus five discussion dimensions, hawkish/dovish lean, dissent intensity, financial-stability emphasis,
+  forward-guidance tone and uncertainty expressed). Transcript rows (272) are fresh scores, one fresh agent per
+  meeting, on rebuilt inputs; 71 were re-scored under the V4.1.1 clarifications. Minutes rows (265) are a patch of the earlier V4
+  analyses, not fresh scores. Row-level provenance columns: `METHOD`, `RUBRIC_VERSION`, `INPUT_VERSION`, `MODEL_EXCEPTION`, `NA_DECISION_CELLS`.
+- Rebuilt member-discussion inputs: the first-pass inputs had staff text inside member input, cut-off vote records and wrong go-around
+  starts. Transcripts now hold all member and participant turns (First Vice Presidents and acting presidents included); minutes hold the
+  participants' views and the vote record.
+- `rubrics/discussion_scoring_rubric_v4_1.md`, `rubrics/discussion_scoring_clarifications_v4_1_1.md`, `codebooks/CODEBOOK_discussion_scores_v4_1.md`.
+- `data/derived/discussion_v4_1_*`: matched-pair gaps, minutes patch log, blind second-pass check, transcript re-score diff, N/A decision log.
+- `scoring_evidence/discussion_v4_1/`: per-document agent outputs (272 transcripts, 265 minutes patches, 216 second-pass files).
+- `code/discussion_v4_1/`: provenance scripts (not a stand-alone pipeline).
+
+### Changed
+- 36 minutes cells that a blind second pass scored N/A were set to N/A (24 EQUITY_VALUATION, 9 CREDIT_SPREADS, 3 others); each is logged with its old value.
+- 16 first-run transcript CREDIT_SPREADS cells that were `N/A` now carry a Low-confidence score from a blind re-check under the V4.1.1 clarifications (27 first-run `N/A` cells were re-checked; 11 stay `N/A`). New column `CREDIT_UPDATE` marks them; log in `data/derived/discussion_v4_1_credit_update_log.csv`, check outputs in `scoring_evidence/discussion_v4_1/credit_update/`. Seven new CREDIT_SPREADS pairs were added to `discussion_v4_1_minutes_vs_transcripts.csv`.
+- V3 discussion scores (`discussion_scores_v3.csv`) are kept unchanged for comparison.
+
+### Known limits
+- All scorers are LLM agents of one model family; no human coding.
+- Minutes rows are patched, so cells the patch left UNCHANGED partly rest on the earlier analysis; the second pass found closely matching values (mean absolute difference 3.8) but 9% of checked cells would not be scored blind.
+- 12 transcripts were scored on Opus; the models of minutes-patch agents were not tracked per document.
+- The re-scored transcripts omit Part 1 reasoning in their evidence files.
+- Minutes-minus-transcripts gaps on 224 matched pairs: dissent -8.3, financial stability -13.3, uncertainty -5.0.
+
 ## [1.1.0] — 2026-09-27
 
 ### Fixed — Sentence Classification

@@ -1,0 +1,28 @@
+meeting_date,input_words,batch,action,old,new,unc,conf
+1993-02-03,32005,transcript_check_c,N/A -> scored,N/A,57,+-12,Low
+1993-03-01,2075,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+1993-09-21,17143,transcript_check_b,N/A -> scored,N/A,44,+-10,Low
+1993-12-21,24937,transcript_check_c,N/A -> scored,N/A,43,+-12,Low
+1994-02-28,4069,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+1994-04-18,3373,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+1994-07-06,34740,transcript_check_c,N/A -> scored,N/A,45,+-10,Low
+1995-03-10,3619,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+1995-03-28,23498,transcript_check_c,N/A -> scored,N/A,42,+-12,Low
+1995-04-28,1404,transcript_check,kept N/A,N/A,N/A,N/A,N/A
+1995-09-26,23868,transcript_check_b,N/A -> scored,N/A,43,+-10,Low
+1996-03-26,14135,transcript_check_c,N/A -> scored,N/A,33,+-12,Low
+1996-11-13,18990,transcript_check_b,N/A -> scored,N/A,48,+-12,Low
+2000-02-02,29633,transcript_check,N/A -> scored,N/A,55,+-10,Low
+2001-04-18,4587,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+2001-09-17,3466,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+2002-03-19,26486,transcript_check_c,N/A -> scored,N/A,55,+-12,Low
+2002-05-07,16537,transcript_check_c,N/A -> scored,N/A,48,+-10,Low
+2003-03-25,458,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+2003-04-01,1710,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+2003-04-16,6574,transcript_check_b,N/A -> scored,N/A,42,+-10,Low
+2005-09-20,22668,transcript_check_c,N/A -> scored,N/A,35,+-10,Low
+2008-09-29,2334,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A
+2014-03-04,14858,transcript_check,N/A -> scored,N/A,54,+-12,Low
+2016-12-14,33885,transcript_check_c,N/A -> scored,N/A,45,+-10,Low
+2018-06-13,31911,transcript_check,N/A -> scored,N/A,42,+-12,Low
+2020-03-02,3425,transcript_check_c,kept N/A,N/A,N/A,N/A,N/A

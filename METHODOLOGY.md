@@ -107,6 +107,8 @@ The original V3 batched staff scoring (archived in `data/legacy/`) processed mul
 
 The robustness of the key minutes-transcript findings under independent scoring is itself informative. The three gaps in participant discussion (DISSENT_INTENSITY: −9.7 points, FINANCIAL_STABILITY_EMPHASIS: −11.3 points, UNCERTAINTY_EXPRESSED: −5.2 points) all *strengthened* under independent scoring, confirming they reflect genuine editorial compression in the minutes rather than scoring artifacts. The economic dimensions (INFLATION_PRESSURE, OUTPUT_GAP, CONSUMPTION_INVESTMENT, HAWKISH_DOVISH_LEAN) showed near-zero gaps in both scoring approaches, consistent with the hypothesis that economic content is faithfully summarized while deliberative texture is compressed.
 
+The V4.1 re-scoring of the discussion documents (rebuilt inputs, five discussion dimensions, minutes patched rather than re-scored) gives gaps of the same sign and similar size on 224 matched pairs: dissent -8.3, financial stability emphasis -13.3, uncertainty -5.0 (minutes minus transcripts). Both scorings use the same model family and the minutes rows are partly anchored on earlier analyses, so this shows the result does not depend on the earlier input defects, not that it is independent of the scoring method. See `codebooks/CODEBOOK_discussion_scores_v4_1.md`.
+
 ---
 
 ## 4. Method B: Sentence-Level Classification (CDFSG)

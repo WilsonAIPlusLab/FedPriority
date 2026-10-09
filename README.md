@@ -1,7 +1,7 @@
 # FOMC Minutes-Transcript Scoring Dataset, 1993–2020
 
 ## Overview
-This dataset contains LLM-generated scores of Federal Open Market Committee (FOMC) meeting documents — both the published minutes and the underlying transcripts — enabling systematic measurement of editorial compression in FOMC communication. The central finding is that transcripts show systematically more dissent (−9.7 pts), financial stability emphasis (−11.3 pts), and expressed uncertainty (−5.2 pts) than published minutes across 216 matched meeting pairs from 1993–2020.
+This dataset contains LLM-generated scores of Federal Open Market Committee (FOMC) meeting documents — both the published minutes and the underlying transcripts — enabling systematic measurement of editorial compression in FOMC communication. The central finding is that transcripts show systematically more dissent (−9.7 pts), financial stability emphasis (−11.3 pts), and expressed uncertainty (−5.2 pts) than published minutes across 216 matched meeting pairs from 1993–2020 (V3 scoring). The V4.1 re-scoring (see `data/primary/discussion_scores_v4_1.csv`) gives the same direction on 224 matched pairs: minutes minus transcripts of -8.3 (dissent), -13.3 (financial stability emphasis) and -5.0 (uncertainty); both scorings use the same model family, so they are not independent confirmations.
 
 ## Dataset at a Glance
 
@@ -9,7 +9,8 @@ This dataset contains LLM-generated scores of Federal Open Market Committee (FOM
 |------|-------|
 | Meetings covered (matched pairs) | 216 |
 | Staff assessment scores | 481 documents (265 minutes + 216 transcripts), 15 dimensions |
-| Discussion scores | 538 documents (265 minutes + 273 transcripts), 10 core + 10 optional dimensions |
+| Discussion scores (V3) | 538 documents (265 minutes + 273 transcripts), 10 core + 10 optional dimensions |
+| Discussion scores (V4.1) | 537 documents (272 transcripts + 265 minutes), 20 dimensions |
 | Classified sentences | 526,516 sentences, 440 meetings |
 | Compression mechanism coding | 216 meetings, 20 columns |
 | Temporal coverage (minutes) | 1993–2026 |
@@ -39,7 +40,8 @@ dataset/
 | File | Rows | Description | Codebook |
 |------|------|-------------|----------|
 | data/primary/staff_scores_v4.csv | 481 | Staff assessment scores, 15 dims, minutes + transcripts | codebooks/CODEBOOK_staff_scores.md |
-| data/primary/discussion_scores_v3.csv | 538 | Participant discussion scores, 10+10 dims | codebooks/CODEBOOK_discussion_scores.md |
+| data/primary/discussion_scores_v3.csv | 538 | Participant discussion scores, 10+10 dims (V3; kept) | codebooks/CODEBOOK_discussion_scores.md |
+| data/primary/discussion_scores_v4_1.csv | 537 | Participant discussion scores, V4.1: 20 dims; transcripts fresh, minutes patched | codebooks/CODEBOOK_discussion_scores_v4_1.md |
 | data/primary/meeting_registry.csv | 316 | FOMC event registry | codebooks/CODEBOOK_meeting_registry.md |
 
 ## Derived and Supplementary Data Files
@@ -49,6 +51,12 @@ dataset/
 | data/derived/master_mechanisms.csv | 216 | Per-meeting compression mechanism coding | codebooks/CODEBOOK_mechanisms.md |
 | data/derived/correction_log.csv | 564 | Audit trail for all score corrections | — |
 | data/derived/minutes_vs_transcripts.csv | 1,532 | Staff score gaps (long format: ~170 meetings × 9 dimensions) | — |
+| data/derived/discussion_v4_1_minutes_vs_transcripts.csv | 3,129 | Discussion V4.1 gaps (long format, 224 matched pairs × 20 dimensions) | — |
+| data/derived/discussion_v4_1_minutes_patch_log.csv | 5,300 | Per-cell log of the minutes patch (UNCHANGED / FILLED / CORRECTED) | — |
+| data/derived/discussion_v4_1_second_pass_check.csv | 381 | Blind second pass versus patched minutes values | — |
+| data/derived/discussion_v4_1_transcript_rescore_diff.csv | 1,340 | V4.1 versus V4.1.1 transcript re-score, by meeting and dimension | — |
+| data/derived/discussion_v4_1_na_decision_log.csv | 36 | Minutes cells set to N/A after the second pass | — |
+| data/derived/discussion_v4_1_credit_update_log.csv | 27 | Transcript CREDIT_SPREADS cells that were N/A in the first run and were re-checked blind: 16 now scored (Low confidence), 11 kept N/A | — |
 | data/sentence_classification/classified_sentences.csv | 526,516 | Sentence-level CDFSG topic classification | codebooks/CODEBOOK_sentence_classification.md |
 | data/sentence_classification/meeting_variables.csv | 440 | Meeting-level CDFSG index | codebooks/CODEBOOK_sentence_classification.md |
 | data/topic_modeling/cross_corpus_matrix.csv | — | Topic model corpus-level comparison | — |
@@ -63,6 +71,10 @@ The scoring_evidence/ folder contains ~1,433 Markdown files — one per scored d
 | scoring_evidence/staff_v4/independent/ | 266 | Independent QA rescore (minutes only) |
 | scoring_evidence/discussion_v3/minutes/ | 266 | Discussion scores for minutes |
 | scoring_evidence/discussion_v3/transcripts/ | 273 | Discussion scores for transcripts |
+| scoring_evidence/discussion_v4_1/transcripts/ | 272 | V4.1 / V4.1.1 transcript scores (re-scored files omit the Part 1 reasoning) |
+| scoring_evidence/discussion_v4_1/minutes_patched/ | 265 | V4.1 minutes patch analyses |
+| scoring_evidence/discussion_v4_1/second_pass/ | 216 | Blind second-pass cell scores |
+| scoring_evidence/discussion_v4_1/credit_update/ | 27 + procedure | Blind CREDIT_SPREADS / EQUITY_VALUATION check outputs for the 27 first-run N/A transcripts (`PROCEDURE.md` is the instruction file) |
 | scoring_evidence/meeting_comparisons/ | 216 | Side-by-side minutes-vs-transcript comparisons |
 
 The two minutes folders (`discussion_v3/minutes/`, `staff_v4/independent/`) hold 266 files each, one more than the 265 minutes rows in the primary tables: `minutes_2012-10-24.md` scores a duplicate copy of the 2012-10-23 minutes, and its row was removed from the primary tables in 1.1.0.
