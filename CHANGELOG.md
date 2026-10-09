@@ -30,6 +30,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Minutes rows are patched, so cells the patch left UNCHANGED partly rest on the earlier analysis; the second pass found closely matching values (mean absolute difference 3.8) but 9% of checked cells would not be scored blind.
 - 12 transcripts were scored on Opus; the models of minutes-patch agents were not tracked per document.
 - The re-scored transcripts omit Part 1 reasoning in their evidence files.
+- Scorer noise measured on 15 transcripts: mean absolute difference 1.8 points between a score and a blind re-score (financial-stability emphasis noisiest at 3.1); the sample is mostly 1994 to 2008. EQUITY_VALUATION in the 201 transcripts scored before the V4.1.1 clarifications may run about 2 points high relative to the clarified rule. See the codebook.
 - Minutes-minus-transcripts gaps on 224 matched pairs: dissent -8.3, financial stability -13.3, uncertainty -5.0.
 
 ## [1.1.0] — 2026-09-27
