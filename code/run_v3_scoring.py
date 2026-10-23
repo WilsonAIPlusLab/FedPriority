@@ -1,3 +1,5 @@
+# LEGACY (2026-10-17): this script reads the OLD decomposition tree 03_decomposition/output/, which is stale (defective two-column text, pre-rebuild).
+# It is kept to reproduce the historical (V3-era / pre-rebuild) results. For new work use 03_decomposition/output_rebuild/ and build_member_discussion_v2.py.
 """
 V3 FOMC Discussion Scoring — Orchestration Helpers
 

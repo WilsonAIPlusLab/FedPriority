@@ -6,3 +6,10 @@ __pycache__/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Backups (added 2026-10-17)
+*.bak
+*.bak_*
+*.parse_error_*
+*.truncated_text_*
+*.fallback_orig

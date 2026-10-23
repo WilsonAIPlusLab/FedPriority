@@ -1,0 +1,1 @@
+2000-12-19   (fresh minutes sample; two Sonnet runs stopped by API safeguard; third on opus)

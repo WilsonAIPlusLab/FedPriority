@@ -1,26 +1,25 @@
 ---
 title: Codebook — Sentence Classification Files
-version: 1.0
+version: 2.0 (draft)
 created: 2026-03-30
+updated: 2026-10-23
 ---
 
 ## Overview
 
-This codebook covers two related files produced by the FOMC sentence-classification pipeline. The pipeline applies a large-language-model classifier (prompt version 2; see `rubrics/sentence_classification_prompt_v2.txt`) to every sentence drawn from FOMC meeting transcripts, published meeting minutes, post-meeting statements, and selected Fed speeches spanning 440 meetings from February 1993 through December 2020.
+This codebook covers two related files (plus a third, `all_sentences_scored.csv`, described under Related Files) produced by the FOMC sentence-classification pipeline. The pipeline applies a large-language-model classifier (prompt version 2; see `rubrics/sentence_classification_prompt_v2.txt`) to sentences drawn from FOMC meeting transcripts, published meeting minutes, post-meeting statements, and selected Fed speeches spanning 440 distinct dates from January 1993 through January 2026 (see Unit of Observation for what a "date" means by document type).
 
-> **Updated 2026-09-27** (dataset [1.1.0]): the corpus was rebuilt to fix a speech-parser
-> duplication bug, a label-carry-forward bug, and to add speaker attribution to
-> non-crisis transcript sentences (previously blank for ~91% of transcript rows). Row
-> counts below reflect the corrected corpus (526,516 sentences, 440 meetings). See
-> `dataset/CHANGELOG.md`.
+> **Not every label is an LLM label (dataset 2.0.0 draft, 2026-10-23).** The column `label_source` marks 7,979 of the 500,075 rows as `keyword_script`: their `topic` / `stability_intensity` values match the output of keyword scripts, not an LLM judgement (transcript 5,118; speech 2,448; minutes 413). The other 492,096 rows are `llm_presumed`: no keyword-script evidence was found, so they are presumed to be LLM labels. That is the absence of contrary evidence, **not a verification** that each row was labelled by the LLM. `meeting_variables.csv` was NOT recomputed after this flag was added; it still includes the keyword-labelled rows, and the effect on its shares and on CDFSG was not estimated. An analysis that wants LLM labels only can filter `label_source == "llm_presumed"` (and should still treat even that as unverified).
 
-The primary research purpose is to measure how financial-stability emphasis varies across document types — in particular, whether FOMC transcripts devote systematically more attention to financial-stability concerns than the corresponding published minutes. The sentence-level classifications support the construction of the CDFSG composite index, which captures this emphasis gap, and enable cross-method triangulation against the rubric-based discussion scoring in `master_mechanisms.csv`.
+> **Current as of 2026-10-23** (dataset [2.0.0] draft, local): the corpus has **500,075 sentences on 440 dates** (verified against the file on 2026-10-23). It was rebuilt on 2026-09-27 (speech-parser duplication, label carry-forward, speaker attribution for transcripts), corrected on 2026-10-16 (footer-glued speaker labels, page-artifact removal, double-ingestion removal), and extended on 2026-10-17 with the 2007-06-28 and 2008-12-16 statements (26 sentences, classified by one agent with prompt v2). `meeting_variables.csv` was recomputed after those changes but **not** after the `label_source` flag was added in 2.0.0. Earlier row counts (526,516; 500,049) are superseded. See `CHANGELOG.md`.
+
+The dataset focuses on financial stability (topic `FINANCIAL` with `stability_intensity`) alongside the two dual-mandate topics, `INFLATION` and `EMPLOYMENT_OUTPUT`; `REGULATION_SUPERVISION` and `OTHER` are context categories. The primary research purpose is to measure how financial-stability emphasis varies across document types — in particular, whether FOMC transcripts devote systematically more attention to financial-stability concerns than the corresponding published minutes. The sentence-level classifications support the CDFSG gap measures and allow comparison against the rubric-based scores in `data/primary/discussion_scores_v4_1.csv` (see Related Files).
 
 ## Unit of Observation
 
-**classified_sentences.csv** — one row per sentence (526,516 total rows). Each row represents a single classified sentence extracted from one of four document types associated with a specific FOMC meeting date.
+**classified_sentences.csv** — one row per sentence (500,075 total rows; `sentence_id` S000001–S500075, unique). By `doc_type`: transcript 428,487; minutes 52,831; speech 18,544; statement 213. Each row represents a single classified sentence extracted from one of four document types. `meeting_date` is the FOMC meeting date for transcripts, minutes and statements, but **the speech date for speech rows** (119 dates; not all are FOMC meeting dates). Coverage by `doc_type`: transcripts 272 dates, minutes 265, statements 17, speeches 119; 440 distinct dates overall, 1993-01-06 to 2026-01-28 (the latest dates come from minutes).
 
-**meeting_variables.csv** — one row per FOMC meeting (440 total rows). Each row aggregates the sentence-level classifications for all documents associated with that meeting date.
+**meeting_variables.csv** — one row per `meeting_date` (440 total rows; this includes speech-only dates and dates through 2026-01-28; only 215 dates have both a transcript and minutes). Each row aggregates the sentence-level classifications for all documents associated with that meeting date.
 
 ---
 
@@ -29,23 +28,26 @@ The primary research purpose is to measure how financial-stability emphasis vari
 | Variable | Type | Valid Values | Description |
 |----------|------|-------------|-------------|
 | sentence_id | string | S000001 … S999999 | Unique sentence identifier, zero-padded to 6 digits, assigned in corpus order. |
-| meeting_date | date | YYYY-MM-DD | Date of the FOMC meeting with which this document is associated. |
+| meeting_date | date | YYYY-MM-DD | Date of the FOMC meeting with which this document is associated (for `doc_type = speech`: the date of the speech). Range 1993-01-06 to 2026-01-28. |
 | doc_type | categorical | transcript, minutes, statement, speech | Document source. `transcript` = verbatim meeting transcript; `minutes` = published FOMC minutes; `statement` = post-meeting press statement; `speech` = Fed official speech. |
-| section | categorical | FOMC1, FOMC2, (others) | Meeting session or document section. `FOMC1` = first day of a two-day meeting; `FOMC2` = second day. May be blank or a section label for minutes and statements. |
-| speaker | string | Surname | Speaker surname for transcript sentences (present for all transcript rows as of the 2026-09-27 rebuild; previously blank for non-crisis-era transcripts). Set to the document's primary attributed author for speeches. Empty or NA for minutes and statements, which are not attributed to individual speakers. |
-| speaker_role | categorical | Chair, Vice Chair, Member, Governor, President (Voting), President (Nonvoting), (other role strings), (blank) | Role of the speaker at the time of the meeting. Granularity varies by source convention: crisis-era transcripts and post-rebuild structured-header transcripts carry richer roles (e.g. Governor, President (Voting)); other transcripts carry only the coarse Chair/Vice Chair/Member scheme, since no richer role data exists in that source convention. Blank for minutes and statements. |
+| section | categorical | See below | Meeting session or document section; never blank. Transcripts: go_around_combined, policy_discussion, questions_for_staff, FOMC1, staff_economic_briefing, FOMC2, staff_financial_briefing, staff_outlook_briefing, policy_vote. Minutes: unsegmented_body, participants_views, policy_action, staff_financial_review, staff_economic_review, staff_outlook, staff_econ, participants, staff_fin. Statements: body, vote. Speeches: body. `FOMC1` = first day, `FOMC2` = second day of a two-day meeting; these two values occur for only 17 meetings (all other transcripts use the other labels). |
+| speaker | string | Surname (upper-case for transcripts, e.g. BERNANKE; title-case for speeches, e.g. Kroszner) | Speaker surname for transcript sentences (present for all transcript rows as of the 2026-09-27 rebuild; previously blank for non-crisis-era transcripts). Set to the document's primary attributed author for speeches. Empty or NA for minutes and statements, which are not attributed to individual speakers. |
+| speaker_role | categorical | Chair, Chairman, Vice Chair, Vice Chairman, Member, Governor, President (Voting), President (Nonvoting), (blank) (`Chairman`/`Vice Chairman` are source-convention variants of `Chair`/`Vice Chair`, not normalised; speech rows are only Governor or Chair) | Role of the speaker at the time of the meeting. Granularity varies by source convention: crisis-era transcripts and post-rebuild structured-header transcripts carry richer roles (e.g. Governor, President (Voting)); other transcripts carry only the coarse Chair/Vice Chair/Member scheme, since no richer role data exists in that source convention. Blank for minutes and statements. |
 | text | string | free text | The verbatim sentence text as extracted from the source document. |
-| word_count | integer | ≥ 1 | Number of whitespace-delimited tokens in `text`. |
+| word_count | integer | ≥ 5 (observed range 5–581) | Number of whitespace-delimited tokens in `text`. |
 | speech_title | string | free text or (blank) | Title of the speech, for rows where `doc_type = speech`. Blank for all other document types. |
 | speech_venue | string | free text or (blank) | Venue or occasion of the speech, for rows where `doc_type = speech`. Blank for all other document types. |
-| topic | categorical | See below | CDFSG 7-category topic assigned by the sentence classifier. One category is assigned per sentence. |
-| stability_intensity | integer | 1 – 5 or (blank) | Financial stability concern intensity score. Assigned only when `topic = FSS`; blank for all other topics. See intensity scale below. |
+| topic | categorical | FINANCIAL, INFLATION, EMPLOYMENT_OUTPUT, REGULATION_SUPERVISION, OTHER | Topic label assigned by the sentence classifier (prompt V2). One label per sentence. Counts: OTHER 226,988; EMPLOYMENT_OUTPUT 114,471; FINANCIAL 95,556; INFLATION 59,925; REGULATION_SUPERVISION 3,135. The 7-code scheme below (FSS, FCS, etc.) is NOT stored in the file. |
+| stability_intensity | integer | 1 – 5 or (blank) | Financial stability concern intensity score. Assigned for every sentence with `topic = FINANCIAL` (1: 56,457; 2: 23,271; 3: 10,850; 4: 3,843; 5: 1,135); blank for all other topics. See intensity scale below. |
 | confidence | categorical | HIGH, MEDIUM, LOW | Classifier self-reported confidence in the topic assignment, normalized to a category. For rows whose original confidence was a raw numeric score (see `confidence_raw`), this is derived via ≥0.8 → HIGH, 0.6–0.79 → MEDIUM, <0.6 → LOW. |
 | confidence_raw | string | HIGH/MEDIUM/LOW or a 0–1 decimal | The classifier's original confidence value, verbatim. Added 2026-09-27: an earlier pipeline era recorded confidence as a raw numeric score rather than a category for a subset of rows; both forms are preserved here unmodified so no information is lost, with `confidence` giving the normalized category for every row regardless of source form. |
+| label_source | categorical | keyword_script, llm_presumed | Provenance flag added in 2.0.0 (last column; the file has 15 columns, header verified 2026-10-23). `keyword_script` (7,979 rows: transcript 5,118; speech 2,448; minutes 413; no statements): the label matches a keyword script, not an LLM judgement. By topic these rows are OTHER 5,168; FINANCIAL 1,557; EMPLOYMENT_OUTPUT 681; INFLATION 528; REGULATION_SUPERVISION 45 (FINANCIAL intensity 1: 1,090; 2: 140; 3: 271; 4: 8; 5: 48). `llm_presumed` (492,096 rows): no keyword-script evidence was found, so the label is presumed to come from the LLM classifier; this is not a verification. The flag shows where labels match keyword-script output; it does not say which labels are correct. Source list: project `docs/keyword_labelled_rows_2026-10-17.csv` (not shipped in this folder). The keyword rows are 1.6% of the file and 1,557 of the 95,556 FINANCIAL rows (1.6%), so their effect on corpus-wide shares is probably small, but meeting-level shares and CDFSG were not re-checked. |
 
 ### Topic Category Definitions
 
-The classifier uses a 7-category taxonomy derived from the five categories in the V2 prompt. The prompt's `FINANCIAL` category is post-hoc split into two codes based on the `stability_intensity` score:
+> **Note (verified 2026-10-17):** the 7-category scheme below is a conceptual taxonomy only. The file stores the five prompt labels (see `topic` above); no sentence is labelled FSS, FCS, INF, EMP, REG, OTH or DMS, and no post-processing split of `FINANCIAL` into FSS/FCS was applied. In `meeting_variables.csv`, `FSS_*` is the share of **all** FINANCIAL sentences (intensity 1-5), `FCS_*` is always 0, and `DMS_*` has no sentence-level source (see that section).
+
+The conceptual taxonomy derived from the five categories in the V2 prompt; the prompt's `FINANCIAL` category could be split into two codes based on the `stability_intensity` score:
 
 | Code | Label | Description |
 |------|-------|-------------|
@@ -57,9 +59,9 @@ The classifier uses a 7-category taxonomy derived from the five categories in th
 | OTH | Other / General | International economy (trade, exchange rates, foreign growth), fiscal policy, payment systems, procedural or administrative content, Fed operations, boilerplate statements, bibliographic references, or genuinely unclassifiable sentences. |
 | DMS | Decision-Making / Structure | Committee process, vote mechanics, procedural discussions about how the FOMC reaches decisions, meeting administration. |
 
-Note: The classifier prompt (V2) uses `FINANCIAL`, `INFLATION`, `EMPLOYMENT_OUTPUT`, `REGULATION_SUPERVISION`, and `OTHER` as output labels. The `FINANCIAL` label is mapped to `FSS` or `FCS` in post-processing based on whether `stability_intensity` is ≥ 3 (FSS) or ≤ 2 (FCS). `EMPLOYMENT_OUTPUT` is stored as `EMP`; `REGULATION_SUPERVISION` as `REG`; `OTHER` and `DMS` are assigned during post-processing.
+Note (as designed; not applied in the data files): The classifier prompt (V2) uses `FINANCIAL`, `INFLATION`, `EMPLOYMENT_OUTPUT`, `REGULATION_SUPERVISION`, and `OTHER` as output labels. The `FINANCIAL` label is mapped to `FSS` or `FCS` in post-processing based on whether `stability_intensity` is ≥ 3 (FSS) or ≤ 2 (FCS). `EMPLOYMENT_OUTPUT` is stored as `EMP`; `REGULATION_SUPERVISION` as `REG`; `OTHER` and `DMS` are assigned during post-processing.
 
-### Stability Intensity Scale (FSS / FCS sentences only)
+### Stability Intensity Scale (FINANCIAL sentences only)
 
 | Score | Label | Description |
 |-------|-------|-------------|
@@ -76,51 +78,51 @@ Note: The classifier prompt (V2) uses `FINANCIAL`, `INFLATION`, `EMPLOYMENT_OUTP
 | Variable | Type | Valid Values | Description |
 |----------|------|-------------|-------------|
 | meeting_date | date | YYYY-MM-DD | FOMC meeting date. Primary key. |
-| n_transcript | integer | ≥ 0 | Total sentence count from the meeting transcript. Zero if no transcript is available for this meeting. |
-| n_minutes | integer | ≥ 0 | Total sentence count from the published meeting minutes. |
-| n_statement | integer | ≥ 0 | Total sentence count from the post-meeting press statement. Zero if no statement was released. |
+| n_transcript | integer | ≥ 0 | Total sentence count from the meeting transcript. Zero if no transcript is available for this date (168 of 440 dates). |
+| n_minutes | integer | ≥ 0 | Total sentence count from the published meeting minutes. Zero for 175 of 440 dates. |
+| n_statement | integer | ≥ 0 | Total sentence count from the post-meeting press statement. Zero if no statement is in the corpus (423 of 440 dates; statements exist for 17 dates). The 2007-06-28 (9 sentences) and 2008-12-16 (17 sentences) statements were ingested on 2026-10-17, so all 17 FOMC1/FOMC2 meetings now have a statement and a `CDFSG` value. Statements for 2007-08-17 and 2020-08-27 are not yet downloaded (pending approval). |
 | n_speech | integer | ≥ 0 | Total sentence count from Fed speeches associated with this meeting date. Zero if no speeches are linked. |
 | n_FOMC1 | integer | ≥ 0 | Sentence count from the first day (FOMC1 section) of the transcript. Zero for single-day meetings or if `section` coding is unavailable. |
 | n_FOMC2 | integer | ≥ 0 | Sentence count from the second day (FOMC2 section) of the transcript. Zero for single-day meetings. |
-| {TOPIC}_transcript | float | 0 – 1 | Share of transcript sentences classified as `{TOPIC}`. Computed as (count of transcript sentences with topic = TOPIC) / n_transcript. Zero if n_transcript = 0. `{TOPIC}` takes each of the seven values: FSS, FCS, INF, EMP, REG, OTH, DMS. |
-| {TOPIC}_minutes | float | 0 – 1 | Share of minutes sentences classified as `{TOPIC}`. Computed analogously using n_minutes as denominator. |
+| {TOPIC}_transcript | float | 0 – 1 | Share of transcript sentences classified as `{TOPIC}`. Computed as (count of transcript sentences with the mapped label) / n_transcript. **Blank (not zero) if n_transcript = 0.** `{TOPIC}` takes seven column prefixes, but the mapping is: FSS = share of all `FINANCIAL` sentences (not the stability-only subset with intensity ≥ 3); FCS = always 0 (no sentence is mapped to it); INF = INFLATION; EMP = EMPLOYMENT_OUTPUT; REG = REGULATION_SUPERVISION; OTH = OTHER; **DMS has no sentence-level source** (non-zero in 258 dates, up to 0.68, and not part of the label shares). FSS+INF+EMP+REG+OTH sum to 1 (within 0.0002 rounding) wherever the document exists; adding DMS makes row sums exceed 1. |
+| {TOPIC}_minutes | float | 0 – 1 | Share of minutes sentences classified as `{TOPIC}`. Computed analogously using n_minutes as denominator; blank if n_minutes = 0. |
 | {TOPIC}_statement | float | 0 – 1 | Share of statement sentences classified as `{TOPIC}`. Blank if n_statement = 0. |
 | {TOPIC}_speech | float | 0 – 1 | Share of speech sentences classified as `{TOPIC}`. Blank if n_speech = 0. |
 | FSS_FOMC1 | float | 0 – 1 | Share of FOMC1 transcript sentences classified as FSS. Blank if session-level section coding is unavailable. |
 | FSS_FOMC2 | float | 0 – 1 | Share of FOMC2 transcript sentences classified as FSS. Blank if session-level section coding is unavailable. |
-| within_gap | float | unconstrained | FSS_FOMC2 minus FSS_FOMC1. Captures the within-meeting escalation of financial stability discussion across days. Blank when either session share is unavailable. |
-| CDFSG | float | unconstrained | **Primary composite index.** FSS_transcript minus FSS_minutes. See full explanation below. |
-| CDFSG_minutes | float | unconstrained | FSS_minutes minus FSS_statement. Captures emphasis gap between minutes and the post-meeting statement. Blank when n_statement = 0. |
-| CDFSG_speech | float | unconstrained | FSS_transcript minus FSS_speech. Captures emphasis gap between transcripts and associated speeches. Blank when n_speech = 0. |
+| within_gap | float | unconstrained | **FSS_FOMC1 minus FSS_FOMC2** (sign as stored in the file and in `code/compute_variables.py`; e.g. 2007-06-28: 0.2981 − 0.0393 = +0.2588). A positive value means more financial discussion on day 1 than day 2. Populated for only 17 meetings (those with FOMC1/FOMC2 section coding); blank otherwise, as are `FSS_FOMC1` and `FSS_FOMC2`. |
+| CDFSG | float | unconstrained | **As stored in the file: FSS_transcript minus FSS_statement** (17 non-blank values; the two added 2026-10-17 are 2007-06-28 = 0.0380 and 2008-12-16 = -0.2292). NOT the transcript-minus-minutes gap; for that use `CDFSG_minutes`. See explanation below. |
+| CDFSG_minutes | float | unconstrained | **As stored in the file: FSS_transcript minus FSS_minutes** (215 non-blank values; verified to 6e-17). This is the transcript-versus-minutes emphasis gap and the column to use for it. Blank unless both documents exist. |
+| CDFSG_speech | float | unconstrained | FSS_transcript minus FSS_speech. Captures emphasis gap between transcripts and associated speeches. Blank unless both exist (1 non-blank value). |
 
 ### The CDFSG Index
 
-**CDFSG** (Cross-Document Financial Stability Gap) is the primary sentence-level measure of compression of financial stability content between the verbatim transcript and the published minutes.
-
-It is defined as:
+**CDFSG** (Cross-Document Financial Stability Gap) is the family of sentence-level gap measures. The transcript-versus-minutes version, the one intended to measure compression of financial stability content, is stored in the column **`CDFSG_minutes`**:
 
 ```
-CDFSG = FSS_transcript − FSS_minutes
+CDFSG_minutes = FSS_transcript − FSS_minutes      (215 meetings)
+CDFSG         = FSS_transcript − FSS_statement    (17 meetings)
+CDFSG_speech  = FSS_transcript − FSS_speech       (1 meeting)
 ```
 
-where each component is the share of sentences classified as FSS (Financial Stability / Stress) in the respective document.
+(Column names are as stored; an earlier version of this codebook had the first two definitions swapped.) Each component is the share of sentences with topic `FINANCIAL` (all intensity levels; see the mapping note under `{TOPIC}_transcript`) in the respective document, not a stability-only share.
 
 **Interpretation:**
 
 - A value of **0** indicates that financial stability receives the same proportional emphasis in the transcript and the published minutes.
-- A **positive** value indicates that the transcript devotes a larger share of sentences to financial stability than the minutes — the canonical case of downward compression.
-- A **negative** value indicates that the minutes actually devote a larger share of sentences to financial stability than the transcript. This can occur when the transcript is dominated by routine economic discussion while the minutes incorporate prepared background summaries of financial conditions.
+- A **positive** value indicates that the transcript devotes a larger share of sentences to financial content than the minutes (the hypothesised compression direction).
+- A **negative** value indicates that the minutes devote a larger share to financial content than the transcript. **Observed:** `CDFSG_minutes` is negative in 201 of 215 meetings (positive in 14; mean −0.155), so the negative sign is the norm in this data, not an exception. A possible explanation is the minutes' prepared staff financial/economic review sections and the transcripts' length on other topics; this is not tested. The sign pattern has not been validated against human coding.
 
-CDFSG is the sentence-classification analogue to the rubric-based `FSE_GAP` variable in `master_mechanisms.csv`. Both measure the same underlying construct — the minutes-versus-transcript financial stability emphasis gap — but use different methodologies (automated sentence classification vs. LLM-based rubric scoring of the full discussion). Cross-method agreement between CDFSG and FSE_GAP provides validation evidence for both measures.
+`CDFSG_minutes` was originally designed as the sentence-classification counterpart of a rubric-based `FSE_GAP` in `master_mechanisms.csv`. That file and its codebook were removed from the dataset in 2.0.0 (see `CHANGELOG.md`), so the comparison cannot be reproduced from this folder; the figures here are historical. Recomputed on 215 matched meetings (2026-10-17): Spearman 0.0645 (p=0.3465), Pearson 0.1547 (p=0.0233), i.e. no meaningful agreement. `FSE_GAP` was a 0-23 rubric score (never negative), so "signs differ" referred to the sign of the mean level (sentence share higher in minutes; rubric score higher in transcripts), not to a meeting-level correlation. The current rubric-based minutes-versus-transcripts gap table is `data/derived/discussion_v4_1_minutes_vs_transcripts.csv`; no agreement with `CDFSG_minutes` was computed for it in this pass. `CDFSG_minutes` is negative in 201 and positive in 14 of 215 meetings (6.5%). A stability-only variant (FINANCIAL with intensity >= 3, transcript minus minutes) has mean -0.010 but is positive in 103 of 215 meetings (47.9%), so its sign is not a robust pattern; that variant is not stored in the files. [Unverified (not recomputed since 2026-10-17): the Spearman/Pearson and stability-only figures were not recomputed in this pass; the `CDFSG_minutes` counts and mean were.] No validation evidence for either measure should be inferred from this comparison.
 
 ---
 
 ## Notes on Missing Values
 
-- Blank cells in `classified_sentences.csv` for `stability_intensity` indicate the sentence was not classified as FSS or FCS; this is expected and does not represent missing data.
+- Blank cells in `classified_sentences.csv` for `stability_intensity` indicate the sentence was not classified as FINANCIAL; this is expected and does not represent missing data.
 - Blank cells for `speaker` and `speaker_role` in minutes and statement rows are expected; those documents are not attributed to individual speakers.
 - Blank cells for `speech_title` and `speech_venue` in non-speech rows are expected.
-- In `meeting_variables.csv`, blank cells for `{TOPIC}_statement`, `{TOPIC}_speech`, `FSS_FOMC1`, `FSS_FOMC2`, `within_gap`, `CDFSG_minutes`, and `CDFSG_speech` indicate that no documents of the relevant type are associated with that meeting date. These should be treated as structurally missing (not applicable) rather than zero.
+- In `meeting_variables.csv`, blank cells for `{TOPIC}_statement`, `{TOPIC}_speech`, `FSS_FOMC1`, `FSS_FOMC2`, `within_gap`, `CDFSG_minutes`, and `CDFSG_speech` indicate that no documents of the relevant type are associated with that date (and, for `{TOPIC}_transcript`/`{TOPIC}_minutes`, that n_transcript/n_minutes = 0). These should be treated as structurally missing (not applicable) rather than zero.
 - A value of `0` for `n_transcript` or `n_minutes` indicates a meeting for which the document was not available at time of data construction (some early transcripts were released with a lag or remain restricted).
 
 ---
@@ -130,5 +132,13 @@ CDFSG is the sentence-classification analogue to the rubric-based `FSE_GAP` vari
 | File | Relationship |
 |------|-------------|
 | `rubrics/sentence_classification_prompt_v2.txt` | The exact classifier prompt used to produce `topic`, `stability_intensity`, and `confidence` in classified_sentences.csv. |
-| `data/derived/master_mechanisms.csv` | Meeting-level rubric-based scoring. `FSE_GAP` in that file is the rubric counterpart to `CDFSG` here. |
-| `codebooks/CODEBOOK_mechanisms.md` | Codebook for master_mechanisms.csv, including definitions of FSE_GAP and all compression mechanism variables. |
+| `data/primary/discussion_scores_v4_1.csv`, `data/derived/discussion_v4_1_minutes_vs_transcripts.csv` | Current rubric-based (V4.1) discussion scores and their minutes-versus-transcripts gaps; the rubric-based comparison point for `CDFSG_minutes`. `master_mechanisms.csv` and `CODEBOOK_mechanisms.md` were removed in 2.0.0. |
+| `data/sentence_classification/all_sentences_scored.csv` | Third file: 70,610 rows (transcript 44,490; speech 21,870; minutes 4,063; statement 187). Columns (17): the first ten classified_sentences columns (`sentence_id` to `speech_venue`), then `peek_fi_count`, `peek_fi_binary`, `correa_fss_pos`, `correa_fss_neg`, `lm_positive`, `lm_negative` (dictionary term-match counts; no `topic`), and `join_key`. Dictionary columns are case-insensitive, word-boundary regex matches with no stemming (terms files in `dictionaries/`; the scoring script `score_dictionaries.py` is not in this folder, so the counts cannot be regenerated from here). `peek_fi_count` = matches of the 36 terms in `peek_fi_35.txt` (the file name says 35; it holds 36; Peek, Rosengren and Tootell 2016); `peek_fi_binary` = 1 if `peek_fi_count` > 0; `correa_fss_pos` / `correa_fss_neg` = matches of the 96 positive / 295 negative terms of the Correa et al. financial-stability lexicon; `lm_positive` / `lm_negative` = matches of the 354 positive / 2,355 negative Loughran-McDonald terms. Share of sentences with at least one match: Peek 4.87%, Correa 32.41%, LM 50.47%. **Warning:** `sentence_id` in this file (Feb 2026 build) does NOT match `sentence_id` in `classified_sentences.csv`: all 70,610 ids exist in the current file but the text agrees for 0 of them. Join on `join_key` = `meeting_date`, `doc_type` and the first 12 hex characters of the md5 of the lower-cased, stripped text, joined with a vertical bar; it is computed the same way from `classified_sentences.csv` text, and 67,288 of 70,610 scored rows (95.3%) find a key in the current corpus. Keys repeat (repeated short sentences): 2,844 keys occur more than once in the scored file and 490 in the corpus, so de-duplicate before a many-to-one join. |
+
+---
+
+## Limits (2.0.0 draft)
+
+- No human validation of the sentence labels exists in this folder; `llm_presumed` is not a verification.
+- `meeting_variables.csv` was not recomputed after `label_source` was added; its shares and CDFSG include the 7,979 keyword-labelled rows.
+- Most keyword-labelled rows are OTHER (5,168 of 7,979); 1,557 are FINANCIAL.

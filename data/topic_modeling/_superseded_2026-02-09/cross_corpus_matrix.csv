@@ -1,0 +1,7 @@
+corpus_a,corpus_b,pair_type,pearson_r,spearman_r,n_meetings,interpretation
+minutes,transcripts,Primary robustness,0.7238813419736102,0.7460912847259433,216,Strong agreement
+minutes,minutes_decomposed,Preprocessing robustness,0.8701493124700389,0.8997040199125602,265,Strong agreement
+transcripts,transcripts_decomposed,Preprocessing robustness,0.8877835915826511,0.9013709160794364,224,Strong agreement
+minutes,staff_combined,Staff vs Full,0.8538876606282639,0.8564475636834294,266,Strong agreement
+transcripts,staff_combined,Staff vs Full,0.7631228370189552,0.7681500210703752,225,Strong agreement
+staff_combined,staff_paragraphs,Granularity robustness,0.36162768686535024,0.3959285652462422,275,Weak agreement

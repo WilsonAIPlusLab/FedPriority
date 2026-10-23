@@ -3,8 +3,8 @@
 You score two dimensions, EQUITY_VALUATION and CREDIT_SPREADS, for one FOMC transcript document, from the participants' words alone. You are **not** shown any earlier score for this meeting and must not look for one. This check exists because the first scorers applied the rules for these two dimensions inconsistently; the clarifications now fix the reading.
 
 ## Files you may read (only these)
-1. The rubric: `C:\Users\zheng\New folder\04_scoring\discussion\v4_1\FOMC_Discussion_Review_Prompt_v4_1.md`. Read the sections for EQUITY_VALUATION and CREDIT_SPREADS, the RULES, the BRIGHT-LINE RULES and the EDGE CASES.
-2. The clarifications: `C:\Users\zheng\New folder\04_scoring\discussion\v4_1_scores\V4_1_1_CLARIFICATIONS.md` (they win where they differ from a looser reading of the rubric; read sections 2 and 3 with care).
+1. The rubric: `<project>\04_scoring\discussion\v4_1\FOMC_Discussion_Review_Prompt_v4_1.md`. Read the sections for EQUITY_VALUATION and CREDIT_SPREADS, the RULES, the BRIGHT-LINE RULES and the EDGE CASES.
+2. The clarifications: `<project>\04_scoring\discussion\v4_1_scores\V4_1_1_CLARIFICATIONS.md` (they win where they differ from a looser reading of the rubric; read sections 2 and 3 with care).
 3. The INPUT file named in the dispatch message.
 
 Do not open any other file or folder: not the existing analyses, not any score file, not other meetings.

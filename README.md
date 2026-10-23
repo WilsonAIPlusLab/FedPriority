@@ -1,165 +1,115 @@
-# FOMC Minutes-Transcript Scoring Dataset, 1993–2020
+# FedPriority: Model-Scored Measures of Federal Reserve Priorities in FOMC Minutes and Transcripts, 1993–2026
 
-## Overview
-This dataset contains LLM-generated scores of Federal Open Market Committee (FOMC) meeting documents — both the published minutes and the underlying transcripts — enabling systematic measurement of editorial compression in FOMC communication. The central finding is that transcripts show systematically more dissent (−9.7 pts), financial stability emphasis (−11.3 pts), and expressed uncertainty (−5.2 pts) than published minutes across 216 matched meeting pairs from 1993–2020 (V3 scoring). The V4.1 re-scoring (see `data/primary/discussion_scores_v4_1.csv`) gives the same direction on 224 matched pairs: minutes minus transcripts of -8.3 (dissent), -13.3 (financial stability emphasis) and -5.0 (uncertainty); both scorings use the same model family, so they are not independent confirmations.
+**Version 2.0.0 (draft, 2026-10-23; local, not committed, not pushed, not published).**
 
-## Dataset at a Glance
+## Focus: financial stability and the dual mandate
+
+This dataset measures what the FOMC prioritises, read from its own documents. It is organised around three priorities:
+
+1. **Price stability** (inflation pressure, components and expectations),
+2. **Maximum employment** (output gap and labour tightness), together the statutory *dual mandate*, and
+3. **Financial stability**, the possible implicit third objective (Cieslak and Vissing-Jorgensen 2021; Powell 2023): financial conditions, credit spreads, Treasury, banking and equity stress, explicit financial-stability emphasis, and the sentence-level share of financial-stability language (CDFSG).
+
+`data/derived/priority_variable_map.csv` assigns every score column to one of these groups or to *context* (policy stance, committee process, spending, productivity, the dollar). The assignment is the author's judgement, not an estimated result; a few columns could reasonably sit elsewhere (OUTPUT_GAP is filed under employment).
+
+Version 2.0.0 keeps only components that have a reported model-versus-model or internal-consistency check, no open defect, and are not superseded. Removed material is listed in CHANGELOG [2.0.0].
+
+## Read this first: what the data are not
+
+- **No human validation.** No human has labelled any part of this dataset. Every score is produced by Claude models; every reliability figure here is model-versus-model or an internal-consistency check, none measured against human coding.
+- **Scoring vintages are not comparable in level.** Re-scoring 44 unchanged transcripts on 2026-10-16/17 moved FINANCIAL_STABILITY_EMPHASIS by −6.0 points on average, dissent −2.4 and uncertainty −2.9. Minutes-minus-transcript *gaps* inside one vintage are more stable than levels. Each row carries its vintage in `SCORE_VERSION` (staff) or `METHOD` / `INPUT_VERSION` (discussion).
+- **The scores measure what a model reads in a document**, not what participants thought, and not whether differences between minutes and transcripts are caused by editorial choices.
+- **Financial-stability convergence across methods is weak:** LLM scores versus the sentence index (A vs B) ρ = 0.317, below the 0.50 threshold set in advance.
+
+## Dataset at a glance
 
 | Item | Value |
-|------|-------|
-| Meetings covered (matched pairs) | 216 |
-| Staff assessment scores | 481 documents (265 minutes + 216 transcripts), 15 dimensions |
-| Discussion scores (V3) | 538 documents (265 minutes + 273 transcripts), 10 core + 10 optional dimensions |
-| Discussion scores (V4.1) | 537 documents (272 transcripts + 265 minutes), 20 dimensions |
-| Classified sentences | 526,516 sentences, 440 meetings |
-| Compression mechanism coding | 216 meetings, 20 columns |
-| Temporal coverage (minutes) | 1993–2026 |
-| Temporal coverage (transcripts) | 1993–2020 |
-| FOMC chairs | Greenspan (1993–2006), Bernanke (2006–2014), Yellen (2014–2018), Powell (2018–2026) |
+|---|---|
+| Staff assessment scores (`staff_scores_v6.csv`) | 495 documents (270 minutes + 225 transcripts), 15 dimensions |
+| Discussion scores (`discussion_scores_v4_1.csv`) | 542 documents (270 minutes + 272 transcripts), 20 dimensions |
+| Meeting registry | 320 events, 1993-01-06 to 2026-09-16 (269 scheduled, 45 conference calls, 6 emergency) |
+| Classified sentences | 500,075 (transcript 428,487; minutes 52,831; speech 18,544; statement 213), 440 dates |
+| Matched minutes–transcript pairs | 215 same-date staff pairs; 224 discussion pairs |
+| Coverage | minutes 1993–2026; transcripts 1993–2020 (none released after 2020) |
+| Chairs | Greenspan, Bernanke, Yellen, Powell, Warsh (from 2026-06-17) |
 
-## Folder Structure
+## Folder structure
 
 ```
-dataset/
-├── data/primary/          ← Start here: 3 canonical CSVs
-├── data/derived/          ← Analytical outputs (mechanisms, concordance, corrections)
-├── data/sentence_classification/ ← Method B: ~527K classified sentences
-├── data/topic_modeling/   ← Method C: FASTopic outputs
-├── data/legacy/           ← Superseded V3 batched scores (audit trail)
-├── scoring_evidence/      ← ~1,433 .md files with LLM reasoning behind each score
-├── rubrics/               ← The scoring instruments used
-├── validation/            ← QC reports and inter-rater reliability evidence
-├── analysis/              ← Deep pattern analysis and synthesis documents
-├── codebooks/             ← Variable-level documentation for each CSV
-├── code/                  ← Scoring and classification scripts
-└── dictionaries/          ← Text analysis dictionaries (Correa FSS, LM, Peek FI)
+data/primary/                  staff_scores_v6.csv, discussion_scores_v4_1.csv, meeting_registry.csv
+data/derived/                  gap tables, patch/decision logs, priority_variable_map.csv
+data/sentence_classification/  Method B: classified sentences, meeting-level CDFSG variables, crisis-period dictionary scores
+data/topic_modeling/           Method C: topic-model comparison and economic-ratio series
+scoring_evidence/              agent outputs behind the discussion scores and the staff minutes
+rubrics/  codebooks/  code/  dictionaries/  validation/
 ```
 
-## Primary Data Files
+## Primary files
 
-| File | Rows | Description | Codebook |
-|------|------|-------------|----------|
-| data/primary/staff_scores_v4.csv | 481 | Staff assessment scores, 15 dims, minutes + transcripts | codebooks/CODEBOOK_staff_scores.md |
-| data/primary/discussion_scores_v3.csv | 538 | Participant discussion scores, 10+10 dims (V3; kept) | codebooks/CODEBOOK_discussion_scores.md |
-| data/primary/discussion_scores_v4_1.csv | 537 | Participant discussion scores, V4.1: 20 dims; transcripts fresh, minutes patched | codebooks/CODEBOOK_discussion_scores_v4_1.md |
-| data/primary/meeting_registry.csv | 316 | FOMC event registry | codebooks/CODEBOOK_meeting_registry.md |
+| File | Rows | Notes |
+|---|---|---|
+| `data/primary/staff_scores_v6.csv` | 495 | Staff-assessment (Tealbook-type) content as scored from minutes and from transcripts. Transcripts were re-scored on repaired text. **Mixed vintage:** see `SCORE_VERSION`; compare only within a vintage. Staff transcript rows have no shipped evidence files. |
+| `data/primary/discussion_scores_v4_1.csv` | 542 | Participant discussion, 20 dimensions. Transcripts scored fresh (V4.1; 71 re-scored as V4.1.1). Minutes are *patched* from an earlier scoring (265 rows) or fresh (5 rows from 2026); see `METHOD`. 36 minutes cells set to N/A after a blind second pass. |
+| `data/primary/meeting_registry.csv` | 320 | `meeting_date` is the date in the document name (last day for most two-day meetings); `start_date` / `end_date` give the span. `rate_decision` and `target_rate` are empty for 318 of 320 rows (no source). |
 
-## Derived and Supplementary Data Files
+CREDIT_SPREADS in the staff table follows a level reading (a wide-but-stable spread scores by level, not direction); 79 cells were updated under it, most transcript rows still carry the older rule, so the column is mixed-vintage. Do not difference staff and discussion CREDIT_SPREADS.
 
-| File | Rows | Description | Codebook |
-|------|------|-------------|----------|
-| data/derived/master_mechanisms.csv | 216 | Per-meeting compression mechanism coding | codebooks/CODEBOOK_mechanisms.md |
-| data/derived/correction_log.csv | 564 | Audit trail for all score corrections | — |
-| data/derived/minutes_vs_transcripts.csv | 1,532 | Staff score gaps (long format: ~170 meetings × 9 dimensions) | — |
-| data/derived/discussion_v4_1_minutes_vs_transcripts.csv | 3,129 | Discussion V4.1 gaps (long format, 224 matched pairs × 20 dimensions) | — |
-| data/derived/discussion_v4_1_minutes_patch_log.csv | 5,300 | Per-cell log of the minutes patch (UNCHANGED / FILLED / CORRECTED) | — |
-| data/derived/discussion_v4_1_second_pass_check.csv | 381 | Blind second pass versus patched minutes values | — |
-| data/derived/discussion_v4_1_transcript_rescore_diff.csv | 1,340 | V4.1 versus V4.1.1 transcript re-score, by meeting and dimension | — |
-| data/derived/discussion_v4_1_na_decision_log.csv | 36 | Minutes cells set to N/A after the second pass | — |
-| data/derived/discussion_v4_1_credit_update_log.csv | 27 | Transcript CREDIT_SPREADS cells that were N/A in the first run and were re-checked blind: 16 now scored (Low confidence), 11 kept N/A | — |
-| data/sentence_classification/classified_sentences.csv | 526,516 | Sentence-level CDFSG topic classification | codebooks/CODEBOOK_sentence_classification.md |
-| data/sentence_classification/meeting_variables.csv | 440 | Meeting-level CDFSG index | codebooks/CODEBOOK_sentence_classification.md |
-| data/topic_modeling/cross_corpus_matrix.csv | — | Topic model corpus-level comparison | — |
+## Derived files
 
-## Scoring Evidence Files
+| File | Description |
+|---|---|
+| `data/derived/staff_v6_minutes_vs_transcripts.csv` | Long-format minutes, transcript and difference (minutes minus transcript) per meeting and dimension, 215 same-date pairs, 2,231 numeric pairs |
+| `data/derived/discussion_v4_1_minutes_vs_transcripts.csv` | Same for the discussion table, 224 pairs × 20 dimensions |
+| `data/derived/discussion_v4_1_*` (patch log, second-pass check, rescore diff, N/A log, fresh-sample files, credit update log) | Audit trail for the V4.1 minutes patch and re-scores |
+| `data/derived/credit_spreads_v4_1_applied_2026-10-17.csv` | The 79 staff CREDIT_SPREADS cells updated |
+| `data/derived/priority_variable_map.csv` | Variable → priority group |
+| `data/sentence_classification/classified_sentences.csv` | Sentence-level topic label (FINANCIAL, INFLATION, EMPLOYMENT_OUTPUT, REGULATION_SUPERVISION, OTHER), 1–5 stability intensity for financial sentences, speaker. New column `label_source`: **7,979 rows (transcript 5,118, speech 2,448, minutes 413) are `keyword_script`** (their labels match a keyword script, not an LLM judgement); the other 492,096 are `llm_presumed`, meaning no keyword-script evidence was found, which is not a verification. |
+| `data/sentence_classification/meeting_variables.csv` | 440 meetings: financial-stability share per document and CDFSG. Computed with the keyword-labelled rows included; the effect on CDFSG was not re-estimated. |
+| `data/sentence_classification/all_sentences_scored.csv` | 70,610 crisis-period sentences with dictionary counts; join to the classified file on `join_key` |
+| `data/topic_modeling/` | FASTopic vs BERTopic agreement: minutes r = 0.865 (N = 265), staff text 0.78, transcripts 0.48 (the transcript result is not robust to model choice; reason unexplained). Superseded February figures in `_superseded_2026-02-09/` |
 
-The scoring_evidence/ folder contains ~1,433 Markdown files — one per scored document — preserving the LLM's chain-of-thought reasoning, verbatim evidence quotes, and structured output behind every CSV row. These files are the primary audit trail.
+## Headline gaps (minutes minus transcripts; model-scored; not human-validated)
 
-| Subfolder | Count | Contents |
-|-----------|-------|----------|
-| scoring_evidence/staff_v4/batched/ | 412 | Staff V4 scores (canonical source for staff_scores_v4.csv) |
-| scoring_evidence/staff_v4/independent/ | 266 | Independent QA rescore (minutes only) |
-| scoring_evidence/discussion_v3/minutes/ | 266 | Discussion scores for minutes |
-| scoring_evidence/discussion_v3/transcripts/ | 273 | Discussion scores for transcripts |
-| scoring_evidence/discussion_v4_1/transcripts/ | 272 | V4.1 / V4.1.1 transcript scores (re-scored files omit the Part 1 reasoning) |
-| scoring_evidence/discussion_v4_1/minutes_patched/ | 265 | V4.1 minutes patch analyses |
-| scoring_evidence/discussion_v4_1/second_pass/ | 216 | Blind second-pass cell scores |
-| scoring_evidence/discussion_v4_1/credit_update/ | 27 + procedure | Blind CREDIT_SPREADS / EQUITY_VALUATION check outputs for the 27 first-run N/A transcripts (`PROCEDURE.md` is the instruction file) |
-| scoring_evidence/meeting_comparisons/ | 216 | Side-by-side minutes-vs-transcript comparisons |
+- Financial-stability emphasis **−13.3**, dissent **−8.3**, uncertainty **−5.0** (V4.1, 224 pairs). An earlier V3 scoring (no longer shipped) gave the same signs and similar sizes, but its figures were recorded inconsistently across documents and are not quoted here; V3 and V4.1 come from one model family and are not independent confirmations.
+- Staff financial conditions, from the v6 table: transcript minus minutes **+0.92** (213 pairs). An earlier +8.3 was retracted in the project (largely a scoring-contamination artifact). Staff price-stability and employment gaps are small (INFLATION_PRESSURE −2.2, LABOR_TIGHTNESS −0.7, OUTPUT_GAP −0.8, minutes minus transcripts).
 
-The two minutes folders (`discussion_v3/minutes/`, `staff_v4/independent/`) hold 266 files each, one more than the 265 minutes rows in the primary tables: `minutes_2012-10-24.md` scores a duplicate copy of the 2012-10-23 minutes, and its row was removed from the primary tables in 1.1.0.
+Dissent and uncertainty are kept as context for the priorities, not as priority measures.
 
-## Methodology Summary
-
-Three independent methods were used for triangulation:
-
-- **Method A (LLM Rubric Scoring)**: Each document scored by a fresh LLM agent (no cross-meeting context) using a calibrated rubric with 15 staff dimensions and 10+10 discussion dimensions. Scores are continuous 1–100 with uncertainty bands and confidence tiers.
-- **Method B (CDFSG Sentence Classification)**: 526,516 sentences classified into 7 economic/financial topic categories, with per-speaker attribution on transcript sentences. The CDFSG index measures the gap in financial stability emphasis between transcripts and minutes.
-- **Method C (FASTopic Topic Modeling)**: Unsupervised topic modeling across 7 FOMC document corpora for cross-method convergence validation.
-
-See METHODOLOGY.md for full details.
-
-## Validation Summary
+## Validation summary (model-vs-model only)
 
 | Procedure | Result |
-|-----------|--------|
-| Independence audit (staff V4) | PASS — 0 contamination phrases; lag-1 autocorrelation reduced from 0.818 to 0.690 |
-| Staff score quality | ~73% VALID, ~22% QUESTIONABLE, ~5% INCORRECT at dimension level; all INCORRECT corrected |
-| Staff concordance (minutes vs. transcript, core dims) | r = 0.925–0.977 |
-| Discussion reproducibility (MAD across 16 re-scores) | 1.9 points |
-| Direction errors in 628 dimension-checks | 0 |
-| Model-model kappa (not human-validated) | 8/8 dimensions ≥ 0.60 |
-| Cross-method convergence (B vs. C, financial) | ρ = 0.587 |
+|---|---|
+| Independence audit (original staff V4 run) | 0 contamination phrases; lag-1 autocorrelation 0.818 → 0.690 (reduced, not removed) |
+| Staff second-model review (64 files, original V4) | ~73% VALID, ~22% QUESTIONABLE, ~5% INCORRECT at dimension level |
+| V4.1 minutes (patched) | Fresh blind re-score of 60 minutes: mean absolute difference 3.3; blind second pass 3.8; 4% of cells differ between scored and N/A |
+| Drift control | 44 unchanged transcripts re-scored: FSE −6.0, dissent −2.4, uncertainty −2.9 |
+| Cross-method (financial) | A vs B ρ = 0.317 (fails threshold); A vs C 0.540; B vs C 0.587 |
+| Pilot sentence kappa | Reported 0.751 could not be reproduced (closest recomputation 0.686) |
+| Human validation | **None.** A protocol exists in the project repository; nothing has been filled. |
 
-See VALIDATION_REPORT.md for full details.
+Details and caveats: `VALIDATION_REPORT.md`, `validation/README.md`.
 
-## Computational Requirements
+## Known limits
 
-| Item | Detail |
-|------|--------|
-| Language | Python 3.10+ |
-| Dependencies | See code/requirements.txt |
-| LLM API | Claude API (Anthropic); models: claude-sonnet-4-6, claude-opus-4-6 |
-| Scoring cost | Sentence classification: ~$26; staff/discussion scoring: ~$180 total |
-| Reproducibility note | LLM scoring is stochastic; scored .md evidence files + rubrics serve as reproducibility mitigation |
+- 4 transcripts (1998-11-17, 2004-06-30, 2005-06-30, 2011-11-02) fall below the extraction-quality gate in their component split.
+- The staff v6 table is not the table the staff evidence files were written for (evidence covers the 266 original minutes scores plus 5 new 2026 minutes).
+- Sentence corpus: see `label_source` above.
+- `INFLATION_HOUSING` and `INFLATION_SERVICES` are scored in few documents (13 and 12 same-date pairs).
 
-## Loading the Data (Python)
+## Source documents and licence
 
-```python
-import pandas as pd
-
-staff = pd.read_csv("data/primary/staff_scores_v4.csv")
-discussion = pd.read_csv("data/primary/discussion_scores_v3.csv")
-registry = pd.read_csv("data/primary/meeting_registry.csv")
-
-# Compute staff minutes-transcript gap for a dimension
-mins = staff[staff["SOURCE_TYPE"] == "minutes"].set_index("MEETING_DATE")
-trans = staff[staff["SOURCE_TYPE"] == "transcript"].set_index("MEETING_DATE")
-fc_gap = trans["FINANCIAL_CONDITIONS"] - mins["FINANCIAL_CONDITIONS"]
-
-# Compute discussion dissent gap
-disc_mins = discussion[discussion["SOURCE_TYPE"] == "minutes"].set_index("MEETING_DATE")
-disc_trans = discussion[discussion["SOURCE_TYPE"] == "transcript"].set_index("MEETING_DATE")
-dissent_gap = disc_trans["DISSENT_INTENSITY"] - disc_mins["DISSENT_INTENSITY"]
-```
-
-## Source Data Availability
-
-Raw FOMC documents (minutes, transcripts) are not included. They are publicly available:
-- Historical transcripts and minutes: https://www.federalreserve.gov/monetarypolicy/fomc_historical.htm
-- Current calendars and minutes: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+Raw FOMC documents are not included; see federalreserve.gov (historical materials and calendars). Code: Python 3.10+, `code/requirements.txt`, Claude models for scoring; LLM scoring is stochastic, so the evidence files and rubrics are the reproducibility mitigation. Licence CC-BY-4.0 (`LICENSE.md`).
 
 ## Citation
 
-If you use this dataset, please cite:
 ```
-Chen, Robin. (2026). FOMC Minutes-Transcript Scoring Dataset, 1993-2020 [Data set].
-openICPSR. https://doi.org/[DOI to be assigned upon deposit]
+Chen, Robin. (2026). FedPriority: Model-Scored Measures of Federal Reserve Priorities, 1993-2026 [Data set]. Version 2.0.0 (draft).
 ```
 
 ## Funding
 
-This dataset was developed with support from a Research Sponsorship Program (RSP) Capacity Building Grant at the University of Northern Iowa for the project "Revealed Federal Reserve Priorities: Developing AI Methods to Measure Policy Responses to Financial Conditions." The dataset extends the scope of the original grant to include additional scoring dimensions, multiple independent analytical methods, and minutes coverage through 2026. The research is motivated by the question of whether the Federal Reserve treats financial stability as an implicit third mandate alongside its statutory dual mandate of maximum employment and stable prices (Cieslak and Vissing-Jorgensen 2021; Powell 2023).
+University of Northern Iowa Research Sponsorship Program (RSP) Capacity Building Grant, "Revealed Federal Reserve Priorities: Developing AI Methods to Measure Policy Responses to Financial Conditions."
 
-## Note on Column Naming
+## Column naming
 
-The primary CSVs use different column name conventions:
-- `staff_scores_v4.csv` and `discussion_scores_v3.csv` use **UPPERCASE** (e.g., `MEETING_DATE`, `SOURCE_TYPE`)
-- `meeting_registry.csv` uses **lowercase** (e.g., `meeting_date`, `chair`)
-- `master_mechanisms.csv` uses **UPPERCASE** with `DATE` (not `MEETING_DATE`)
-
-When joining across files, use case-insensitive matching or rename columns accordingly.
-
-## License
-
-CC-BY-4.0. See LICENSE.md.
+`staff_scores_v6.csv` and `discussion_scores_v4_1.csv` use UPPERCASE (`MEETING_DATE`, `SOURCE_TYPE`); `meeting_registry.csv` uses lowercase; gap tables use lowercase `meeting_date`. Join case-insensitively. Ten score-table dates (for example 1996-01-31, 2003-09-16, 2012-10-24) are not registry `meeting_date` values; `data/derived/meeting_key_map.csv` maps the keys of the staff v6 and discussion V4.1 tables to their registry meeting (0 unmatched). In `meeting_variables.csv`, 115 of the 440 dates match no meeting (dates of speeches without a meeting); they are marked `unmatched` there.
