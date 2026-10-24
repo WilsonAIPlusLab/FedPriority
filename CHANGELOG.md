@@ -37,6 +37,8 @@ Re-focus on the priorities (price stability, maximum employment, financial stabi
 - Headline changes (all minutes minus transcripts): staff FINANCIAL_CONDITIONS +1.6 (was -0.9; sign changed), OUTPUT_GAP -0.3 (was -0.8), INFLATION_PRESSURE -2.2 (unchanged); discussion FSE -15.1 (was -13.3), dissent -10.8 (-8.3), uncertainty -7.2 (-5.0). The discussion widening is the same direction and size as scoring-vintage drift and is probably not a finding. Pre-2009 staff R2 fell for inflation pressure (0.76 to 0.56) and credit spreads (0.79 to 0.49).
 - Contamination test of the staff input (20 random meetings, repeat vs strict input, blind agents): differences between inputs about as large as scorer noise (about 2 points per score); 127 of 128 staff scorers still flagged a Committee-recap paragraph; the bright-line check run on the finished tables: 0 hard failures, 11 soft flags (staff), 27 (discussion). See DATA_PROVENANCE 5.5.
 
+- Length caveat added to README and VALIDATION_REPORT 10.1: a within-meeting test (40 meetings, 160 scorings) found that a neutral summary at minutes length reproduces about 72% of the financial-stability emphasis gap; about 3 points remain and are not robust.
+
 ### Not done
 - No human validation. Staff v6 CREDIT_SPREADS remains mixed-vintage. The transcript topic-model agreement stays at r ≈ 0.48.
 
