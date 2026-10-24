@@ -49,7 +49,7 @@ rubrics/  codebooks/  code/  dictionaries/  validation/
 | File | Rows | Notes |
 |---|---|---|
 | `data/primary/staff_scores_v6.csv` | 495 | Staff-assessment (Tealbook-type) content as scored from minutes and from transcripts. Transcripts were re-scored on repaired text. **Mixed vintage:** see `SCORE_VERSION`; compare only within a vintage. Staff transcript rows have no shipped evidence files. |
-| `data/primary/discussion_scores_v4_1.csv` | 542 | Participant discussion, 20 dimensions. Transcripts scored fresh (V4.1; 71 re-scored as V4.1.1). Minutes are *patched* from an earlier scoring (265 rows) or fresh (5 rows from 2026); see `METHOD`. 36 minutes cells set to N/A after a blind second pass. |
+| `data/primary/discussion_scores_v4_1.csv` | 542 | Participant discussion, 20 dimensions. Transcripts scored fresh (V4.1; 71 re-scored as V4.1.1). Minutes: the 128 minutes of 1993–2008 are fresh blind scores on a rebuilt discussion-only input (`METHOD` = `fresh_blind_split_2026-10`, one agent per document, 2026-10-24); the other minutes are *patched* from an earlier scoring (137 rows) or fresh (5 rows from 2026); see `METHOD`. 36 minutes cells (patched rows) were set to N/A after a blind second pass. |
 | `data/primary/meeting_registry.csv` | 320 | `meeting_date` is the date in the document name (last day for most two-day meetings); `start_date` / `end_date` give the span. `rate_decision` and `target_rate` are empty for 318 of 320 rows (no source). |
 
 CREDIT_SPREADS in the staff table follows a level reading (a wide-but-stable spread scores by level, not direction); 79 cells were updated under it, most transcript rows still carry the older rule, so the column is mixed-vintage. Do not difference staff and discussion CREDIT_SPREADS.
@@ -58,7 +58,7 @@ CREDIT_SPREADS in the staff table follows a level reading (a wide-but-stable spr
 
 | File | Description |
 |---|---|
-| `data/derived/staff_v6_minutes_vs_transcripts.csv` | Long-format minutes, transcript and difference (minutes minus transcript) per meeting and dimension, 215 same-date pairs, 2,231 numeric pairs |
+| `data/derived/staff_v6_minutes_vs_transcripts.csv` | Long-format minutes, transcript and difference (minutes minus transcript) per meeting and dimension, 215 same-date pairs, 2,166 numeric pairs |
 | `data/derived/discussion_v4_1_minutes_vs_transcripts.csv` | Same for the discussion table, 224 pairs × 20 dimensions |
 | `data/derived/discussion_v4_1_*` (patch log, second-pass check, rescore diff, N/A log, fresh-sample files, credit update log) | Audit trail for the V4.1 minutes patch and re-scores |
 | `data/derived/credit_spreads_v4_1_applied_2026-10-17.csv` | The 79 staff CREDIT_SPREADS cells updated |
@@ -70,8 +70,8 @@ CREDIT_SPREADS in the staff table follows a level reading (a wide-but-stable spr
 
 ## Headline gaps (minutes minus transcripts; model-scored; not human-validated)
 
-- Financial-stability emphasis **−13.3**, dissent **−8.3**, uncertainty **−5.0** (V4.1, 224 pairs). An earlier V3 scoring (no longer shipped) gave the same signs and similar sizes, but its figures were recorded inconsistently across documents and are not quoted here; V3 and V4.1 come from one model family and are not independent confirmations.
-- Staff financial conditions, from the v6 table: transcript minus minutes **+0.92** (213 pairs). An earlier +8.3 was retracted in the project (largely a scoring-contamination artifact). Staff price-stability and employment gaps are small (INFLATION_PRESSURE −2.2, LABOR_TIGHTNESS −0.7, OUTPUT_GAP −0.8, minutes minus transcripts).
+- Financial-stability emphasis **−15.1**, dissent **−10.8**, uncertainty **−7.2** (V4.1, 224 pairs; recomputed 2026-10-24 after the 1993–2008 minutes were re-scored fresh; before that: −13.3, −8.3, −5.0). Most of the change is in the 128 pre-2009 pairs (financial-stability emphasis −13.5 to −16.6, dissent −8.3 to −12.6, uncertainty −1.9 to −5.7); the 96 pairs from 2009 on are unchanged. **Read the widening as a scoring-vintage effect, not as new evidence:** the re-scored minutes were scored on 2026-10-24, the transcripts earlier, and re-scoring unchanged text in a later session moved these three dimensions by −6.0, −2.4 and −2.9 (Validation summary, drift control), the same direction and size as the change. An earlier V3 scoring (no longer shipped) gave the same signs and similar sizes, but its figures were recorded inconsistently across documents and are not quoted here; V3 and V4.1 come from one model family and are not independent confirmations.
+- Staff financial conditions, from the v6 table: transcript minus minutes **−1.55** (213 pairs; recomputed 2026-10-24 after the pre-2009 staff minutes were re-scored on staff-only text; it was +0.92 before, so the sign is not stable, and scorer-to-scorer noise is about 2 points per score). An earlier +8.3 was retracted in the project (largely a scoring-contamination artifact). Staff price-stability and employment gaps are small (INFLATION_PRESSURE −2.2, LABOR_TIGHTNESS −0.7, OUTPUT_GAP −0.3, minutes minus transcripts).
 
 Dissent and uncertainty are kept as context for the priorities, not as priority measures.
 
@@ -90,6 +90,9 @@ Dissent and uncertainty are kept as context for the priorities, not as priority 
 Details and caveats: `VALIDATION_REPORT.md`, `validation/README.md`.
 
 ## Known limits
+
+- **Staff minutes before 2009 (re-scored 2026-10-24, with a residual).** The earlier staff scores for the 128 minutes of 1993–2008 were given the whole minutes body, including the participants' discussion. They were replaced by blind scores on a rebuilt staff-only input (`STAFF_TEXT_SCOPE` = `minutes_staff_sections_split_2026-10`; one agent per document; the split is described in CHANGELOG [2.0.0]). The separation is by text anchors and was checked rule by rule and by reading each boundary, not by a sentence-by-sentence human audit, and it leaves a residual: the opening paragraph of the staff's financial review begins with a sentence recalling the previous meeting's directive, and 127 of the 128 staff scorers flagged it (`ANOMALY_NOTE`). Most said they ignored it; about 22 said they used market facts from the same paragraph. A test on 20 random meetings (the original input scored again, and a stricter input without the Committee-attributing sentences, blind agents) found differences between the two inputs about as large as between two scorings of the same input (about 2 points per score), so no contamination effect was detectable in that sample; it is small and cannot rule out an effect of a few points on single dimensions. The pre-2009 staff scores changed in level against the earlier ones (financial conditions +4.8 on average; correlation with the earlier scores 0.89 to 0.95 on the headline dimensions). The scorers did not run the mechanical bright-line check; run afterwards on the new tables it found 0 hard failures and 11 soft flags (a coarse keyword screen). From 2009 onward (142 minutes) the staff sections were always separate. Staff minutes-versus-transcript R² is now, pre-2009 / 2009+: labour tightness 0.83 / 0.96, output gap 0.81 / 0.94, inflation pressure 0.56 / 0.83, financial conditions 0.69 / 0.56; see CHANGELOG [2.0.0].
+- Staff transcript rows (`transcript_staff_turns_not_fully_audited`) were built from staff presentation turns; member questions inside the staff briefing and staff answers inside the member text were seen in the parsed text but not audited row by row.
 
 - 4 transcripts (1998-11-17, 2004-06-30, 2005-06-30, 2011-11-02) fall below the extraction-quality gate in their component split.
 - The staff v6 table is not the table the staff evidence files were written for (evidence covers the 266 original minutes scores plus 5 new 2026 minutes).

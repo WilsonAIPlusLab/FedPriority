@@ -34,7 +34,7 @@ This report synthesizes all quality-control and validation evidence for the FOMC
 | Systematic error correction (staff V4) | 482 files, 15 dimensions | 564 corrections across 5 dimensions; 317 files corrected | Rule-based adjustment applied to the original run; `correction_log.csv` REMOVED in v2.0.0, so the corrections can no longer be audited from the release |
 | Discussion score validation (V3 independent) | REMOVED in v2.0.0 (V3 table and evidence withdrawn) | Historical only: 0 direction errors in 628 checks; MAD 1.9 | Not a result for any shipped table |
 | Model-model kappa (not human-validated) | 90-row annotation sample (30 excerpts x 3 persona annotations written in one Claude session, see 5.1) | 8/8 dimensions reported as κ ≥ 0.60 (values not shipped in this release; local copy 0.81 to 1.00) | Reported only; not re-derivable; independence of the three annotations not established |
-| Staff score reproducibility (minutes vs. transcripts) | Original run: 171 pairs, 15 dims. Staff v6 (recomputed 2026-10-23): 215 same-date pairs, 2,231 numeric pairs | Original run: median r = 0.891 across Table 3.1 (0.888 excluding the two with N < 10). v6: core macro rows r 0.91-0.97, financial rows 0.61-0.87 (Section 11) | Agreement between two model scorings; lower on v6 than on the original run for the financial rows |
+| Staff score reproducibility (minutes vs. transcripts) | Original run: 171 pairs, 15 dims. Staff v6 (recomputed 2026-10-24): 215 same-date pairs, 2,166 numeric pairs | Original run: median r = 0.891 across Table 3.1 (0.888 excluding the two with N < 10). v6: core macro rows r 0.84-0.95, financial rows 0.56-0.83 (Section 11) | Agreement between two model scorings; lower on v6 than on the original run for the financial rows |
 | Cross-method convergence (A vs B vs C) | 3 methods, 3 dimensions (computed 2026-03-12 from the original V4 staff scores and the February topic run; not recomputed) | Financial stability A vs B ρ = 0.317, **FAILS the 0.50 threshold set in advance**; A vs B also fails for inflation (0.312) and barely passes for employment (0.508); B vs C: ρ = 0.587–0.749 | PARTIAL (fails) |
 | Sentence classification pilot kappa | 200-sentence pilot | Reported κ = 0.751 (Opus vs. Sonnet) **could not be reproduced; closest recomputation κ = 0.686**; FC/FS conditional κ = 0.416 | **NOT VERIFIED; do not cite as passed** |
 | Topic model cross-method robustness | 7 corpora, 2 methods | r = 0.865 (minutes, N = 265), 0.78 (staff combined, rebuilt, N = 312), 0.48 (transcripts, N = 225; **fails the r > 0.7 rule**) after the 2026-10-07 re-run; the superseded February figures were 0.916, 0.861, 0.133, 0.016 and -0.442 | PARTIAL |
@@ -412,11 +412,11 @@ These checks cover `data/primary/discussion_scores_v4_1.csv` (542 rows in 1.3.0:
 
 ### 10.1 Matched-pair gaps (V4.1)
 
-On 224 matched minutes/transcript pairs (minutes minus transcripts; recomputed from `discussion_v4_1_minutes_vs_transcripts.csv`): DISSENT_INTENSITY -8.3, FINANCIAL_STABILITY_EMPHASIS -13.3, UNCERTAINTY_EXPRESSED -5.0. On the 215 pairs matched on meeting date the V4.1 gaps are -8.3, -13.2 and -5.1 (recomputed earlier from the primary table; not redone on 2026-10-23). An earlier V3 scoring gave similar signs and sizes, but the V3 table is removed, its figures were recorded inconsistently, and it came from the same model family, so it is not quoted as a confirmation. The V4.1 gaps have not been checked against human coding, and the cause (editorial compression vs. differences in what the scorer sees in each document type) is not identified. The 224 pairs come from the derived file's `transcript_date` match (224 distinct meeting dates); matching on meeting date gives 215.
+On 224 matched minutes/transcript pairs (minutes minus transcripts; recomputed 2026-10-24 from `discussion_v4_1_minutes_vs_transcripts.csv` after the 128 minutes of 1993-2008 were re-scored fresh on a discussion-only input): DISSENT_INTENSITY -10.8, FINANCIAL_STABILITY_EMPHASIS -15.1, UNCERTAINTY_EXPRESSED -7.2 (before: -8.3, -13.3, -5.0; the 96 pairs from 2009 on are unchanged: -8.4, -13.1, -9.2). On the 215 pairs matched on meeting date the gaps are -10.7, -15.1 and -7.2 (recomputed 2026-10-24 from the primary table). The widening comes from the pre-2009 pairs (FSE -13.5 to -16.6, dissent -8.3 to -12.6, uncertainty -1.9 to -5.7) and is probably a scoring-vintage effect (Section 10.2), not new evidence. An earlier V3 scoring gave similar signs and sizes, but the V3 table is removed, its figures were recorded inconsistently, and it came from the same model family, so it is not quoted as a confirmation. The V4.1 gaps have not been checked against human coding, and the cause (editorial compression vs. differences in what the scorer sees in each document type) is not identified. The 224 pairs come from the derived file's `transcript_date` match (224 distinct meeting dates); matching on meeting date gives 215.
 
 ### 10.2 Vintage caveat
 
-Scoring vintage matters: on 28 same-day pairs the gaps were stable across vintages (FSE -14.1 to -13.0, dissent -8.4 to -9.7, uncertainty -3.8 to -4.0), but levels of dissent, financial-stability emphasis and uncertainty are not comparable between the 2026 rows and older rows.
+Scoring vintage matters: on 28 same-day pairs the gaps were stable across vintages (FSE -14.1 to -13.0, dissent -8.4 to -9.7, uncertainty -3.8 to -4.0), but levels of dissent, financial-stability emphasis and uncertainty are not comparable between the 2026 rows and older rows. The same applies to the 128 minutes of 1993-2008 re-scored on 2026-10-24: against the transcripts they sit lower by -4.3 (dissent), -3.2 (FSE) and -3.8 (uncertainty) than the patched minutes they replaced, about the size and direction of the -2.4, -6.0 and -2.9 drift measured on unchanged text, so the gap widening in 10.1 cannot be separated from vintage.
 
 ### 10.3 Limits
 
@@ -432,29 +432,29 @@ The five fresh 2026 staff minutes rows (SCORE_VERSION `v4_new2026_minutes` in v6
 
 **Not carried over automatically.** The validation in Sections 1, 2 and 9 (independence audit, VALID/QUESTIONABLE/INCORRECT review, rule-based corrections, quality flags) was run on the original V4 staff run (482 documents). `staff_scores_v6.csv` re-scored the transcripts on repaired text and carries mixed `SCORE_VERSION` values (v4_prior 197; v4_patched_2026-10 186; v4_prior+credit_v4_1 75; v4_patched_2026-10+credit_recheck 28; v4_new2026_minutes 5; v4_patched_2026-10+credit_v4_1 4). None of those checks was repeated for v6, and no QC procedure other than the one below was run on it. v6 CREDIT_SPREADS remains mixed-vintage.
 
-**Minutes versus transcripts on v6, recomputed from `data/primary/staff_scores_v6.csv` on 2026-10-23** (215 same-date pairs; Pearson r, mean absolute difference, mean minutes minus transcripts; numeric pairs only; the total is 2,231 numeric pairs, matching the derived file's stated count). Model-versus-model; high agreement shows consistency across document types, not accuracy.
+**Minutes versus transcripts on v6, recomputed from `data/derived/staff_v6_minutes_vs_transcripts.csv` on 2026-10-24** (215 same-date pairs; Pearson r, mean absolute difference, mean minutes minus transcripts; numeric pairs only; 2,166 numeric pairs). The 128 pre-2009 minutes rows were replaced on 2026-10-24 by blind scores on a staff-only input (DATA_PROVENANCE 5.5); the table of 2026-10-23 (2,231 pairs, pre-2009 minutes scored on the whole minutes body) is superseded, for example INFLATION_PRESSURE r 0.908 then and 0.843 now, CREDIT_SPREADS 0.874 and 0.748, FINANCIAL_CONDITIONS bias -0.9 and +1.6. Model-versus-model; high agreement shows consistency across document types, not accuracy.
 
 | Dimension | N | Pearson r | MAD | Bias (min-trans) |
 |---|---|---|---|---|
-| LABOR_TIGHTNESS | 214 | 0.971 | 2.6 | -0.7 |
-| OUTPUT_GAP | 215 | 0.949 | 2.7 | -0.8 |
-| INFLATION_HOUSING (N small) | 13 | 0.945 | 5.6 | +3.0 |
-| CONSUMPTION_INVESTMENT | 214 | 0.932 | 3.2 | +0.3 |
-| INFLATION_SERVICES (N small) | 12 | 0.908 | 4.6 | +0.1 |
-| INFLATION_PRESSURE | 214 | 0.908 | 3.8 | -2.2 |
-| CREDIT_SPREADS (mixed vintage) | 187 | 0.874 | 6.4 | -1.1 |
-| FINANCIAL_CONDITIONS | 213 | 0.828 | 6.5 | -0.9 |
-| BANKING_STRESS | 94 | 0.830 | 7.4 | +2.3 |
-| PRODUCTIVITY | 53 | 0.800 | 5.8 | -2.1 |
-| DOLLAR_STRENGTH | 194 | 0.794 | 6.4 | +0.1 |
-| INFLATION_GOODS | 111 | 0.776 | 7.7 | -4.9 |
-| INFLATION_EXPECTATIONS | 148 | 0.727 | 3.3 | 0.0 |
-| EQUITY_VALUATION | 187 | 0.631 | 7.1 | +2.7 |
-| TREASURY_STRESS | 162 | 0.606 | 6.2 | +1.7 |
+| LABOR_TIGHTNESS | 214 | 0.954 | 3.4 | -0.7 |
+| OUTPUT_GAP | 215 | 0.943 | 2.9 | -0.3 |
+| CONSUMPTION_INVESTMENT | 214 | 0.920 | 3.8 | +1.9 |
+| INFLATION_HOUSING (N small) | 11 | 0.904 | 5.2 | +0.5 |
+| INFLATION_SERVICES (N small) | 10 | 0.899 | 3.8 | -0.6 |
+| INFLATION_PRESSURE | 214 | 0.843 | 4.8 | -2.2 |
+| BANKING_STRESS | 86 | 0.830 | 7.2 | +1.7 |
+| FINANCIAL_CONDITIONS | 213 | 0.789 | 7.1 | +1.6 |
+| PRODUCTIVITY | 39 | 0.779 | 6.1 | 0.0 |
+| INFLATION_GOODS | 103 | 0.774 | 7.3 | -2.8 |
+| DOLLAR_STRENGTH | 194 | 0.771 | 6.9 | +0.6 |
+| CREDIT_SPREADS (mixed vintage) | 173 | 0.748 | 8.9 | +2.4 |
+| INFLATION_EXPECTATIONS | 132 | 0.703 | 3.3 | +0.2 |
+| EQUITY_VALUATION | 188 | 0.569 | 7.6 | +3.4 |
+| TREASURY_STRESS | 160 | 0.558 | 6.3 | +1.3 |
 
-Reading: the core macro rows are comparable to the original run; the financial rows are lower than in Table 3.1 (for example TREASURY_STRESS 0.606 against 0.797, EQUITY_VALUATION 0.631 against 0.733), and BANKING_STRESS now has N = 94 against 49. The change cannot be attributed to the re-scoring alone, because the pair set also grew from 171 to 215. The ANOMALY_FLAG and ANOMALY_NOTE columns have no numeric pairs. The minutes-minus-transcript differences are not separated into editorial compression and differences in what the scorer can see.
+Reading: the core macro rows are comparable to the original run, with INFLATION_PRESSURE lower (0.843); the financial rows are lower than in Table 3.1 (for example TREASURY_STRESS 0.558 against 0.797, EQUITY_VALUATION 0.569 against 0.733), and BANKING_STRESS now has N = 86 against 49. Split by period, R2 is pre-2009 / 2009+: LABOR_TIGHTNESS 0.83 / 0.96, OUTPUT_GAP 0.81 / 0.94, INFLATION_PRESSURE 0.56 / 0.83, FINANCIAL_CONDITIONS 0.69 / 0.56, CREDIT_SPREADS 0.49 / 0.74, EQUITY_VALUATION 0.20 / 0.70, TREASURY_STRESS 0.36 / 0.34 (2009+ unchanged by the re-score). The change cannot be attributed to the re-scoring alone, because the pair set also grew from 171 to 215. The ANOMALY_FLAG and ANOMALY_NOTE columns have no numeric pairs. The minutes-minus-transcript differences are not separated into editorial compression and differences in what the scorer can see.
 
-**Not verified in this pass:** the per-dimension figures were not compared row by row with `data/derived/staff_v6_minutes_vs_transcripts.csv` (only its 215 / 2,231 counts match); autocorrelation, runs tests and the contamination scan were not re-run on v6; the staff evidence files cover the original minutes scores, not the v6 transcripts (README, Known limits).
+**Not verified in this pass:** the per-dimension figures were not compared row by row with `data/derived/staff_v6_minutes_vs_transcripts.csv` (only its 215 / 2,166 counts match); autocorrelation, runs tests and the contamination scan were not re-run on v6; the staff evidence files cover the original minutes scores, not the v6 transcripts (README, Known limits).
 
 ---
 
@@ -470,7 +470,7 @@ Reading: the core macro rows are comparable to the original run; the financial r
 | `concordance_report.md` | REMOVED in v2.0.0 | V3 10-dimension discussion concordance with era trends |
 | `COMPARISON_SYNTHESIS.md` | `dataset/validation/` | Batched vs. independent scoring systematic comparison (original run) |
 | `EVIDENCE_SUMMARY.md`, `README.md` | `dataset/validation/` | Evidence summary; README stating which reports describe earlier tables |
-| `staff_v6_minutes_vs_transcripts.csv` | `dataset/data/derived/` | v6 minutes-minus-transcript differences (215 pairs, 2,231 numeric pairs) |
+| `staff_v6_minutes_vs_transcripts.csv` | `dataset/data/derived/` | v6 minutes-minus-transcript differences (215 pairs, 2,166 numeric pairs) |
 | `correction_log.csv` | REMOVED in v2.0.0 | 564-entry per-correction audit trail (V3 dimension names) |
 | `scoring_cumulative_validation_report.md` | `04_scoring/staff/docs/` | VALID/QUESTIONABLE/INCORRECT verdicts |
 | `scoring_correction_documentation.md` | `04_scoring/staff/docs/` | Three-round correction methodology |

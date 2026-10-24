@@ -3,13 +3,13 @@
 All notable changes to this dataset will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [2.0.0] DRAFT — 2026-10-23 (local; not committed, not pushed, not published)
+## [2.0.0] DRAFT — 2026-10-23, updated 2026-10-24 (local commits only; not pushed, not published)
 
 Re-focus on the priorities (price stability, maximum employment, financial stability) and removal of components that are not validated or are superseded. The 1.3.0 draft changes below are all included. Removed files were moved to `publish_staging/v2.0.0_removed/` in the project repository (same relative paths); they remain in the public GitHub history of v1.0.0.
 
 ### Added
 - `data/primary/staff_scores_v6.csv` (495 rows: 270 minutes + 225 transcripts; transcripts re-scored on repaired text; `SCORE_VERSION` column). Replaces `staff_scores_v4.csv`, which differed in 84–139 of 486 shared rows per main dimension.
-- `data/derived/staff_v6_minutes_vs_transcripts.csv`: 215 same-date pairs, 2,231 numeric pairs, minutes minus transcript.
+- `data/derived/staff_v6_minutes_vs_transcripts.csv`: 215 same-date pairs, 2,231 numeric pairs, minutes minus transcript (2,166 after the 2026-10-24 re-score of the pre-2009 minutes, see below).
 - `data/derived/priority_variable_map.csv`: variable → price stability / employment / financial stability / context (author's judgement).
 - `label_source` column in `classified_sentences.csv`: 7,979 `keyword_script` rows (transcript 5,118; speech 2,448; minutes 413), rest `llm_presumed`. Source list: project `docs/keyword_labelled_rows_2026-10-17.csv`. `meeting_variables.csv` was not recomputed.
 - `validation/README.md` stating which reports describe earlier tables.
@@ -24,8 +24,21 @@ Re-focus on the priorities (price stability, maximum employment, financial stabi
 - Documents rewritten or patched for the new scope: README, CHANGELOG, METHODOLOGY, DATA_PROVENANCE, VALIDATION_REPORT, codebooks.
 - The discussion minutes patch `v2d` (2000-12-19 HAWKISH_DOVISH_LEAN 42, not 38) was already in the shipped V4.1 table and gap file; the README no longer calls it pending.
 
+### Added after the first 2.0.0 commit (2026-10-23)
+- `STAFF_TEXT_SCOPE` column in `staff_scores_v6.csv` (now 43 columns): `minutes_full_body_incl_participant_discussion` (128 rows, minutes 1993-2008; these rows were replaced on 2026-10-24, see "Re-scored pre-2009 minutes" below), `minutes_staff_sections_only` (142 rows, 2009-2026), `transcript_staff_turns_not_fully_audited` (225 rows). `minutes_text_scope` column in `data/derived/staff_v6_minutes_vs_transcripts.csv`.
+- Audit of the parsed text: for 1993-2008 minutes the staff and participant components are empty in the parse (no split), and the discussion-track input is fully contained in the staff-track input (median overlap 100%; 2009+ median 0%).
+- [Superseded by [2.0.0] item "Re-scored pre-2009 minutes" below: these figures describe the pre-2009 minutes scored on the whole body.] Staff minutes-versus-transcript R-squared / mean gap (minutes minus transcript), pre-2009 vs 2009+ pairs: labour tightness 0.90 / 0.96; output gap 0.86 / 0.94; inflation pressure 0.76 (-2.8) / 0.83 (-1.4); financial conditions 0.79 (-2.5) / 0.56 (+1.1); equity valuation 0.27 (+3.0) / 0.70 (+2.4); treasury stress 0.42 / 0.34; credit spreads 0.79 / 0.74. Pre-2009 pairs are contaminated, so their agreement is not a clean staff-content measure; the 2009+ column is the clean one. Not tested: the effect of the contamination on scores.
+
+### Re-scored pre-2009 minutes (2026-10-24)
+- Rebuilt the staff / discussion separation of the 128 minutes of 1993-2008 (118 from raw HTML, 10 from PDF; rule-based labelling by text anchors, every boundary read) and re-scored both components blind, one fresh agent per document and component (256 agents; a 12-agent pilot was part of them).
+- `data/primary/staff_scores_v6.csv`: the 128 pre-2009 minutes rows replaced (`STAFF_TEXT_SCOPE` = `minutes_staff_sections_split_2026-10`, `SCORE_VERSION` = `v4.1_split_2026-10`). Previously `minutes_full_body_incl_participant_discussion`.
+- `data/primary/discussion_scores_v4_1.csv`: the 128 pre-2009 minutes rows replaced (`METHOD` = `fresh_blind_split_2026-10`, `INPUT_VERSION` = `member_discussion_split_2026-10-23`, `RUBRIC_VERSION` v4.1 with the V4.1.1 clarifications). Previously patched scores (`patch_of_v4_analysis`, 265 to 137 rows). The 36 N/A decisions and the credit update in those rows no longer apply to them.
+- Derived gap tables rebuilt for the pre-2009 pairs by the same procedure (checked: the builder reproduced the previous tables exactly before the replacement); 2009+ rows unchanged. `staff_v6_minutes_vs_transcripts.csv`: 2,166 numeric pairs (was 2,231; fewer where a scorer returned N/A), `minutes_text_scope` = `staff_sections_split_2026-10` for the pre-2009 rows. `discussion_v4_1_minutes_vs_transcripts.csv`: 3,125 rows (was 3,129).
+- Headline changes (all minutes minus transcripts): staff FINANCIAL_CONDITIONS +1.6 (was -0.9; sign changed), OUTPUT_GAP -0.3 (was -0.8), INFLATION_PRESSURE -2.2 (unchanged); discussion FSE -15.1 (was -13.3), dissent -10.8 (-8.3), uncertainty -7.2 (-5.0). The discussion widening is the same direction and size as scoring-vintage drift and is probably not a finding. Pre-2009 staff R2 fell for inflation pressure (0.76 to 0.56) and credit spreads (0.79 to 0.49).
+- Contamination test of the staff input (20 random meetings, repeat vs strict input, blind agents): differences between inputs about as large as scorer noise (about 2 points per score); 127 of 128 staff scorers still flagged a Committee-recap paragraph; the bright-line check run on the finished tables: 0 hard failures, 11 soft flags (staff), 27 (discussion). See DATA_PROVENANCE 5.5.
+
 ### Not done
-- No human validation. No re-scoring. Staff v6 CREDIT_SPREADS remains mixed-vintage. The transcript topic-model agreement stays at r ≈ 0.48.
+- No human validation. Staff v6 CREDIT_SPREADS remains mixed-vintage. The transcript topic-model agreement stays at r ≈ 0.48.
 
 ## [1.3.0] DRAFT — 2026-10-16, updated 2026-10-17 (local working copy; not committed, not pushed, not published)
 
