@@ -1,6 +1,6 @@
 # FOMC Document Scoring: Methodology
 
-**Dataset version**: 2.0.0 (draft, local, not published)
+**Dataset version**: 2.0.0 (2026-10-24)
 **Last updated**: 2026-10-23
 **Scope**: FOMC minutes (1993–2026) and transcripts (1993–2020)
 

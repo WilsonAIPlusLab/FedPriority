@@ -3,9 +3,9 @@
 All notable changes to this dataset will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [2.0.0] DRAFT — 2026-10-23, updated 2026-10-24 (local commits only; not pushed, not published)
+## [2.0.0] — 2026-10-24
 
-Re-focus on the priorities (price stability, maximum employment, financial stability) and removal of components that are not validated or are superseded. The 1.3.0 draft changes below are all included. Removed files were moved to `publish_staging/v2.0.0_removed/` in the project repository (same relative paths); they remain in the public GitHub history of v1.0.0.
+Re-focus on the priorities (price stability, maximum employment, financial stability) and removal of components that are not validated or are superseded. The changes listed under 1.3.0 below were never released separately and are all included. Removed files were moved to `publish_staging/v2.0.0_removed/` in the project repository (same relative paths); they remain in the public GitHub history of v1.0.0.
 
 ### Added
 - `data/primary/staff_scores_v6.csv` (495 rows: 270 minutes + 225 transcripts; transcripts re-scored on repaired text; `SCORE_VERSION` column). Replaces `staff_scores_v4.csv`, which differed in 84–139 of 486 shared rows per main dimension.
@@ -43,7 +43,7 @@ Re-focus on the priorities (price stability, maximum employment, financial stabi
 ### Not done
 - No human validation. Staff v6 CREDIT_SPREADS remains mixed-vintage. The transcript topic-model agreement stays at r ≈ 0.48.
 
-## [1.3.0] DRAFT — 2026-10-16, updated 2026-10-17 (local working copy; not committed, not pushed, not published)
+## [1.3.0] — 2026-10-16, updated 2026-10-17 (never released separately; included in 2.0.0)
 
 Counts below are those of the files in this folder on 2026-10-17 (checked by recomputation). Items marked "project repository only" changed outside `dataset/` and are not in these files.
 
@@ -79,7 +79,7 @@ Counts below are those of the files in this folder on 2026-10-17 (checked by rec
 The five new discussion rows were scored on 2026-10-16/17. Re-scoring 44 transcripts with unchanged inputs on those days gave, on average, FINANCIAL_STABILITY_EMPHASIS 6.0 points lower (se 1.0), DISSENT_INTENSITY 2.4 lower and UNCERTAINTY_EXPRESSED 2.9 lower than the original scores; the economic and market dimensions moved by less than 1 point. Minutes and transcripts drift by similar amounts, so the minutes-minus-transcript gaps are unchanged (28 same-day pairs: FSE -14.1 -> -13.0, dissent -8.4 -> -9.7, uncertainty -3.8 -> -4.0). Levels of those three dimensions are therefore not comparable between the 2026 rows and the older rows. Details: `04_scoring/discussion/v4_1_scores/footer_fix_rescore/README.md` in the project repository. The same applies to the supplementary 2026 tables and the speech re-score below: compare within a vintage only.
 
 ### Project repository only (not in the files of this folder)
-These changed in the working project on 2026-10-17 and have not been promoted to `dataset/`. Listed so the draft notes are complete; promote deliberately or leave out.
+These changed in the working project on 2026-10-17 and have not been promoted to `dataset/`. Listed for completeness; not part of this release.
 - Canonical staff table `04_scoring/staff/v4_scores_patched_v6/` (495 rows; v5 plus the five 2026 minutes rows, whose CREDIT_SPREADS rechecks were all unchanged). Patched v1-v5 are superseded.
 - Discussion minutes patch `04_scoring/discussion/v4_1_scores/minutes_patch/all_scores_disc_m_v411_patched_v2d.csv` (265 rows): 2000-12-19 re-scored on the v2d input, HAWKISH_DOVISH_LEAN 38 -> 42, 19 other dimensions unchanged. `data/primary/discussion_scores_v4_1.csv` and `data/derived/discussion_v4_1_minutes_vs_transcripts.csv` now carry the re-scored 2000-12-19 minutes row (INPUT_VERSION `member_discussion_v2d`; derived diff 7 to 11).
 - Speeches: 1,979 in the manifest; 61 new 2026 speeches scored; 62 re-scored after re-parsing (correlation with old FSAI 0.90, mean change -11.1; vintage drift and text dilution cannot be separated). `data/fsai_scores_all_2026-10-17.csv` carries a `SCORE_VINTAGE` column (original 1,856; rescored 62; new_2026_batch 61). About 99 pre-2007 speeches may have dropped paragraphs from the old parser and were not re-scored.
@@ -88,7 +88,7 @@ These changed in the working project on 2026-10-17 and have not been promoted to
 - Tools and figure: `tools/bright_line_check.py` (mechanical score checks), `tools/check_keys.py`, and `06_cdfsg_pipeline/figures/fig1_cdfsg_timeseries.png`.
 
 ### Not done / limits
-- Nothing is committed, pushed or published; the `dataset/` repository is 4 commits ahead of origin and this draft is uncommitted on top.
+- Not released as 1.3.0; these changes are part of 2.0.0.
 - Topic-model transcripts r = 0.48 is unexplained and fails the r > 0.7 success rule. A re-run of decomposed transcripts on the rebuilt corpus is in progress; no decomposed-transcript topic results are claimed.
 - Downloads pending approval: statements 2007-08-17 and 2020-08-27, Warsh testimony 2026-07-14, Beige Book 2008-01-16. Transcripts exist only through 2020.
 - No human validation of any score; all scorers are LLM agents.

@@ -1,6 +1,6 @@
 ---
 title: Codebook — Sentence Classification Files
-version: 2.0 (draft)
+version: 2.0
 created: 2026-03-30
 updated: 2026-10-23
 ---
@@ -9,9 +9,9 @@ updated: 2026-10-23
 
 This codebook covers two related files (plus a third, `all_sentences_scored.csv`, described under Related Files) produced by the FOMC sentence-classification pipeline. The pipeline applies a large-language-model classifier (prompt version 2; see `rubrics/sentence_classification_prompt_v2.txt`) to sentences drawn from FOMC meeting transcripts, published meeting minutes, post-meeting statements, and selected Fed speeches spanning 440 distinct dates from January 1993 through January 2026 (see Unit of Observation for what a "date" means by document type).
 
-> **Not every label is an LLM label (dataset 2.0.0 draft, 2026-10-23).** The column `label_source` marks 7,979 of the 500,075 rows as `keyword_script`: their `topic` / `stability_intensity` values match the output of keyword scripts, not an LLM judgement (transcript 5,118; speech 2,448; minutes 413). The other 492,096 rows are `llm_presumed`: no keyword-script evidence was found, so they are presumed to be LLM labels. That is the absence of contrary evidence, **not a verification** that each row was labelled by the LLM. `meeting_variables.csv` was NOT recomputed after this flag was added; it still includes the keyword-labelled rows, and the effect on its shares and on CDFSG was not estimated. An analysis that wants LLM labels only can filter `label_source == "llm_presumed"` (and should still treat even that as unverified).
+> **Not every label is an LLM label (dataset 2.0.0, 2026-10-24).** The column `label_source` marks 7,979 of the 500,075 rows as `keyword_script`: their `topic` / `stability_intensity` values match the output of keyword scripts, not an LLM judgement (transcript 5,118; speech 2,448; minutes 413). The other 492,096 rows are `llm_presumed`: no keyword-script evidence was found, so they are presumed to be LLM labels. That is the absence of contrary evidence, **not a verification** that each row was labelled by the LLM. `meeting_variables.csv` was NOT recomputed after this flag was added; it still includes the keyword-labelled rows, and the effect on its shares and on CDFSG was not estimated. An analysis that wants LLM labels only can filter `label_source == "llm_presumed"` (and should still treat even that as unverified).
 
-> **Current as of 2026-10-23** (dataset [2.0.0] draft, local): the corpus has **500,075 sentences on 440 dates** (verified against the file on 2026-10-23). It was rebuilt on 2026-09-27 (speech-parser duplication, label carry-forward, speaker attribution for transcripts), corrected on 2026-10-16 (footer-glued speaker labels, page-artifact removal, double-ingestion removal), and extended on 2026-10-17 with the 2007-06-28 and 2008-12-16 statements (26 sentences, classified by one agent with prompt v2). `meeting_variables.csv` was recomputed after those changes but **not** after the `label_source` flag was added in 2.0.0. Earlier row counts (526,516; 500,049) are superseded. See `CHANGELOG.md`.
+> **Current as of 2026-10-23** (dataset [2.0.0]): the corpus has **500,075 sentences on 440 dates** (verified against the file on 2026-10-23). It was rebuilt on 2026-09-27 (speech-parser duplication, label carry-forward, speaker attribution for transcripts), corrected on 2026-10-16 (footer-glued speaker labels, page-artifact removal, double-ingestion removal), and extended on 2026-10-17 with the 2007-06-28 and 2008-12-16 statements (26 sentences, classified by one agent with prompt v2). `meeting_variables.csv` was recomputed after those changes but **not** after the `label_source` flag was added in 2.0.0. Earlier row counts (526,516; 500,049) are superseded. See `CHANGELOG.md`.
 
 The dataset focuses on financial stability (topic `FINANCIAL` with `stability_intensity`) alongside the two dual-mandate topics, `INFLATION` and `EMPLOYMENT_OUTPUT`; `REGULATION_SUPERVISION` and `OTHER` are context categories. The primary research purpose is to measure how financial-stability emphasis varies across document types — in particular, whether FOMC transcripts devote systematically more attention to financial-stability concerns than the corresponding published minutes. The sentence-level classifications support the CDFSG gap measures and allow comparison against the rubric-based scores in `data/primary/discussion_scores_v4_1.csv` (see Related Files).
 
@@ -137,7 +137,7 @@ CDFSG_speech  = FSS_transcript − FSS_speech       (1 meeting)
 
 ---
 
-## Limits (2.0.0 draft)
+## Limits (2.0.0)
 
 - No human validation of the sentence labels exists in this folder; `llm_presumed` is not a verification.
 - `meeting_variables.csv` was not recomputed after `label_source` was added; its shares and CDFSG include the 7,979 keyword-labelled rows.

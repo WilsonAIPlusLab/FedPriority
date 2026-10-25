@@ -1,6 +1,6 @@
 # FedPriority: Model-Scored Measures of Federal Reserve Priorities in FOMC Minutes and Transcripts, 1993–2026
 
-**Version 2.0.0 (draft, 2026-10-23; local, not committed, not pushed, not published).**
+**Version 2.0.0 (2026-10-24).**
 
 ## Focus: financial stability and the dual mandate
 
@@ -106,7 +106,7 @@ Raw FOMC documents are not included; see federalreserve.gov (historical material
 ## Citation
 
 ```
-Chen, Robin. (2026). FedPriority: Model-Scored Measures of Federal Reserve Priorities, 1993-2026 [Data set]. Version 2.0.0 (draft).
+Chen, Robin. (2026). FedPriority: Model-Scored Measures of Federal Reserve Priorities, 1993-2026 [Data set]. Version 2.0.0 (2026-10-24).
 ```
 
 ## Funding

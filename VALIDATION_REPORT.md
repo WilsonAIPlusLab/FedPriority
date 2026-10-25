@@ -1,17 +1,17 @@
 ---
 title: FOMC Scoring Dataset — Consolidated Validation Report
-version: 1.0 (annotated 2026-10-16; patched for dataset v2.0.0 draft 2026-10-23)
+version: 1.0 (annotated 2026-10-16; patched for dataset v2.0.0 2026-10-24)
 date: 2026-03-30
 ---
 
 # FOMC Scoring Dataset — Consolidated Validation Report
 
-**Version:** 1.0 (original evidence as of 2026-03-30; annotated 2026-10-16 against 1.3.0 DRAFT; patched 2026-10-23 for the v2.0.0 DRAFT, local and unpublished)
+**Version:** 1.0 (original evidence as of 2026-03-30; annotated 2026-10-16 against the 1.3.0 changes; patched 2026-10-24 for v2.0.0)
 **Date:** 2026-03-30
 
 > **No human annotator has labelled any part of this dataset. Every reliability, concordance and agreement figure in this report is model-versus-model or an internal-consistency check; none is checked against human labels.** Sign convention throughout: **minutes minus transcripts** (a negative value means minutes score lower than transcripts).
 
-> **Status for dataset v2.0.0 (draft, 2026-10-23). Read before using any number below.**
+> **Status for dataset v2.0.0 (2026-10-24). Read before using any number below.**
 > 1. **The pilot sentence kappa of 0.751 could not be reproduced.** The closest recomputation from the shipped files is 0.686 (77.5% raw agreement, after merging FINANCIAL_CONDITIONS and FINANCIAL_STABILITY). It is not a passed check; see Section 7.2.
 > 2. **Most of Sections 1-3 and 9 describe the original V4 staff run (482 documents; 486 rows after later patches), not `data/primary/staff_scores_v6.csv` (495 rows: 270 minutes + 225 transcripts).** In v6 the transcripts were re-scored on repaired text, and the CREDIT_SPREADS column is mixed-vintage. Results about the original run do not carry over automatically. Where this report recomputes on v6 (Section 3.2 and new Section 11), the numbers were recomputed directly from `data/primary/staff_scores_v6.csv` on 2026-10-23.
 > 3. **Removed in v2.0.0 and no longer validated here:** the V3 discussion scoring (table, evidence, 64-file review, concordance), the mechanism coding and `analysis/`, `scoring_evidence/meeting_comparisons/`, `data/supplementary/`, `data/legacy/`, `correction_log.csv` and the `concordance_*.csv` files, and the reports `v3_validation_summary.md`, `concordance_report.md`, `deep_analysis_results.md`. Sections 2.4, 3.3, 3.4 and 4 are reduced to removal notices; other passages that cited them are marked.

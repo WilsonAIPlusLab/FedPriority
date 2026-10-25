@@ -1,6 +1,6 @@
 ---
 title: "FOMC Participant Discussion Scores, V4.1 (discussion_scores_v4_1.csv)"
-version: 2.0.0-draft (2026-10-23)
+version: 2.0.0 (2026-10-24)
 source_file: data/primary/discussion_scores_v4_1.csv
 rubric_file: rubrics/discussion_scoring_rubric_v4_1.md (+ rubrics/discussion_scoring_clarifications_v4_1_1.md)
 ---

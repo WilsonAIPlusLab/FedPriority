@@ -1,6 +1,6 @@
 ---
 title: "FOMC Staff Assessment Scores — staff_scores_v6.csv"
-version: 2.0.0-draft
+version: 2.0.0
 created: 2026-03-30
 updated: 2026-10-23
 source_file: data/primary/staff_scores_v6.csv
