@@ -289,21 +289,21 @@ This dataset was developed with support from a Research Sponsorship Program (RSP
 *For methodological details, including scoring design rationale and validation procedures, see METHODOLOGY.md.*
 *For full validation evidence and QC reports, see VALIDATION_REPORT.md.*
 
-## 4a. CURRENT checksums (2.0.0 DRAFT; recomputed 2026-10-23 with Python hashlib SHA-256; local working copy, not committed)
+## 4a. CURRENT checksums (2.0.0 DRAFT; recomputed 2026-10-24 with Python hashlib SHA-256; local commits, not pushed)
 
 Files new or changed since the 1.3.0 table (2026-10-17): `staff_scores_v6.csv` (replaces `staff_scores_v4.csv`), `classified_sentences.csv` (`label_source` column added), and the new `meeting_key_map.csv`, `priority_variable_map.csv` and `staff_v6_minutes_vs_transcripts.csv`. The `meeting_registry.csv` and `meeting_variables.csv` hashes are identical to the 2026-10-17 table. **The `discussion_scores_v4_1.csv` hash differs from the 2026-10-17 value (`4492f8c4…ec837`)** although `CHANGELOG.md` [2.0.0] lists no change to it; the cause was not traced, so do not assume the file equals the 1.3.0 draft byte for byte (its row count is unchanged at 542). `discussion_v4_1_minutes_vs_transcripts.csv` was not hashed in earlier tables; its current hash is given for completeness. Backup copies (`*.bak*`) are not part of the release.
 
 | File | SHA-256 |
 |------|---------|
-| `dataset/data/primary/staff_scores_v6.csv` | `33a75d462b4bdf763f72cad865c5fe0a69ba681bfef07a946767fd1fa1e51170` |
-| `dataset/data/primary/discussion_scores_v4_1.csv` | `9909e71b9e736d8bdb5c63f407f985a169886fa1a49f1769a1bed734034c08cd` |
+| `dataset/data/primary/staff_scores_v6.csv` | `50e3e6eb7e2a0f8e1dbf9ed9628e1db5dcaadf41251e78ac5a1cbe481ed333ee` |
+| `dataset/data/primary/discussion_scores_v4_1.csv` | `06671fa72fc4180243a115f26579eecc9dd894f257afcedd481865253035c8af` |
 | `dataset/data/primary/meeting_registry.csv` | `6687fe5c0b46926019957e0742b26d51fd882c6e63f903071bb7905728548343` |
 | `dataset/data/sentence_classification/classified_sentences.csv` | `c4f710a9d15a3c126be35885b5edb8c226f1811d22496340bf4ef3a20eced739` |
 | `dataset/data/sentence_classification/meeting_variables.csv` | `7d79826292147909fd3b2c947edb5441561c690af1a555b81f97c42fb20df3a7` |
 | `dataset/data/derived/meeting_key_map.csv` | `c1b714d95b8717e919650b2dbcd8ee8aadac9c2e2d928f51e8f57d1fbfd8d4e2` |
 | `dataset/data/derived/priority_variable_map.csv` | `bda68b1a0728d1f931ed069c70ec416a951e57bd519883985ab26977783e2e9b` |
-| `dataset/data/derived/staff_v6_minutes_vs_transcripts.csv` | `80ed8007b3f0f385c5f80e3628f6bca3e63724f5a53ef0df4ab7e98c31309c6d` |
-| `dataset/data/derived/discussion_v4_1_minutes_vs_transcripts.csv` | `6af500fe3b3204d7b4bb93e0cc04c1a44aa151e952c2946acddcd026c5970804` |
+| `dataset/data/derived/staff_v6_minutes_vs_transcripts.csv` | `2fc6114650ffe0ae80967dcd9b6ec5c26f2d8257f7712ede380dd013915c057e` |
+| `dataset/data/derived/discussion_v4_1_minutes_vs_transcripts.csv` | `19eed7a38769d1727877750b662f699fb4c2b5d7f68a017f466df490b94367cb` |
 
 ### Added in 2.0.0: derived files and their sources
 
