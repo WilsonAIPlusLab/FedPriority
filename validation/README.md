@@ -6,4 +6,6 @@ These reports were written in March 2026 about the **original V4 staff run (482 
 - `quality_report.md`, `staff_comparison_report.md`: automated flags and minutes-vs-transcript statistics on the original V4 staff table.
 - `pilot_kappa/`: pilot sentence-classification labels. The reported kappa of 0.751 could not be reproduced (a closest recomputation gave 0.686); see the README validation table.
 
+The financial-stability emphasis (FSE) gap statements in `COMPARISON_SYNTHESIS.md` and `EVIDENCE_SUMMARY.md` describe the earlier independent re-score and are not current results; the FSE gap is no longer reported as a result of this dataset (CHANGELOG [2.0.0], 2026-10-24).
+
 No file here is a human validation. Reports about the V3 discussion scoring, the V3 concordance and the mechanism analysis were removed in v2.0.0 (see CHANGELOG).
