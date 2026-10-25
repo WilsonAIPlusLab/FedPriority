@@ -2,7 +2,7 @@
 
   python run_v41.py manifest [--pilot]   enumerate inputs from 03_decomposition/output_rebuild/member_discussion
   python run_v41.py status
-  python run_v41.py validate             check every output file's Part 3 (20 scored dims, ranges, N/A rules)
+  python run_v41.py validate             check every output file's Part 3 (19 scored dims, ranges, N/A rules)
   python run_v41.py next [N]             print up to N undispatched/invalid items, record them in dispatched.txt
   python run_v41.py parse                write all_scores_discussion_v41.csv and all_scores_disc_m_v41.csv (valid files only)
 """
@@ -25,7 +25,7 @@ RUBRIC = ROOT / "04_scoring" / "discussion" / "v4_1" / "FOMC_Discussion_Review_P
 
 FULL = ["INFLATION_PRESSURE", "OUTPUT_GAP", "LABOR_TIGHTNESS", "CONSUMPTION_INVESTMENT", "PRODUCTIVITY",
         "FINANCIAL_CONDITIONS", "TREASURY_STRESS", "CREDIT_SPREADS", "EQUITY_VALUATION", "BANKING_STRESS", "DOLLAR_STRENGTH",
-        "HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FINANCIAL_STABILITY_EMPHASIS", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
+        "HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
 SUBS = ["INFLATION_GOODS", "INFLATION_SERVICES", "INFLATION_HOUSING", "INFLATION_EXPECTATIONS"]
 TIER3 = FULL[11:]
 COLS = ["MEETING_DATE", "SOURCE_TYPE"] + [c for d in FULL for c in (d, d + "_UNC", d + "_CONF")] + SUBS + ["ANOMALY_FLAG", "ANOMALY_NOTE"]

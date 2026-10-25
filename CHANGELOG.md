@@ -38,6 +38,7 @@ Re-focus on the priorities (price stability, maximum employment, financial stabi
 - Contamination test of the staff input (20 random meetings, repeat vs strict input, blind agents): differences between inputs about as large as scorer noise (about 2 points per score); 127 of 128 staff scorers still flagged a Committee-recap paragraph; the bright-line check run on the finished tables: 0 hard failures, 11 soft flags (staff), 27 (discussion). See DATA_PROVENANCE 5.5.
 
 - Financial-stability emphasis (FINANCIAL_STABILITY_EMPHASIS) gap results removed from README, METHODOLOGY, DATA_PROVENANCE, VALIDATION_REPORT and the discussion codebook, at the author's instruction (2026-10-24). The column, its definition, the rubric and the per-column reliability and scoring-vintage statements stay; the gap is not reported as a result. A length-test caveat that was added earlier the same day was removed with it.
+- Code: `FINANCIAL_STABILITY_EMPHASIS` removed from the dimension (prompt) lists and ordered dimension records in `code/run_v3_scoring.py` (`CORE_DIMS`) and `code/discussion_v4_1/` (`run_v41.py` `FULL`, `minutes_fresh_runner.py` `HEAD`, `followup_merge.py` `core`, report text in `merge_minutes_patch.py`; counts 20 to 19 and five to four). The scripts therefore no longer reproduce the shipped column; the shipped data, the rubric files in `rubrics/` and the codebook still contain the dimension.
 
 ### Not done
 - No human validation. Staff v6 CREDIT_SPREADS remains mixed-vintage. The transcript topic-model agreement stays at r ≈ 0.48.

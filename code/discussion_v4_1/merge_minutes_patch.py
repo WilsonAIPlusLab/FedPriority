@@ -108,7 +108,7 @@ def main():
     A("Each file is a fresh single-document agent patching the existing V4 analysis against the rebuilt input (participants' views + vote record).")
     A("")
     A("## Status counts")
-    A(f"All 20 dimensions: {dict(st)}. Old 15 dimensions only: {dict(st15)} "
+    A(f"All 19 dimensions: {dict(st)}. Old 15 dimensions only: {dict(st15)} "
       f"(CORRECTED share of old-dimension cells = {st15['CORRECTED'] / max(1, sum(st15.values())):.1%}; FILLED among old 15 = text-newly-available or previously N/A).")
     A("")
     A("## Corrections by dimension (old 15 dims, CORRECTED / meetings)")
@@ -137,7 +137,7 @@ def main():
       f"{len(zero_corr)} meetings had no correction and no filled old dimension at all (e.g. {zero_corr[:6]}).")
     A("2. **Old analyses cited evidence that is in neither the old nor the new input** (unemployment rates, spreads, dollar moves, 'sound banks', in one case a dissent). Corrections therefore mostly reflect the old analysis, not the input rebuild. Pre-2009 meetings carry the heaviest corrections; 2009+ (segmented) carry few.")
     A("3. The correction rule treats a quote that is absent from the input as unsupported. Where the agent judged other participant text sufficient, the score stayed. Agents differ on this threshold (visible in CREDIT_SPREADS direction-only calls and EQUITY_VALUATION N/A vs 45-55).")
-    A("4. All agents are the same model family; no human check of any patched cell. The five new dimensions (HAWKISH_DOVISH_LEAN, DISSENT_INTENSITY, FINANCIAL_STABILITY_EMPHASIS, FORWARD_GUIDANCE_TONE, UNCERTAINTY_EXPRESSED) are fresh scores in every file (status FILLED).")
+    A("4. All agents are the same model family; no human check of any patched cell. The four new dimensions (HAWKISH_DOVISH_LEAN, DISSENT_INTENSITY, FORWARD_GUIDANCE_TONE, UNCERTAINTY_EXPRESSED) are fresh scores in every file (status FILLED).")
     A("5. The reason-classification above is a regex on free text; counts are indicative.")
     (HERE / "MINUTES_PATCH_RESULTS.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print(f"{n}/{len(rows)} valid; wrote table, long log and results note")

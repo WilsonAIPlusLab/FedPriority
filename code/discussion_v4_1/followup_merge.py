@@ -77,8 +77,8 @@ def main():
                 mean_delta=round(st.mean(v["deltas"]), 2) if v["deltas"] else None,
                 mean_abs_delta=round(st.mean(abs(x) for x in v["deltas"]), 2) if v["deltas"] else None,
                 na_to_value=v["na_to_val"], value_to_na=v["val_to_na"]) for k, v in per.items()}
-    # the five new dimensions, by reason for re-score
-    core = ["HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FINANCIAL_STABILITY_EMPHASIS", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
+    # the four new dimensions, by reason for re-score
+    core = ["HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
     bywhy = {}
     for d in diffs:
         if d["dimension"] not in core:

@@ -26,7 +26,7 @@ T_TAB = HERE / "all_scores_discussion_v411_creditupd.csv"
 M_TAB = HERE / "minutes_patch/all_scores_disc_m_v411_patched.csv"
 CAP, STALE = 10, 12 * 60
 DIMS = list(R.FULL) + list(R.SUBS)
-HEAD = ["HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FINANCIAL_STABILITY_EMPHASIS", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
+HEAD = ["HAWKISH_DOVISH_LEAN", "DISSENT_INTENSITY", "FORWARD_GUIDANCE_TONE", "UNCERTAINTY_EXPRESSED"]
 num = lambda v: int(v) if v and v.isdigit() else None
 era = lambda d: "1993-2000" if d[:4] <= "2000" else "2001-2008" if d[:4] <= "2008" else "2009-2020"
 
